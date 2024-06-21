@@ -1,24 +1,24 @@
 {
   "name": "@rbxts/phantom",
-  "description": "A stack-based Janitor implementation for Roblox platform.",
-  "version": "0.3.4",
-  "main": "src/init.lua",
-  "typings": "src/Janitor.d.ts",
-  "files": ["src/Janitor.d.ts", "src/Janitor.lua"],
+  "description": "Immutable data library for Luau.",
+  "version": "0.0.1",
+  "main": "src/init.luau",
+  "typings": "src/index.d.ts",
+  "files": ["src/index.d.ts", "src/init.luau"],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mathfox/rbx-janitor.git"
+    "url": "git+https://github.com/mathfox/rbx-phantom.git"
   },
-  "keywords": ["janitor", "maid", "cleanup"],
+  "keywords": ["array", "dictionary", "immutable", "roblox", "table"],
   "author": {
     "name": "Ivan Leontev",
     "url": "https://github.com/mathfox"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mathfox/rbx-janitor/issues"
+    "url": "https://github.com/mathfox/rbx-phantom/issues"
   },
-  "homepage": "https://github.com/mathfox/rbx-janitor#readme",
+  "homepage": "https://github.com/mathfox/rbx-phantom#readme",
   "publishConfig": {
     "access": "public"
   },
