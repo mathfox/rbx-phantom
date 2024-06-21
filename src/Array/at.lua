@@ -16,11 +16,11 @@
 	local value = At(array, 0) -- 3
 	```
 ]=]
-local function at<T>(array: { T }, index: number): T
-	local length = #array
-
+local function at<T>(array: { T }, index: number): T?
 	if index < 1 then
-		index += length
+		local length = #array
+
+		return array[index + length]
 	end
 
 	return array[index]

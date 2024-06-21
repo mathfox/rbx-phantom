@@ -1,6 +1,6 @@
 {
 	"name": "phantom",
 	"tree": {
-		"$path": "out"
+		"$path": "src"
 	}
 }

@@ -1,33 +1,33 @@
 {
-	"name": "@rbxts/phantom",
-	"description": "A stack-based Janitor implementation for Roblox platform.",
-	"version": "0.3.4",
-	"main": "src/init.lua",
-	"typings": "src/Janitor.d.ts",
-	"files": ["src/Janitor.d.ts", "src/Janitor.lua"],
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/mathfox/rbx-janitor.git"
-	},
-	"keywords": ["janitor", "maid", "cleanup"],
-	"author": {
-		"name": "Ivan Leontev",
-		"url": "https://github.com/mathfox"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/mathfox/rbx-janitor/issues"
-	},
-	"homepage": "https://github.com/mathfox/rbx-janitor#readme",
-	"publishConfig": {
-		"access": "public"
-	},
-	"devDependencies": {
-		"@biomejs/biome": "1.8.1",
-		"@rbxts/compiler-types": "^2.3.0-types.1",
-		"@rbxts/types": "^1.0.771"
-	},
-	"scripts": {
-		"server": "rojo serve"
-	}
+  "name": "@rbxts/phantom",
+  "description": "A stack-based Janitor implementation for Roblox platform.",
+  "version": "0.3.4",
+  "main": "src/init.lua",
+  "typings": "src/Janitor.d.ts",
+  "files": ["src/Janitor.d.ts", "src/Janitor.lua"],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mathfox/rbx-janitor.git"
+  },
+  "keywords": ["janitor", "maid", "cleanup"],
+  "author": {
+    "name": "Ivan Leontev",
+    "url": "https://github.com/mathfox"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mathfox/rbx-janitor/issues"
+  },
+  "homepage": "https://github.com/mathfox/rbx-janitor#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.8.2",
+    "@rbxts/compiler-types": "^2.3.0-types.1",
+    "@rbxts/types": "^1.0.771"
+  },
+  "scripts": {
+    "server": "rojo serve"
+  }
 }
