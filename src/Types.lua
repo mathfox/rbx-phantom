@@ -3,7 +3,7 @@ local None = require(script.Parent.None)
 
 --[=[
   @type None None
-  @within Sift
+  @within Phantom
 ]=]
 export type None = typeof(None)
 export type Dictionary<K, V> = { [K]: V }

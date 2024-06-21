@@ -1,6 +1,8 @@
-import type { ReadonlyDeep, ReplaceType, SiftNone } from "./Util"
+export = PhantomArray
 
-declare namespace SiftArray {
+import type { ReadonlyDeep, ReplaceType, PhantomNone } from "./Util"
+
+declare namespace PhantomArray {
   export function at<V extends unknown>(
     array: V[],
     index: number
@@ -55,7 +57,7 @@ declare namespace SiftArray {
     array: T[],
     predicate: (value: T, index: number, array: Readonly<T[]>) => unknown,
     from?: number
-  ): number
+  ): number | undefined
 
   export function findWhereLast<T>(
     array: T[],
@@ -75,7 +77,7 @@ declare namespace SiftArray {
 
   export function insert<T>(array: T[], index: number, ...values: T[]): T[]
 
-  export function is(value: any): boolean
+  export function is(value: unknown): value is Array<unknown>
 
   export function last<T>(array: T[]): T
 
@@ -165,7 +167,7 @@ declare namespace SiftArray {
     [K in keyof T]: ReplaceType<
       T[K] extends (infer V)[] ? V : never,
       undefined,
-      SiftNone
+      PhantomNone
     >
   }[]
 
@@ -183,5 +185,3 @@ declare namespace SiftArray {
     is as isArray,
   }
 }
-
-export = SiftArray

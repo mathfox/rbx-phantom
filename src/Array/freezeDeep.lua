@@ -12,7 +12,7 @@
 	```lua
 	local array = { 1, 2, 3, { 4, 5, 6 } }
 
-	local new = FreezeDeep(array)
+	local new = freezeDeep(array)
 
 	new[1] = 4 -- error!
 	new[4][1] = 7 -- error!

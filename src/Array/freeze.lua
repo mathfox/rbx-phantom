@@ -1,5 +1,5 @@
 --!strict
-local Copy = require(script.Parent.copy)
+local copy = require(script.Parent.copy)
 
 --[=[
   @function freeze
@@ -20,7 +20,7 @@ local Copy = require(script.Parent.copy)
   ```
 ]=]
 local function freeze<T>(array: { T }): { T }
-	local new = Copy(array)
+	local new = copy(array)
 
 	table.freeze(new)
 

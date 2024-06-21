@@ -12,11 +12,11 @@
 	```lua
 	local array = { 1, 2, 3 }
 
-	local value = Every(array, function(item, index)
+	local value = every(array, function(item, index)
 		return item > 0
 	end) -- true
 
-	local value = Every(array, function(item, index)
+	local value = every(array, function(item, index)
 		return item > 1
 	end) -- false
 	```

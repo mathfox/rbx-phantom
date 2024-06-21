@@ -11,7 +11,7 @@
   This is just a wrapper around `table.create`.
 
   ```lua
-  local array = Create(3, "Hello")
+  local array = create(3, "Hello")
 
   print(array) -- { "Hello", "Hello", "Hello" }
   ```

@@ -1,8 +1,7 @@
 --!strict
-local Sift = script.Parent.Parent
 
 local CopyDeep = require(script.Parent.copyDeep)
-local None = require(Sift.None)
+local None = require(script.Parent.Parent.None)
 
 --[=[
 	@function concatDeep
@@ -22,7 +21,7 @@ local None = require(Sift.None)
 	local table1 = { 1, 2, { 3, 4 } }
 	local table2 = { 5, 6, { 7, 8 } }
 
-	local new = ConcatDeep(table1, table2) -- { 1, 2, { 3, 4 }, 5, 6, { 7, 8 } }
+	local new = concatDeep(table1, table2) -- { 1, 2, { 3, 4 }, 5, 6, { 7, 8 } }
 	```
 ]=]
 local function concatDeep<T>(...: any): { T }

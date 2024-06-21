@@ -1,7 +1,6 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local None = require(Sift.None)
+local None = require(script.Parent.Parent.None)
 
 --[=[
 	@function concat
@@ -20,7 +19,7 @@ local None = require(Sift.None)
 	local table1 = { 1, 2, 3 }
 	local table2 = { 4, 5, 6 }
 
-	local new = Concat(table1, table2) -- { 1, 2, 3, 4, 5, 6 }
+	local new = concat(table1, table2) -- { 1, 2, 3, 4, 5, 6 }
 	```
 ]=]
 local function concat<T>(...: any): { T }

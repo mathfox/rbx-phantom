@@ -1,11 +1,11 @@
 return function()
-	local Concat = require(script.Parent.concat)
+	local concat = require(script.Parent.concat)
 
 	it("should join multiple arrays together into a single array", function()
 		local table1 = { 1, 2, 3 }
 		local table2 = { 4, 5, 6 }
 
-		local new = Concat(table1, table2)
+		local new = concat(table1, table2)
 
 		expect(new).to.be.a("table")
 
@@ -18,15 +18,15 @@ return function()
 	end)
 
 	it("should return an empty array if no arrays are given", function()
-		local new = Concat()
+		local new = concat()
 
 		expect(new).to.be.a("table")
 		expect(#new).to.equal(0)
 	end)
 
 	it("should accept nil values", function()
-		local new = Concat(nil, { 1, 2, 3 })
-		local new2 = Concat({ 1, 2, 3 }, nil)
+		local new = concat(nil, { 1, 2, 3 })
+		local new2 = concat({ 1, 2, 3 }, nil)
 
 		expect(new).to.be.a("table")
 		expect(#new).to.equal(3)
@@ -39,7 +39,7 @@ return function()
 		local table1 = { 1, 2, { 3, 4 } }
 		local table2 = { 5, 6, { 7, 8 } }
 
-		local new = Concat(table1, table2)
+		local new = concat(table1, table2)
 
 		expect(new).to.be.a("table")
 

@@ -3,7 +3,7 @@ local _T = require(script.Parent.Parent.Types)
 
 --[=[
 	@function equalObjects
-	@within Sift
+	@within Phantom
 
 	@param ... ...table -- The tables to compare.
 	@return boolean -- Whether or not the tables are equal.

@@ -1,6 +1,8 @@
+export = PhantomSet
+
 import type { AnySet } from "./Util"
 
-declare namespace SiftSet {
+declare namespace PhantomSet {
   export function add<T, I>(set: Set<T>, ...values: I[]): Set<T | I>
 
   export function copy<T extends AnySet>(set: T): T
@@ -49,5 +51,3 @@ declare namespace SiftSet {
   // Aliases
   export { merge as join, merge as union, subtract as delete }
 }
-
-export = SiftSet

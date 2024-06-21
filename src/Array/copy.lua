@@ -11,7 +11,7 @@
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Copy(array) -- { 1, 2, 3 }
+	local new = copy(array) -- { 1, 2, 3 }
 
 	print(new == array) -- false
 	```

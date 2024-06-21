@@ -1,7 +1,7 @@
 --!strict
 --[=[
 	@prop None None
-	@within Sift
+	@within Phantom
 
 	Luau can't distinguish between a nil value and a non-existent value. This
 	constant is used to represent a non-existent value. It can be used in methods
@@ -10,7 +10,7 @@
 local None = newproxy(true)
 
 getmetatable(None :: any).__tostring = function()
-	return "Sift.None"
+	return "Phantom.None"
 end
 
 return None

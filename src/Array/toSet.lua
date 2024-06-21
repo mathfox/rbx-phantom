@@ -1,6 +1,5 @@
 --!strict
-local Sift = script.Parent.Parent
-local _T = require(Sift.Types)
+local _T = require(script.Parent.Parent.Types)
 
 --[=[
 	@function toSet

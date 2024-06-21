@@ -1,10 +1,10 @@
 return function()
-	local Freeze = require(script.Parent.freeze)
+	local freeze = require(script.Parent.freeze)
 
 	it("should return a read-only copy of the given array", function()
 		local array = { 1, 2, 3 }
 
-		local frozen = Freeze(array)
+		local frozen = freeze(array)
 
 		expect(frozen).to.be.a("table")
 		expect(frozen).never.to.equal(array)
@@ -22,7 +22,7 @@ return function()
 	it("should not freeze nested arrays", function()
 		local array = { 1, 2, { 3, 4 } }
 
-		local frozen = Freeze(array)
+		local frozen = freeze(array)
 
 		expect(frozen).to.be.a("table")
 		expect(frozen).never.to.equal(array)

@@ -1,10 +1,10 @@
 return function()
-	local FreezeDeep = require(script.Parent.freezeDeep)
+	local freezeDeep = require(script.Parent.freezeDeep)
 
 	it("should return a read-only copy of the given array", function()
 		local array = { 1, 2, 3 }
 
-		local frozen = FreezeDeep(array)
+		local frozen = freezeDeep(array)
 
 		expect(frozen).to.be.a("table")
 		expect(frozen).never.to.equal(array)
@@ -22,7 +22,7 @@ return function()
 	it("should return a read-only copy of nested arrays", function()
 		local array = { 1, 2, { 3, 4 } }
 
-		local frozen = FreezeDeep(array)
+		local frozen = freezeDeep(array)
 
 		expect(frozen).to.be.a("table")
 		expect(frozen).never.to.equal(array)

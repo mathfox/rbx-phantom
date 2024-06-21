@@ -13,8 +13,8 @@
 	```lua
 	local array = { "hello", "world", "hello" }
 
-	local index = FindLast(array, "hello") -- 3
-	local index = FindLast(array, "hello", 2) -- 1
+	local index = findLast(array, "hello") -- 3
+	local index = findLast(array, "hello", 2) -- 1
 	```
 ]=]
 local function findLast<T>(array: { T }, value: any?, from: number?): number?

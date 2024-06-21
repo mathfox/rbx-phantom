@@ -1,10 +1,10 @@
 return function()
-	local Copy = require(script.Parent.copy)
+	local copy = require(script.Parent.copy)
 
 	it("should return a copy of the given array", function()
 		local array = { 1, 2, 3 }
 
-		local new = Copy(array)
+		local new = copy(array)
 
 		expect(new).to.be.a("table")
 		expect(new).never.to.equal(array)
@@ -17,7 +17,7 @@ return function()
 	it("should not copy nested arrays", function()
 		local array = { 1, 2, { 3, 4 } }
 
-		local new = Copy(array)
+		local new = copy(array)
 
 		expect(new).to.be.a("table")
 		expect(new).never.to.equal(array)

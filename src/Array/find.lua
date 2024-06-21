@@ -18,8 +18,8 @@
 	```lua
 	local array = { "hello", "world", "hello" }
 
-	local index = Find(array, "hello") -- 1
-	local index = Find(array, "hello", 2) -- 3
+	local index = find(array, "hello") -- 1
+	local index = find(array, "hello", 2) -- 3
 	```
 ]=]
 local function find<T>(array: { T }, value: any?, from: number?): number?

@@ -1,3 +1,5 @@
+export = PhantomDictionary
+
 import {
   ExcludeNone,
   FromEntries,
@@ -7,7 +9,7 @@ import {
   TryIndex
 } from "./Util"
 
-declare namespace SiftDictionary {
+declare namespace PhantomDictionary {
   export function copy<T extends object>(dictionary: T): T
 
   export function copyDeep<T extends object>(dictionary: T): T
@@ -162,5 +164,3 @@ declare namespace SiftDictionary {
   // Aliases
   export { merge as join, mergeDeep as joinDeep }
 }
-
-export = SiftDictionary

@@ -1,8 +1,7 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local Util = require(Sift.Util)
-local _T = require(Sift.Types)
+local Util = require(script.Parent.Parent.Util)
+local _T = require(script.Parent.Parent.Types)
 
 local function compareDeep(a, b)
 	if type(a) ~= "table" or type(b) ~= "table" then

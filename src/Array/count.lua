@@ -1,7 +1,6 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local Util = require(Sift.Util)
+local Util = require(script.Parent.Parent.Util)
 
 --[=[
 	@function count
@@ -16,8 +15,8 @@ local Util = require(Sift.Util)
 	```lua
 	local array = { 1, 2, 3 }
 
-	local value = Count(array) -- 3
-	local value = Count(array, function(item, index)
+	local value = count(array) -- 3
+	local value = count(array, function(item, index)
 		return item == 2
 	end) -- 1
 	```

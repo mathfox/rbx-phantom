@@ -1,12 +1,12 @@
 return function()
-	local Filter = require(script.Parent.filter)
+	local filter = require(script.Parent.filter)
 
 	it(
 		"should return a copy of the given array with only the elements that match the predicate",
 		function()
 			local array = { 1, 2, 3 }
 
-			local new = Filter(array, function(value)
+			local new = filter(array, function(value)
 				return value % 2 == 0
 			end)
 
@@ -21,7 +21,7 @@ return function()
 	it("should not modify the original array", function()
 		local array = { 1, 2, 3 }
 
-		local new = Filter(array, function(value)
+		local new = filter(array, function(value)
 			return value % 2 == 0
 		end)
 

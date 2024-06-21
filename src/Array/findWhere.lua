@@ -13,7 +13,7 @@
 	```lua
 	local array = { 1, 2, 3 }
 
-	local index = FindWhere(array, function(item, index)
+	local index = findWhere(array, function(item, index)
 		return item > 1
 	end) -- 2
 	```
@@ -33,7 +33,7 @@ local function findWhere<T>(
 		end
 	end
 
-	return
+    return nil
 end
 
 return findWhere

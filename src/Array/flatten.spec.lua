@@ -1,10 +1,10 @@
 return function()
-	local Flatten = require(script.Parent.flatten)
+	local flatten = require(script.Parent.flatten)
 
 	it("should return a flattened array", function()
 		local array = { 1, 2, { 3, 4 } }
 
-		local flattened = Flatten(array)
+		local flattened = flatten(array)
 
 		expect(flattened).to.be.a("table")
 		expect(#flattened).to.equal(4)
@@ -18,7 +18,7 @@ return function()
 	it("should not flatten nested arrays if depth = 0", function()
 		local array = { 1, 2, { 3, 4 } }
 
-		local flattened = Flatten(array, 0)
+		local flattened = flatten(array, 0)
 
 		expect(flattened).to.be.a("table")
 		expect(#flattened).to.equal(3)
@@ -31,7 +31,7 @@ return function()
 	it("should flatten as deeply as possible", function()
 		local array = { 1, 2, { 3, 4, { 5, 6, { 7, 8 } } } }
 
-		local flattened = Flatten(array)
+		local flattened = flatten(array)
 
 		expect(flattened).to.be.a("table")
 		expect(#flattened).to.equal(8)

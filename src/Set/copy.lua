@@ -1,7 +1,6 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local copy = require(Sift.Dictionary.copy)
+local copy = require(script.Parent.Parent.Dictionary.copy)
 
 --[=[
   @function copy

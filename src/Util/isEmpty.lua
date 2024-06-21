@@ -3,7 +3,7 @@ local _T = require(script.Parent.Parent.Types)
 
 --[=[
   @function isEmpty
-  @within Sift
+  @within Phantom
   @since v0.0.1
 
   @param table table -- The table to check.

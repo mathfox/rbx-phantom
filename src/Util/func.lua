@@ -1,15 +1,17 @@
-local function truthy()
+--!strict
+
+local exports = {}
+
+function exports.truthy()
 	return true
 end
 
-local function noop() end
+function exports.noop() end
 
-local function returned(...)
+function exports.returned(...)
 	return ...
 end
 
-return {
-	truthy = truthy,
-	noop = noop,
-	returned = returned,
-}
+table.freeze(exports)
+
+return exports

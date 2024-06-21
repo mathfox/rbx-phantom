@@ -1,19 +1,19 @@
-import type { SiftNone } from "./Util"
+export = Phantom
 
-import SiftArray from "./Array"
-import SiftDictionary from "./Dictionary"
-import SiftSet from "./Set"
+import type { PhantomNone } from "./Util"
 
-declare namespace Sift {
-  export const None: SiftNone
-  export type None = SiftNone
+import PhantomArray from "./Array"
+import PhantomDictionary from "./Dictionary"
+import PhantomSet from "./Set"
+
+declare namespace Phantom {
+  export const None: PhantomNone
+  export type None = PhantomNone
 
   export {
-    SiftArray as Array,
-    SiftArray as List,
-    SiftDictionary as Dictionary,
-    SiftSet as Set,
+    PhantomArray as Array,
+    PhantomArray as List,
+    PhantomDictionary as Dictionary,
+    PhantomSet as Set,
   }
 }
-
-export = Sift

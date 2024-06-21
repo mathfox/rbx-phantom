@@ -12,8 +12,8 @@
 	```lua
 	local array = { 1, 2, 3 }
 
-	local value = At(array, 1) -- 1
-	local value = At(array, 0) -- 3
+	local value = at(array, 1) -- 1
+	local value = at(array, 0) -- 3
 	```
 ]=]
 local function at<T>(array: { T }, index: number): T?

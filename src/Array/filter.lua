@@ -1,7 +1,5 @@
 --!strict
-local Sift = script.Parent.Parent
-
-local Util = require(Sift.Util)
+local Util = require(script.Parent.Parent.Util)
 
 --[=[
 	@function filter
@@ -18,7 +16,7 @@ local Util = require(Sift.Util)
 	```lua
 	local array = { 1, 2, 3 }
 
-	local result = Filter(array, function(item, index)
+	local result = filter(array, function(item, index)
 		return item > 1
 	end) -- { 2, 3 }
 	```

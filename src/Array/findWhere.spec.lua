@@ -1,10 +1,10 @@
 return function()
-	local FindWhere = require(script.Parent.findWhere)
+	local findWhere = require(script.Parent.findWhere)
 
 	it("should return the first element in the array that matches the given predicate", function()
 		local array = { 1, 2, 3 }
 
-		local result = FindWhere(array, function(value)
+		local result = findWhere(array, function(value)
 			return value == 2
 		end)
 
@@ -14,7 +14,7 @@ return function()
 	it("should return nil if no element matches the given predicate", function()
 		local array = { 1, 2, 3 }
 
-		local result = FindWhere(array, function(value)
+		local result = findWhere(array, function(value)
 			return value == 4
 		end)
 
@@ -26,7 +26,7 @@ return function()
 		function()
 			local array = { 1, 2, 3 }
 
-			local result = FindWhere(array, function(value)
+			local result = findWhere(array, function(value)
 				return value == 3
 			end, 2)
 
@@ -39,7 +39,7 @@ return function()
 		function()
 			local array = { 1, 2, 3 }
 
-			local result = FindWhere(array, function(value)
+			local result = findWhere(array, function(value)
 				return value == 1
 			end, 2)
 

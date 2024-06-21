@@ -79,4 +79,6 @@ Array.has = Array.includes
 Array.contains = Array.includes
 Array.isArray = Array.is
 
+table.freeze(Array)
+
 return Array

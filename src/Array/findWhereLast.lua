@@ -13,11 +13,11 @@
 	```lua
 	local array = { "hello", "world", "hello" }
 
-	local index = FindWhereLast(array, function(item, index)
+	local index = findWhereLast(array, function(item, index)
 		return item == "hello"
 	end) -- 3
 
-	local index = FindWhereLast(array, function(item, index)
+	local index = findWhereLast(array, function(item, index)
 		return item == "hello"
 	end, 2) -- 1
 	```

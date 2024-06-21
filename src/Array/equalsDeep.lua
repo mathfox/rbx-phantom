@@ -1,7 +1,6 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local Util = require(Sift.Util)
+local Util = require(script.Parent.Parent.Util)
 
 local function compareDeep(a, b)
 	if type(a) ~= "table" or type(b) ~= "table" then
@@ -36,9 +35,9 @@ end
 	local array = { 1, 2, 3, { 4, 5 } }
 	local other = { 1, 2, 3, { 4, 5 } }
 
-	local value = EqualsDeep(array, other) -- true
-	local value = EqualsDeep(array, other, { 1, 2, 3, { 4, 5 } }) -- true
-	local value = EqualsDeep(array, other, { 1, 2, 3, { 4, 6 } }) -- false
+	local value = equalsDeep(array, other) -- true
+	local value = equalsDeep(array, other, { 1, 2, 3, { 4, 5 } }) -- true
+	local value = equalsDeep(array, other, { 1, 2, 3, { 4, 6 } }) -- false
 	```
 ]=]
 local function equalsDeep<T>(...: { T }): boolean

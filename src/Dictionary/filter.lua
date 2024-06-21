@@ -1,7 +1,6 @@
 --!strict
-local Sift = script.Parent.Parent
 
-local Util = require(Sift.Util)
+local Util = require(script.Parent.Parent.Util)
 
 --[=[
   @function filter
