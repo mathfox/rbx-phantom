@@ -1,10 +1,10 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Immutable data library for Luau.",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
-	"files": ["src/index.d.ts", "src/init.luau"],
+	"files": ["src", "!**/*.spec.luau"],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/mathfox/rbx-phantom.git"
@@ -28,6 +28,6 @@
 		"@rbxts/types": "^1.0.771"
 	},
 	"scripts": {
-		"server": "rojo serve"
+		"serve": "rojo serve"
 	}
 }
