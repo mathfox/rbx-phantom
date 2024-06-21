@@ -1,2 +1,3 @@
 # rbx-phantom
- Immutable data library for Luau.
+
+Immutable data library for Luau.
