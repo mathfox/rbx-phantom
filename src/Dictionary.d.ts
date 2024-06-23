@@ -163,5 +163,9 @@ declare namespace PhantomDictionary {
 	): Pick<T, K>;
 
 	// Aliases
-	export { merge as join, mergeDeep as joinDeep };
+	export {
+        merge as join,
+        mergeDeep as joinDeep,
+        merge as assign,
+    };
 }

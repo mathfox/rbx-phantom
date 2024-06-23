@@ -47,5 +47,6 @@ local Dictionary = {
 
 Dictionary.join = Dictionary.merge
 Dictionary.joinDeep = Dictionary.mergeDeep
+Dictionary.assign = Dictionary.merge
 
 return Dictionary
