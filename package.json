@@ -1,7 +1,7 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Immutable data library for Luau.",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
 	"files": ["src", "!**/*.spec.luau"],

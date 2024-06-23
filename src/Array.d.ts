@@ -78,9 +78,9 @@ declare namespace PhantomArray {
 
 	export function last<T>(array: T[]): T;
 
-	export function map<T, U extends T>(
-		array: T[],
-		mapper: (value: T, index: number, array: Readonly<T[]>) => U,
+	export function map<T extends object, U>(
+		array: T,
+		mapper: (value: T[keyof T], index: number, array: Readonly<T>) => U,
 	): U[];
 
 	export function pop<T>(array: T[], count?: number): T[];
