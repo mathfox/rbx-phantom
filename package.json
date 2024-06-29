@@ -1,7 +1,7 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Immutable data library for Luau.",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
 	"files": ["src", "!**/*.spec.luau"],
@@ -22,12 +22,12 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"devDependencies": {
-		"@biomejs/biome": "1.8.2",
+	"dependencies": {
 		"@rbxts/compiler-types": "^2.3.0-types.1",
-		"@rbxts/types": "^1.0.771"
+		"@rbxts/types": "1.0.787"
 	},
 	"scripts": {
-		"serve": "rojo serve"
+		"serve": "rojo serve",
+		"fmt": "bunx @biomejs/biome check --write"
 	}
 }
