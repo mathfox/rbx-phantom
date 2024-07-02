@@ -1,17 +1,30 @@
+interface PhantomSetConstructor {
+    keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
+    values<T>(this: void, set: ReadonlySet<T>): Array<true>;
+
+    /**
+     * Exists for typechecking purposes.
+     *
+     * Under the hood it is just a reference to {@link table.freeze} function.
+     *
+     * Returns the set itself.
+     */
+    freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
+
+    add<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
+    entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+
+    fromArray<T>(this: void, array: Array<T>): Set<T>;
+    toArray<T>(this: void, set: ReadonlySet<T>): Array<T>;
+}
+
+declare const PhantomSet: PhantomSetConstructor;
+
 export = PhantomSet;
 
 import type { AnySet } from "./Util";
 
-declare namespace PhantomSet {
-	export function add<T, I>(set: Set<T>, ...values: I[]): Set<T | I>;
-
-	export function copy<T extends AnySet>(set: T): T;
-
-	export function count<T, S extends Set<T>>(
-		set: S,
-		predicate?: (item: T) => unknown,
-	): number;
-
+declare namespace PhantomSetOld {
 	export function difference<T>(set: Set<T>, ...sets: Set<T>[]): Set<T>;
 
 	export function differenceSymmetric<T>(
@@ -24,7 +37,6 @@ declare namespace PhantomSet {
 		predicate: (item: T, set: Readonly<S>) => unknown,
 	): Set<T>;
 
-	export function fromArray<T>(array: T[]): Set<T>;
 
 	export function has(set: AnySet, item: unknown): boolean;
 
@@ -49,8 +61,4 @@ declare namespace PhantomSet {
 
 	export function subtract<S extends AnySet>(set: S, ...values: unknown[]): S;
 
-	export function toArray<T>(set: Set<T>): T[];
-
-	// Aliases
-	export { merge as join, merge as union, subtract as delete };
 }

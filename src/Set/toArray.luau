@@ -1,23 +1,14 @@
 --!strict
---[=[
-  @function toArray
-  @within Set
 
-  @param set { [T]: boolean } -- The set to convert to an array.
-  @return {T} -- The array.
+local types = require(script.Parent.types)
 
-  Converts a set to an array.
+type Set<T> = types.Set<T>
 
-  ```lua
-  local set = { hello = true, world = true }
-
-  local array = ToArray(set) -- { "hello", "world" }
-  ```
-]=]
-local function toArray<T>(set: { [T]: boolean }): { T }
+@native
+local function toArray<T>(set: Set<T>): { T }
 	local result = {}
 
-	for key, _ in pairs(set) do
+	for key in set do
 		table.insert(result, key)
 	end
 

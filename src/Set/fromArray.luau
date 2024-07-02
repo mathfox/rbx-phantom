@@ -1,26 +1,14 @@
 --!strict
---[=[
-  @function fromArray
-  @within Set
 
-  @param array {T} -- The array to convert to a set.
-  @return {[T]: boolean} -- The set.
+local types = require(script.Parent.types)
 
-  Converts an array to a set, where each item is mapped to true.
-  Duplicate items are discarded.
+type Set<T> = types.Set<T>
 
-  Aliases: `fromList`
-
-  ```lua
-  local array = { "hello", "world", "hello" }
-
-  local set = FromArray(array) -- { hello = true, world = true }
-  ```
-]=]
-local function fromArray<T>(array: { T }): { [T]: boolean }
+@native
+local function fromArray<T>(array: { T }): Set<T>
 	local result = table.create(#array)
 
-	for _, value in ipairs(array) do
+	for _, value in array do
 		result[value] = true
 	end
 

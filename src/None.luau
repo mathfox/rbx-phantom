@@ -9,6 +9,8 @@
 ]=]
 local None = newproxy(true)
 
+export type None = typeof(None)
+
 getmetatable(None :: any).__tostring = function()
 	return "Phantom.None"
 end

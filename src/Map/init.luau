@@ -1,21 +1,7 @@
 --!strict
---[=[
-	@class Dictionary
 
-	Dictionaries are a type of data structure that can be used to store key-value pairs.
-
-	```lua
-	local dictionary = {
-		cats = 2,
-		dogs = 1
-	}
-
-	print(dictionary.cats) -- 2
-	```
-]=]
-local Dictionary = {
+local exports = {
 	copyDeep = require(script.copyDeep),
-	count = require(script.count),
 	entries = require(script.entries),
 	equals = require(script.equals),
 	equalsDeep = require(script.equalsDeep),
@@ -43,8 +29,4 @@ local Dictionary = {
 	withKeys = require(script.withKeys),
 }
 
-Dictionary.join = Dictionary.merge
-Dictionary.joinDeep = Dictionary.mergeDeep
-Dictionary.assign = Dictionary.merge
-
-return Dictionary
+return exports

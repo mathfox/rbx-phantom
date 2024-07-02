@@ -1,29 +1,14 @@
 --!strict
---[=[
-	@class Array
 
-	An array is a table consisting of index-value pairs. You don't need to
-	manually specify the indices when you create an array.
+local types = require(script.types)
 
-	```lua
-	local array = {
-		"hello",
-		"world",
-	}
-	```
+export type Array<T> = types.Array<T>
 
-	<br><br>
-
-	#### Aliases
-
-	`List`
-]=]
-local Array = {
+local exports = {
 	at = require(script.at),
 	concat = require(script.concat),
 	concatDeep = require(script.concatDeep),
 	copyDeep = require(script.copyDeep),
-	count = require(script.count),
 	difference = require(script.difference),
 	differenceSymmetric = require(script.differenceSymmetric),
 	equals = require(script.equals),
@@ -55,7 +40,6 @@ local Array = {
 	shuffle = require(script.shuffle),
 	slice = require(script.slice),
 	some = require(script.some),
-	sort = require(script.sort),
 	splice = require(script.splice),
 	toSet = require(script.toSet),
 	unshift = require(script.unshift),
@@ -64,17 +48,6 @@ local Array = {
 	zipAll = require(script.zipAll),
 }
 
-Array.join = Array.concat
-Array.merge = Array.concat
-Array.joinDeep = Array.concatDeep
-Array.mergeDeep = Array.concatDeep
-Array.append = Array.push
-Array.prepend = Array.unshift
-Array.indexOf = Array.find
-Array.has = Array.includes
-Array.contains = Array.includes
-Array.isArray = Array.is
+table.freeze(exports)
 
-table.freeze(Array)
-
-return Array
+return exports

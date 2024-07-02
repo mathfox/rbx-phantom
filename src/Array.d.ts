@@ -1,24 +1,24 @@
-export = PhantomArray;
+// export = PhantomArray;
 
 import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
 
-declare namespace PhantomArray {
-	export function at<V>(array: V[], index: number): V | undefined;
+interface PhantomArrayConstructor {
+    at<T>(this: void, array: Array<T>, index: number): T | undefined
 
+    isArray(this: void, value: unknown): value is Array<unknown>;
+}
+
+declare const PhantomArray: PhantomArrayConstructor
+
+export = PhantomArray
+
+
+declare namespace PhantomArrayName {
 	export function concat<T>(...arrays: T[]): T;
 
 	export function concatDeep<T>(...arrays: T[]): T;
 
-	export function copy<T>(array: T): T;
-
 	export function copyDeep<T>(array: T): T;
-
-	export function count<T>(
-		array: T[],
-		predicate: (value: T, index: number, array: Readonly<T[]>) => unknown,
-	): number;
-
-	export function create<T = unknown>(length: number, value?: T): T[];
 
 	export function difference<T>(array: T[], ...values: T[]): T[];
 
@@ -62,11 +62,7 @@ declare namespace PhantomArray {
 		from?: number,
 	): number;
 
-	export function first<T>(array: T[]): T;
-
 	export function flatten<T>(array: T[], depth?: number): T[];
-
-	export function freeze<T>(array: T[]): Readonly<T[]>;
 
 	export function freezeDeep<T>(array: T[]): ReadonlyDeep<T[]>;
 
@@ -74,7 +70,6 @@ declare namespace PhantomArray {
 
 	export function insert<T>(array: T[], index: number, ...values: T[]): T[];
 
-	export function is(value: unknown): value is Array<unknown>;
 
 	export function last<T>(array: T[]): T;
 
@@ -170,18 +165,4 @@ declare namespace PhantomArray {
 			PhantomNone
 		>;
 	}[];
-
-	// Aliases
-	export {
-		concat as join,
-		concat as merge,
-		concatDeep as joinDeep,
-		concatDeep as mergeDeep,
-		find as indexOf,
-		includes as contains,
-		includes as has,
-		push as append,
-		unshift as prepend,
-		is as isArray,
-	};
 }
