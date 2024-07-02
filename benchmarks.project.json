@@ -1,0 +1,14 @@
+{
+	"name": "phantom",
+	"tree": {
+        "$className": "DataModel",
+        "ReplicatedStorage": {
+            "Phantom": {
+                "$path":"src"
+            },
+            "Benchmarks":{
+                "$path":"benchmarks"
+            }
+        }
+	}
+}

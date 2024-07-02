@@ -18,9 +18,7 @@
 ]=]
 local function at<T>(array: { T }, index: number): T?
 	if index < 1 then
-		local length = #array
-
-		return array[index + length]
+		return array[index + #array]
 	end
 
 	return array[index]

@@ -1,32 +1,48 @@
 --!strict
---[=[
-  @function add
-  @within Set
 
-  @param set { [T]: boolean } -- The set to add the value to.
-  @param ... ...T -- The values to add.
-  @return { [T]: boolean } -- The set with the values added.
+local types = require(script.Parent.types)
 
-  Adds values to a set.
+type Set<T> = types.Set<T>
 
-  ```lua
-  local set = { hello = true }
+@native
+local function add<T>(set: Set<T>, ...: T)
+    local size = select("#", ...)
 
-  local newSet = Add(set, "world") -- { hello = true, world = true }
-  ```
-]=]
-local function add<T>(set: { [T]: boolean }, ...: T): { [T]: boolean }
-	local result = {}
+    if size == 1 then
+        set[select(1, ...)] = true
 
-	for key, _ in pairs(set) do
-		result[key] = true
-	end
+        return
+    elseif size == 2 then
+        set[select(1, ...)] = true
+        set[select(2, ...)] = true
 
-	for _, value in ipairs({ ... }) do
-		result[value] = true
-	end
+        return
+    elseif size == 3 then
+        set[select(1, ...)] = true
+        set[select(2, ...)] = true
+        set[select(3, ...)] = true
 
-	return result
+        return
+    elseif size == 4 then
+        set[select(1, ...)] = true
+        set[select(2, ...)] = true
+        set[select(3, ...)] = true
+        set[select(4, ...)] = true
+
+        return
+    elseif size == 5 then
+        set[select(1, ...)] = true
+        set[select(2, ...)] = true
+        set[select(3, ...)] = true
+        set[select(4, ...)] = true
+        set[select(5, ...)] = true
+
+        return
+    end
+
+    for index = 1, size do
+        set[select(index, ...)] = true
+    end
 end
 
 return add

@@ -31,14 +31,8 @@ local Phantom = {
 	isEmpty = require(script.Util.isEmpty),
 }
 
-Phantom.List = Phantom.Array
-
 --- @prop Array Array
 --- @within Phantom
-
---- @prop List Array
---- @within Phantom
---- @tag Alias
 
 --- @prop Dictionary Dictionary
 --- @within Phantom

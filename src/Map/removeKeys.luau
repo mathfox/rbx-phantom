@@ -1,6 +1,4 @@
 --!strict
-local copy = require(script.Parent.copy)
-
 --[=[
   @function removeKeys
   @within Dictionary
@@ -14,13 +12,13 @@ local copy = require(script.Parent.copy)
   ```lua
   local dictionary = { hello = "world", cat = "meow", dog = "woof", unicorn = "rainbow" }
 
-  local withoutCatDog = RemoveKeys(dictionary, "cat", "dog") -- { hello = "world", unicorn = "rainbow" }
+  local withoutCatDog = removeKeys(dictionary, "cat", "dog") -- { hello = "world", unicorn = "rainbow" }
   ```
 ]=]
 local function removeKeys<K, V>(dictionary: { [K]: V }, ...: K): { [K]: V }
-	local result = copy(dictionary)
+	local result = table.clone(dictionary)
 
-	for _, key in ipairs({ ... }) do
+	for _, key in { ... } do
 		result[key] = nil
 	end
 

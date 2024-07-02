@@ -1,28 +1,11 @@
 --!strict
 
-local Util = require(script.Parent.Parent.Util)
+local types = require(script.Parent.types)
 
---[=[
-  @function count
-  @within Set
+type Set<T> = types.Set<T>
 
-  @param set { [T]: boolean } -- The set to count.
-  @param predicate? (item: T, set: { [T]: boolean }) -> boolean? -- The predicate to use to count.
-  @return number -- The number of items in the set.
-
-  Counts the number of items in a set.
-
-  ```lua
-  local set = { hello = true, world = true }
-
-  local count = Count(set) -- 2
-  local count = Count(set, function(item)
-    return item == "hello"
-  end) -- 1
-  ```
-]=]
 local function count<T>(
-	set: { [T]: boolean },
+	set: Set<T>,
 	predicate: ((item: T, set: { [T]: boolean }) -> boolean?)?
 ): number
 	local counter = 0

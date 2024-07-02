@@ -1,4 +1,9 @@
 --!strict
+
+local types = require(script.types)
+
+export type Set<T> = types.Set<T>
+
 --[=[
 	@class Set
 
@@ -14,7 +19,6 @@
 ]=]
 local set = {
 	add = require(script.add),
-	copy = require(script.copy),
 	count = require(script.count),
 	delete = require(script.delete),
 	difference = require(script.difference),
@@ -29,10 +33,5 @@ local set = {
 	merge = require(script.merge),
 	toArray = require(script.toArray),
 }
-
-set.fromList = set.fromArray
-set.join = set.merge
-set.subtract = set.delete
-set.union = set.merge
 
 return set

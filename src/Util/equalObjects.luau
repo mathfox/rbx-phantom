@@ -14,7 +14,7 @@ local _T = require(script.Parent.Parent.Types)
 	local a = { hello = "world" }
 	local b = { hello = "world" }
 
-	local equal = EqualObjects(a, b) -- true
+	local equal = equalObjects(a, b) -- true
 	```
 ]=]
 local function equalObjects(...: _T.Table): boolean

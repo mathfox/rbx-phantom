@@ -1,4 +1,9 @@
 --!strict
+
+local types = require(script.Parent.types)
+
+type Set<T> = types.Set<T>
+
 --[=[
   @function delete
   @within Set
@@ -9,26 +14,18 @@
 
   Deletes values from a set.
 
-  Aliases: `subtract`
-
   ```lua
   local set = { hello = true, world = true }
 
-  local newSet = Delete(set, "hello") -- { world = true }
+  local newSet = delete(set, "hello") -- { world = true }
   ```
 ]=]
-local function delete<T>(set: { [T]: boolean }, ...: T): { [T]: boolean }
-	local result = {}
-
-	for key, _ in pairs(set) do
-		result[key] = true
+local function delete<T>(set: Set<T>, ...: T): Set<T>
+	for _, value in { ... } do
+		set[value] = nil
 	end
 
-	for _, value in ipairs({ ... }) do
-		result[value] = nil
-	end
-
-	return result
+	return set
 end
 
 return delete

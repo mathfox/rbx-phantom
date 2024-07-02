@@ -1,6 +1,4 @@
 --!strict
-local copy = require(script.Parent.copy)
-
 --[=[
   @function set
   @within Dictionary
@@ -19,7 +17,7 @@ local copy = require(script.Parent.copy)
   ```
 ]=]
 local function set<K, V>(dictionary: { [K]: V }, key: K, value: V): { [K]: V }
-	local result = copy(dictionary)
+	local result = table.clone(dictionary)
 
 	result[key] = value
 

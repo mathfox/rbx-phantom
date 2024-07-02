@@ -3,7 +3,7 @@ export = Phantom;
 import type { PhantomNone } from "./Util";
 
 import PhantomArray from "./Array";
-import PhantomDictionary from "./Dictionary";
+import PhantomDictionary from "./Map";
 import PhantomSet from "./Set";
 
 declare namespace Phantom {
@@ -12,7 +12,6 @@ declare namespace Phantom {
 
 	export {
 		PhantomArray as Array,
-		PhantomArray as List,
 		PhantomDictionary as Dictionary,
 		PhantomSet as Set,
 	};

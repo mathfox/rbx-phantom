@@ -14,7 +14,6 @@
 	```
 ]=]
 local Dictionary = {
-	copy = require(script.copy),
 	copyDeep = require(script.copyDeep),
 	count = require(script.count),
 	entries = require(script.entries),
@@ -24,7 +23,6 @@ local Dictionary = {
 	filter = require(script.filter),
 	flatten = require(script.flatten),
 	flip = require(script.flip),
-	freeze = require(script.freeze),
 	freezeDeep = require(script.freezeDeep),
 	fromArrays = require(script.fromArrays),
 	fromEntries = require(script.fromEntries),

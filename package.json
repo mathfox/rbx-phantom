@@ -28,6 +28,9 @@
 	},
 	"scripts": {
 		"serve": "rojo serve",
-		"fmt": "bunx @biomejs/biome check --write"
+        "serve:tests": "rojo serve tests.project.json",
+        "serve:bench": "rojo serve benchmarks.project.json",
+		"fmt": "bunx @biomejs/biome check --write",
+        "build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
 	}
 }
