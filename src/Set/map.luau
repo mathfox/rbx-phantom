@@ -1,31 +1,15 @@
 --!strict
---[=[
-  @function map
-  @within Set
 
-  @param set { [T]: boolean } -- The set to map.
-  @param mapper (T, {[T]: boolean}) -> U -- The mapper function.
-  @return {[U]: boolean} -- The mapped set.
+local types = require(script.Parent.types)
 
-  Iterates over a set, calling a mapper function for each item.
+type Set<T> = types.Set<T>
 
-  ```lua
-  local set = { hello = true, world = true }
+@native
+local function map<T, R>(set: Set<T>, mapper: (T, Set<T>) -> R): Set<R>
+	local result = {} :: Set<R>
 
-  local mappedSet = Map(set, function(value)
-    return value .. "!"
-  end) -- { ["hello!"] = true, ["world!"] = true }
-  ```
-]=]
-local function map<T, U>(set: { [T]: boolean }, mapper: (T, { [T]: boolean }) -> U): { [U]: boolean }
-	local result = {}
-
-	for key, _ in pairs(set) do
-		local mappedKey = mapper(key, set)
-
-		if mappedKey ~= nil then
-			result[mappedKey] = true
-		end
+	for key in set do
+        result[mapper(key, set)] = true
 	end
 
 	return result

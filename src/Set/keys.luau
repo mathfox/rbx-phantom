@@ -1,6 +1,8 @@
-local SetTypes = require(script.Parent.types)
+--!strict
 
-type Set<T> = SetTypes.Set<T>
+local types = require(script.Parent.types)
+
+type Set<T> = types.Set<T>
 
 @native
 local function keys<T>(set: Set<T>): { T }

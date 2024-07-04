@@ -12,7 +12,16 @@ interface PhantomSetConstructor {
     freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
 
     add<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
+    delete<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
+    has<T>(this: void, set: ReadonlySet<T>, value: T): boolean;
+
     entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+
+    map<T, R>(
+        this: void,
+		set: ReadonlySet<T>,
+		mapper: (item: T, self: typeof set) => R,
+	): Set<R>;
 
     fromArray<T>(this: void, array: Array<T>): Set<T>;
     toArray<T>(this: void, set: ReadonlySet<T>): Array<T>;
@@ -38,8 +47,6 @@ declare namespace PhantomSetOld {
 	): Set<T>;
 
 
-	export function has(set: AnySet, item: unknown): boolean;
-
 	export function intersection<T>(...sets: Set<T>[]): Set<T>;
 
 	export function isSubset<A extends AnySet, B extends AnySet>(
@@ -52,10 +59,6 @@ declare namespace PhantomSetOld {
 		subset: B,
 	): boolean;
 
-	export function map<T, R, S extends Set<T>>(
-		set: S,
-		mapper: (item: T, set: Readonly<S>) => R,
-	): Set<R>;
 
 	export function merge<T>(...sets: Set<T>[]): Set<T>;
 

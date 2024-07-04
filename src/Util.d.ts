@@ -4,6 +4,8 @@ export type ExcludeNone<T> = Exclude<T, PhantomNone>;
 
 export type ObjectKey = string | number | symbol;
 
+export type ObjectIndexSignature = string | number | symbol;
+
 export type AnySet = Set<unknown>;
 
 export type FromEntries<K extends ObjectKey, T extends Array<[K, unknown]>> = {

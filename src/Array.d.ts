@@ -3,7 +3,12 @@
 import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
 
 interface PhantomArrayConstructor {
+    keys<T>(this: void, array: ReadonlyArray<T>): Array<number>;
+    values<T>(this: void, array: ReadonlyArray<T>): Array<NonNullable<T>>;
+
     at<T>(this: void, array: Array<T>, index: number): T | undefined
+
+    freeze<T>(this: void, array: Array<T>): ReadonlyArray<T>;
 
     isArray(this: void, value: unknown): value is Array<unknown>;
 }

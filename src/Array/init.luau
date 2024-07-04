@@ -46,6 +46,8 @@ local exports = {
 	update = require(script.update),
 	zip = require(script.zip),
 	zipAll = require(script.zipAll),
+
+    freeze = table.freeze,
 }
 
 table.freeze(exports)
