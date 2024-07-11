@@ -3,20 +3,19 @@
 import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
 
 interface PhantomArrayConstructor {
-    keys<T>(this: void, array: ReadonlyArray<T>): Array<number>;
-    values<T>(this: void, array: ReadonlyArray<T>): Array<NonNullable<T>>;
+	keys<T>(this: void, array: ReadonlyArray<T>): Array<number>;
+	values<T>(this: void, array: ReadonlyArray<T>): Array<T>;
 
-    at<T>(this: void, array: Array<T>, index: number): T | undefined
+	at<T>(this: void, array: Array<T>, index: number): T | undefined;
 
-    freeze<T>(this: void, array: Array<T>): ReadonlyArray<T>;
+	freeze<T>(this: void, array: Array<T>): ReadonlyArray<T>;
 
-    isArray(this: void, value: unknown): value is Array<unknown>;
+	isArray(this: void, value: unknown): value is Array<unknown>;
 }
 
-declare const PhantomArray: PhantomArrayConstructor
+declare const PhantomArray: PhantomArrayConstructor;
 
-export = PhantomArray
-
+export = PhantomArray;
 
 declare namespace PhantomArrayName {
 	export function concat<T>(...arrays: T[]): T;
@@ -74,7 +73,6 @@ declare namespace PhantomArrayName {
 	export function includes<T>(array: T[], value: T, from?: number): boolean;
 
 	export function insert<T>(array: T[], index: number, ...values: T[]): T[];
-
 
 	export function last<T>(array: T[]): T;
 
