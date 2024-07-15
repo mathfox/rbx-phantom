@@ -1,4 +1,5 @@
 --!strict
+--!native
 
 local CopyDeep = require(script.Parent.copyDeep)
 local None = require(script.Parent.Parent.None)

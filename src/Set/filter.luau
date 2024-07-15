@@ -1,40 +1,33 @@
 --!strict
 
-local Util = require(script.Parent.Parent.Util)
+local types = require(script.Parent.types)
+
+type Set<T> = types.Set<T>
 
 --[=[
-  @function filter
-  @within Set
+    Filters a set using a predicate. Any items that do not pass the predicate will be removed from the set.
 
-  @param set { [T]: boolean } -- The set to filter.
-  @param predicate? (item: T, set: { [T]: boolean }) -> any -- The function to filter the set with.
-  @return { [T]: boolean } -- The filtered set.
+    ```lua
+    local set = { hello = true, world = true }
 
-  Filters a set using a predicate. Any items that do not pass the predicate will be removed from the set.
-
-  ```lua
-  local set = { hello = true, world = true }
-
-  local newSet = Filter(set, function(value)
-    return value ~= "hello"
-  end) -- { world = true }
-  ```
+    local newSet = filter(set, function(value)
+        return value ~= "hello"
+    end) -- { world = true }
+    ```
 ]=]
 local function filter<T>(
-	set: { [T]: boolean },
-	predicate: ((T, { [T]: boolean }) -> any)?
-): { [T]: boolean }
-	local result = {}
+    set: Set<T>,
+    predicate: (value: T, set: Set<T>) -> any
+): Set<T>
+    local result: Set<T> = {}
 
-	predicate = if type(predicate) == "function" then predicate else Util.func.truthy
+    for key, _ in pairs(set) do
+        if predicate(key, set) then
+            result[key] = true
+        end
+    end
 
-	for key, _ in pairs(set) do
-		if predicate(key, set) then
-			result[key] = true
-		end
-	end
-
-	return result
+    return result
 end
 
 return filter

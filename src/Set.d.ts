@@ -1,30 +1,37 @@
 interface PhantomSetConstructor {
-    keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
-    values<T>(this: void, set: ReadonlySet<T>): Array<true>;
+	add<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
+	delete<const T, const V extends T>(
+		this: void,
+		set: ReadonlySet<T>,
+		...values: ReadonlyArray<V>
+	): Reconstruct<
+		UnionToIntersection<V extends unknown ? Set<Exclude<T, V>> : never>
+	>;
 
-    /**
-     * Exists for typechecking purposes.
-     *
-     * Under the hood it is just a reference to {@link table.freeze} function.
-     *
-     * Returns the set itself.
-     */
-    freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
+	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
+	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
 
-    add<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
-    delete<T>(this: void, set: ReadonlySet<T>, ...values: Array<T>): void;
-    has<T>(this: void, set: ReadonlySet<T>, value: T): boolean;
+	/**
+	 * Exists for typechecking purposes.
+	 *
+	 * Under the hood it is just a reference to {@link table.freeze} function.
+	 *
+	 * Returns the set itself.
+	 */
+	freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
 
-    entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+	has<T>(this: void, set: ReadonlySet<T>, value: T): boolean;
 
-    map<T, R>(
-        this: void,
+	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+
+	map<T, R>(
+		this: void,
 		set: ReadonlySet<T>,
 		mapper: (item: T, self: typeof set) => R,
 	): Set<R>;
 
-    fromArray<T>(this: void, array: Array<T>): Set<T>;
-    toArray<T>(this: void, set: ReadonlySet<T>): Array<T>;
+	fromArray<T>(this: void, array: Array<T>): Set<T>;
+	toArray<T>(this: void, set: ReadonlySet<T>): Array<T>;
 }
 
 declare const PhantomSet: PhantomSetConstructor;
@@ -46,7 +53,6 @@ declare namespace PhantomSetOld {
 		predicate: (item: T, set: Readonly<S>) => unknown,
 	): Set<T>;
 
-
 	export function intersection<T>(...sets: Set<T>[]): Set<T>;
 
 	export function isSubset<A extends AnySet, B extends AnySet>(
@@ -59,9 +65,7 @@ declare namespace PhantomSetOld {
 		subset: B,
 	): boolean;
 
-
 	export function merge<T>(...sets: Set<T>[]): Set<T>;
 
 	export function subtract<S extends AnySet>(set: S, ...values: unknown[]): S;
-
 }

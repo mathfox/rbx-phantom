@@ -1,3 +1,5 @@
+--!strict
+
 export type Set<T> = {
     [T]: true,
 }

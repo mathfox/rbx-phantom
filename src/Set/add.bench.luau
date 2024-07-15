@@ -73,7 +73,7 @@ return function()
         for _ = 1, 1_000_000 do
             local set = {}
 
-            loopBasedAdd(set, 1,2)
+            loopBasedAdd(set, 1, 2)
         end
     end)
 
@@ -81,7 +81,7 @@ return function()
         for _ = 1, 1_000_000 do
             local set = {}
 
-            selectBasedAdd(set, 1,2,3)
+            selectBasedAdd(set, 1, 2, 3)
         end
     end)
 
@@ -89,7 +89,7 @@ return function()
         for _ = 1, 1_000_000 do
             local set = {}
 
-            loopBasedAdd(set, 1,2,3)
+            loopBasedAdd(set, 1, 2, 3)
         end
     end)
 
@@ -97,7 +97,7 @@ return function()
         for _ = 1, 1_000_000 do
             local set = {}
 
-            selectBasedAdd(set, 1,2,3,4)
+            selectBasedAdd(set, 1, 2, 3, 4)
         end
     end)
 
@@ -105,7 +105,7 @@ return function()
         for _ = 1, 1_000_000 do
             local set = {}
 
-            loopBasedAdd(set, 1,2,3,4)
+            loopBasedAdd(set, 1, 2, 3, 4)
         end
     end)
 

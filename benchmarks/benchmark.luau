@@ -2,9 +2,9 @@ type Unit = "seconds" | "milliseconds" | "microseconds" | "nanoseconds"
 
 local units = {
     ["seconds"] = 1,
-    ["milliseconds"] = 1000,
-    ["microseconds"] = 1000000,
-    ["nanoseconds"] = 1000000000,
+    ["milliseconds"] = 1_000,
+    ["microseconds"] = 1_000_000,
+    ["nanoseconds"] = 1_000_000_000,
 }
 
 local function benchmark(
@@ -12,7 +12,7 @@ local function benchmark(
     unit: Unit,
     decPlaces: number,
     n: number,
-    f: () -> nil,
+    f: () -> (),
     ...
 )
     task.spawn(function(...)

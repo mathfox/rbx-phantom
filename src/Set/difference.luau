@@ -1,37 +1,34 @@
 --!strict
-local T = require(script.Parent.Parent.Types)
+--!native
+
+local types = require(script.Parent.types)
+
+type Set<T> = types.Set<T>
 
 --[=[
-  @function difference
-  @within Set
+    Returns a set of values that are in the first set, but not in the other sets.
 
-  @param set Set<V> -- The set to compare.
-  @param ... ...Set<V> -- The sets to compare against.
-  @return Set<V> -- The difference between the sets.
+    ```lua
+    local set1 = { hello = true, world = true }
+    local set2 = { cat = true, dog = true, hello = true }
 
-  Returns a set of values that are in the first set, but not in the other sets.
-
-  ```lua
-  local set1 = { hello = true, world = true }
-  local set2 = { cat = true, dog = true, hello = true }
-
-  local difference = Difference(set1, set2) -- { world = true }
-  ```
+    local diff = difference(set1, set2) -- { world = true }
+    ```
 ]=]
-local function difference<V>(set: T.Set<V>, ...: T.Set<V>): T.Set<V>
-	local diff = table.clone(set)
+local function difference(set: Set<unknown>, ...: Set<unknown>): Set<unknown>
+    local diff = table.clone(set)
 
-	for _, nextSet in { ... } do
-		if typeof(nextSet) ~= "table" then
-			continue
-		end
+    for _, nextSet in { ... } do
+        if type(nextSet) ~= "table" then
+            continue
+        end
 
-		for value in nextSet do
-			diff[value] = nil
-		end
-	end
+        for value in nextSet do
+            diff[value] = nil
+        end
+    end
 
-	return diff
+    return diff
 end
 
 return difference
