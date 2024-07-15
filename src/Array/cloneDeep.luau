@@ -1,16 +1,20 @@
 --!strict
+--!native
 
-@native
-local function cloneDeep<T>(array: { T }): { T }
-	local result = table.clone(array)
+local types = require(script.Parent.types)
 
-	for index, value in array do
-		if type(value) == "table" then
-			result[index] = cloneDeep(value) :: any
-		end
-	end
+type Array<T> = types.Array<T>
 
-	return result
+local function cloneDeep<T>(array: Array<T>): Array<T>
+    local result = table.clone(array)
+
+    for index, value in array do
+        if type(value) == "table" then
+            result[index] = cloneDeep(value) :: any
+        end
+    end
+
+    return result
 end
 
 return cloneDeep
