@@ -1,12 +1,23 @@
-// export = PhantomArray;
-
 import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
 
+type InferArgs<U> = U extends ReadonlyArray<infer A> ? A : U;
+
 interface PhantomArrayConstructor {
+	at<const T>(
+		this: void,
+		array: ReadonlyArray<T>,
+		index: number,
+	): T | undefined;
+
+	cloneDeep<const T>(array: ReadonlyArray<T>): Array<T>;
+
+	concat<const T>(
+		array: ReadonlyArray<T>,
+		...values: ReadonlyArray<T>
+	): Array<T>;
+
 	keys<T>(this: void, array: ReadonlyArray<T>): Array<number>;
 	values<T>(this: void, array: ReadonlyArray<T>): Array<T>;
-
-	at<T>(this: void, array: Array<T>, index: number): T | undefined;
 
 	freeze<T>(this: void, array: Array<T>): ReadonlyArray<T>;
 

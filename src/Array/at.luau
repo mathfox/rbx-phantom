@@ -3,11 +3,9 @@
 
 --[[
     @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at
-
-    The difference is that index is 1-based.
 ]]
 local function at<T>(array: { T }, index: number): T?
-    return if index < 1 then array[index + #array] else array[index]
+    return if index < 0 then array[index + 1 + #array] else array[index + 1]
 end
 
 return at

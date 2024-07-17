@@ -1,6 +1,9 @@
-import PhantomSet from "./Set";
-import { size, values } from "./Shared";
+import { at, concat } from "./Array";
 
-const value = new Set<string>() as Set<"kek" | "Lol">;
+const value = ["kek", "lol"] as const;
 
-const deleted = PhantomSet.delete(value, "Lol");
+const newValue = concat(
+	["kek", "lol"],
+	["other", "else", "bob"],
+	["other", "else"],
+);
