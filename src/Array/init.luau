@@ -6,10 +6,10 @@ export type Array<T> = types.Array<T>
 
 local exports = {
     at = require(script.at),
+    cloneDeep = require(script.cloneDeep),
     concat = require(script.concat),
-    concatDeep = require(script.concatDeep),
-    copyDeep = require(script.copyDeep),
     difference = require(script.difference),
+
     differenceSymmetric = require(script.differenceSymmetric),
     equals = require(script.equals),
     equalsDeep = require(script.equalsDeep),

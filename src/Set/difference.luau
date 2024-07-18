@@ -18,12 +18,10 @@ type Set<T> = types.Set<T>
 local function difference(set: Set<unknown>, ...: Set<unknown>): Set<unknown>
     local diff = table.clone(set)
 
-    for _, nextSet in { ... } do
-        if type(nextSet) ~= "table" then
-            continue
-        end
+    for index = 1, select("#", ...) do
+        local otherSet = select(index, ...) :: Set<unknown>
 
-        for value in nextSet do
+        for value in otherSet do
             diff[value] = nil
         end
     end

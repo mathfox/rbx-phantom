@@ -1,39 +1,33 @@
 --!strict
 --!native
 
-local T = require(script.Parent.Parent.Types)
-
 local toSet = require(script.Parent.toSet)
 local toArray = require(script.Parent.Parent.Set.toArray)
 local setDifference = require(script.Parent.Parent.Set.difference)
+local types = require(script.Parent.types)
+
+type Array<T> = types.Array<T>
 
 --[=[
-  @function difference
-  @within Array
+    Returns an array of values that are in the first array, but not in the other arrays.
 
-  @param array Array<V> -- The array to compare.
-  @param ... ...Array<V> -- The arrays to compare against.
-  @return Array<V> -- The difference between the arrays.
+    ```lua
+    local array1 = { "hello", "world" }
+    local array2 = { "cat", "dog", "hello" }
 
-  Returns an array of values that are in the first array, but not in the other arrays.
-
-  ```lua
-  local array1 = { "hello", "world" }
-  local array2 = { "cat", "dog", "hello" }
-
-  local difference = Difference(array1, array2) -- { "world" }
-  ```
+    local diff = difference(array1, array2) -- { "world" }
+    ```
 ]=]
-local function difference<V>(array: T.Array<V>, ...: T.Array<V>): T.Array<V>
+local function difference<T>(array: Array<T>, ...: Array<T>): Array<T>
     local arraySet = toSet(array)
     local otherSets = {}
 
-    for _, nextArray in { ... } do
-        if typeof(nextArray) ~= "table" then
-            continue
-        end
+    for index = 1, select("#", ...) do
+        local otherArray = select(index, ...)
 
-        table.insert(otherSets, toSet(nextArray))
+        if type(otherArray) == "table" then
+            table.insert(otherSets, toSet(nextArray))
+        end
     end
 
     local differenceSet = setDifference(arraySet, unpack(otherSets))

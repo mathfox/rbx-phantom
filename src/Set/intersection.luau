@@ -6,9 +6,9 @@ local types = require(script.Parent.types)
 type Set<T> = types.Set<T>
 
 --[=[
-    Creates the intersection of multiple sets. The intersection
-    is when both sets have a value in common. Unmatched values
-    are discarded.
+    Creates the intersection of multiple sets.
+    The intersection is when both sets have a value in common.
+    Unmatched values are discarded.
 
     ```lua
     local set1 = { hello = true, world = true }
@@ -23,20 +23,21 @@ local function intersection(...: Set<unknown>): Set<unknown>
 
     local result: Set<unknown> = {}
 
-    for key, _ in pairs(firstSet) do
+    for item in firstSet do
         local intersects = true
 
         for index = 2, setCount do
             local set = select(index, ...)
 
-            if set[key] ~= true then
+            if not set[item] then
                 intersects = false
+
                 break
             end
         end
 
         if intersects then
-            result[key] = true
+            result[item] = true
         end
     end
 

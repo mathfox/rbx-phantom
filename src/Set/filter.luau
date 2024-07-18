@@ -1,4 +1,5 @@
 --!strict
+--!native
 
 local types = require(script.Parent.types)
 
@@ -17,13 +18,13 @@ type Set<T> = types.Set<T>
 ]=]
 local function filter<T>(
     set: Set<T>,
-    predicate: (value: T, set: Set<T>) -> any
+    predicate: (item: T, set: Set<T>) -> any
 ): Set<T>
     local result: Set<T> = {}
 
-    for key, _ in pairs(set) do
-        if predicate(key, set) then
-            result[key] = true
+    for item in set do
+        if predicate(item, set) then
+            result[item] = true
         end
     end
 

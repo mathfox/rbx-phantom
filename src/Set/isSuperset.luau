@@ -1,25 +1,23 @@
 --!strict
+--!native
+
 local isSubset = require(script.Parent.isSubset)
+local types = require(script.Parent.types)
+
+type Set<T> = types.Set<T>
 
 --[=[
-  @function isSuperset
-  @within Set
+    Checks whether a set is a superset of another set.
 
-  @param superset { [any]: boolean } -- The superset to check.
-  @param subset { [any]: boolean } -- The subset to check against.
-  @return boolean -- Whether the superset is a superset of the subset.
+    ```lua
+    local set = { hello = true, world = true }
+    local subset = { hello = true }
 
-  Checks whether a set is a superset of another set.
-
-  ```lua
-  local set = { hello = true, world = true }
-  local subset = { hello = true }
-
-  local isSuperset = IsSuperset(set, subset) -- true
-  ```
+    local isSuperset = IsSuperset(set, subset) -- true
+    ```
 ]=]
-local function isSuperset<any>(superset: { [any]: boolean }, subset: { [any]: boolean }): boolean
-	return isSubset(subset, superset)
+local function isSuperset(superset: Set<unknown>, subset: Set<unknown>): boolean
+    return isSubset(subset, superset)
 end
 
 return isSuperset

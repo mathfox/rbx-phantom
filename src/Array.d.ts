@@ -3,6 +3,10 @@ import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
 type InferArgs<U> = U extends ReadonlyArray<infer A> ? A : U;
 
 interface PhantomArrayConstructor {
+	/**
+	 * @param index 0-based index
+	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at
+	 */
 	at<const T>(
 		this: void,
 		array: ReadonlyArray<T>,
@@ -11,9 +15,22 @@ interface PhantomArrayConstructor {
 
 	cloneDeep<const T>(array: ReadonlyArray<T>): Array<T>;
 
+	/**
+	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+	 */
 	concat<const T>(
+		this: void,
 		array: ReadonlyArray<T>,
-		...values: ReadonlyArray<T>
+		...items: ReadonlyArray<T | ReadonlyArray<T>>
+	): Array<T>;
+
+	/**
+	 * Returns an array of values that are in the first array, but not in the other arrays.
+	 */
+	difference<T>(
+		this: void,
+		array: ReadonlyArray<T>,
+		...otherArrays: ReadonlyArray<ReadonlyArray<T>>
 	): Array<T>;
 
 	keys<T>(this: void, array: ReadonlyArray<T>): Array<number>;

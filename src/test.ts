@@ -1,9 +1,8 @@
-import { at, concat } from "./Array";
+import { add, deleteFromSet, difference } from "./Set";
 
-const value = ["kek", "lol"] as const;
+const set = new Set() as Set<"kek" | "lol">;
 
-const newValue = concat(
-	["kek", "lol"],
-	["other", "else", "bob"],
-	["other", "else"],
-);
+const newSet = add(set, "kek2", "new3");
+const otherSet = deleteFromSet(newSet, "new3");
+
+const diff = difference(newSet, otherSet);
