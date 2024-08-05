@@ -28,9 +28,12 @@
 	},
 	"scripts": {
 		"serve": "rojo serve",
-        "serve:tests": "rojo serve tests.project.json",
-        "serve:bench": "rojo serve benchmarks.project.json",
+		"serve:tests": "rojo serve tests.project.json",
+		"serve:bench": "rojo serve benchmarks.project.json",
 		"fmt": "bunx @biomejs/biome check --write",
-        "build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
+		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
+	},
+	"devDependencies": {
+		"typescript": "^5.6.0-dev.20240801"
 	}
 }
