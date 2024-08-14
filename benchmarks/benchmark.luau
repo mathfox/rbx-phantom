@@ -115,7 +115,7 @@ local function benchmark(n: number, f: () -> (), ...): BenchmarkResult
             averageExecutionTime = elapsed / n,
         }
 
-        task.spawn(callerThread, result)
+        task.defer(callerThread, result)
     end)
 
     task.spawn(thread, ...)
