@@ -1,4 +1,8 @@
-return {
-	equalObjects = require(script.equalObjects),
-	func = require(script.func),
+--!strict
+--!native
+
+local exports = {
+    strictEqual = require(script.strictEqual),
 }
+
+return exports

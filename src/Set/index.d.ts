@@ -1,5 +1,3 @@
-export type InferSetValue<T> = T extends ReadonlySet<infer V> ? V : never;
-
 interface PhantomSetConstructor {
 	add<T>(set: Set<T>, ...values: ReadonlyArray<T>): Set<T>;
 
@@ -68,6 +66,7 @@ interface PhantomSetConstructor {
 	): Set<R>;
 
 	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
+	toArray: PhantomSetConstructor["keys"];
 
 	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
 
@@ -83,8 +82,6 @@ interface PhantomSetConstructor {
 		set: ReadonlySet<T>,
 		mapper: (item: T, self: typeof set) => R,
 	): Set<R>;
-
-	toArray: PhantomSetConstructor["keys"];
 }
 
 declare const PhantomSet: PhantomSetConstructor;
