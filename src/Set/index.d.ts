@@ -45,7 +45,7 @@ interface PhantomSetConstructor {
 	 */
 	fromArray<const T>(this: void, array: ReadonlyArray<T>): Set<T>;
 
-	has<T>(this: void, set: ReadonlySet<T>, value: T): boolean;
+	has<T>(this: void, set: ReadonlySet<T>, ...values: ReadonlyArray<T>): boolean;
 
 	intersection<const T>(
 		this: void,
