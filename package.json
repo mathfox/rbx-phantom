@@ -2,6 +2,13 @@
 	"name": "@rbxts/phantom",
 	"description": "Immutable data library for Luau.",
 	"version": "0.0.5",
+	"scripts": {
+		"serve": "rojo serve default.project.json",
+		"serve:tests": "rojo serve tests.project.json",
+		"serve:bench": "rojo serve benchmarks.project.json",
+		"check": "bunx @biomejs/biome check --write",
+		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
+	},
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
 	"files": ["src", "!**/*.spec.luau", "!**/*.bench.luau"],
@@ -25,13 +32,6 @@
 	"dependencies": {
 		"@rbxts/compiler-types": "^2.3.0-types.1",
 		"@rbxts/types": "1.0.787"
-	},
-	"scripts": {
-		"serve": "rojo serve",
-		"serve:tests": "rojo serve tests.project.json",
-		"serve:bench": "rojo serve benchmarks.project.json",
-		"fmt": "bunx @biomejs/biome check --write",
-		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
 	},
 	"devDependencies": {
 		"typescript": "^5.6.0-dev.20240801"
