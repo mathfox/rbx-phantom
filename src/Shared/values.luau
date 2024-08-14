@@ -1,5 +1,5 @@
 --!strict
---!naitve
+--!native
 
 local function values<V>(object: { [any]: V }): { V }
     local result = {}

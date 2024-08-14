@@ -2,10 +2,10 @@
 --!native
 
 local exports = {
-    freeze = table.freeze,
-    values = require(script.values),
-    size = require(script.size),
+    keys = require(script.keys),
     safeFreeze = require(script.safeFreeze),
+    size = require(script.size),
+    values = require(script.values),
 }
 
 return exports
