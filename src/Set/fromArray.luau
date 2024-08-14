@@ -6,7 +6,7 @@ local types = require(script.Parent.types)
 type Set<T> = types.Set<T>
 
 local function fromArray<T>(array: { T }): Set<T>
-    local result = (table.create(#array) :: any) :: Set<T>
+    local result = {} :: Set<T>
 
     for _, item in array do
         result[item] = true

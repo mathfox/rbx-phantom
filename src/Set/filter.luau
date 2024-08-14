@@ -18,7 +18,7 @@ type Set<T> = types.Set<T>
 ]=]
 local function filter<T>(
     set: Set<T>,
-    predicate: (item: T, set: Set<T>) -> any
+    predicate: (item: T, set: Set<T>) -> unknown
 ): Set<T>
     local result: Set<T> = {}
 
