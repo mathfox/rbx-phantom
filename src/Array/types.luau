@@ -1,4 +1,5 @@
 --!strict
+--!native
 
 export type Array<T> = { T }
 
