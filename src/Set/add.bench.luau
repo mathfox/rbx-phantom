@@ -1,6 +1,9 @@
+--!strict
+--!native
+
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
-local benchmark = require(ReplicatedStorage.Benchmarks.benchmark).benchmark
+local Bencharoo = require(ReplicatedStorage.Benchmarks.benchmark)
 
 return function()
     local function loopBasedAdd(set, ...)
@@ -45,115 +48,122 @@ return function()
         end
     end
 
-    benchmark("selectBasedAdd x1", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+    Bencharoo.compare("add (x1)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            selectBasedAdd(set, 1)
-        end
-    end)
+                selectBasedAdd(set, 1)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("loopBasedAdd x1", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                loopBasedAdd(set, 1)
+            end
+        end),
+    })
 
-            loopBasedAdd(set, 1)
-        end
-    end)
+    Bencharoo.compare("add (x2)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("selectBasedAdd x2", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                selectBasedAdd(set, 1, 2)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            selectBasedAdd(set, 1, 2)
-        end
-    end)
+                loopBasedAdd(set, 1, 2)
+            end
+        end),
+    })
 
-    benchmark("loopBasedAdd x2", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+    Bencharoo.compare("add (x3)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            loopBasedAdd(set, 1, 2)
-        end
-    end)
+                selectBasedAdd(set, 1, 2, 3)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("selectBasedAdd x3", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                loopBasedAdd(set, 1, 2, 3)
+            end
+        end),
+    })
 
-            selectBasedAdd(set, 1, 2, 3)
-        end
-    end)
+    Bencharoo.compare("add (x4)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("loopBasedAdd x3", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                selectBasedAdd(set, 1, 2, 3, 4)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            loopBasedAdd(set, 1, 2, 3)
-        end
-    end)
+                loopBasedAdd(set, 1, 2, 3, 4)
+            end
+        end),
+    })
 
-    benchmark("selectBasedAdd x4", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+    Bencharoo.compare("add (x5)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            selectBasedAdd(set, 1, 2, 3, 4)
-        end
-    end)
+                selectBasedAdd(set, 1, 2, 3, 4, 5)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("loopBasedAdd x4", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                loopBasedAdd(set, 1, 2, 3, 4, 5)
+            end
+        end),
+    })
 
-            loopBasedAdd(set, 1, 2, 3, 4)
-        end
-    end)
+    Bencharoo.compare("add (x6)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("selectBasedAdd x5", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+                selectBasedAdd(set, 1, 2, 3, 4, 5, 6)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            selectBasedAdd(set, 1, 2, 3, 4, 5)
-        end
-    end)
+                loopBasedAdd(set, 1, 2, 3, 4, 5, 6)
+            end
+        end),
+    })
 
-    benchmark("loopBasedAdd x5", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
+    Bencharoo.compare("add (x7)", {
+        selectBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-            loopBasedAdd(set, 1, 2, 3, 4, 5)
-        end
-    end)
+                selectBasedAdd(set, 1, 2, 3, 4, 5, 6, 7)
+            end
+        end),
+        loopBasedAdd = Bencharoo.benchmark(100, function()
+            for _ = 1, 100_000 do
+                local set = {}
 
-    benchmark("selectBasedAdd x6", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
-
-            selectBasedAdd(set, 1, 2, 3, 4, 5, 6)
-        end
-    end)
-
-    benchmark("loopBasedAdd x6", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
-
-            loopBasedAdd(set, 1, 2, 3, 4, 5, 6)
-        end
-    end)
-
-    benchmark("selectBasedAdd x7", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
-
-            selectBasedAdd(set, 1, 2, 3, 4, 5, 6, 7)
-        end
-    end)
-
-    benchmark("loopBasedAdd x7", "milliseconds", 3, 100, function()
-        for _ = 1, 1_000_000 do
-            local set = {}
-
-            loopBasedAdd(set, 1, 2, 3, 4, 5, 6, 7)
-        end
-    end)
+                loopBasedAdd(set, 1, 2, 3, 4, 5, 6, 7)
+            end
+        end),
+    })
 end
