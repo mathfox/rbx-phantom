@@ -47,37 +47,32 @@ interface PhantomSetConstructor {
 
 	has<T>(this: void, set: ReadonlySet<T>, ...values: ReadonlyArray<T>): boolean;
 
-	intersection<const T>(
-		this: void,
-		...sets: ReadonlyArray<ReadonlySet<T>>
-	): Set<T>;
+	intersection<T>(this: void, ...sets: ReadonlyArray<ReadonlySet<T>>): Set<T>;
+
 	isSubset(
 		this: void,
-		subset: ReadonlySet<defined>,
-		superset: ReadonlySet<defined>,
-	): boolean;
-	isSuperset(
-		this: void,
-		superset: ReadonlySet<defined>,
-		subset: ReadonlySet<defined>,
+		subset: ReadonlySet<unknown>,
+		superset: ReadonlySet<unknown>,
 	): boolean;
 
-	map<const T, const R>(
+	isSuperset(
+		this: void,
+		superset: ReadonlySet<unknown>,
+		subset: ReadonlySet<unknown>,
+	): boolean;
+
+	map<T, R>(
 		this: void,
 		set: ReadonlySet<T>,
-		mapper: (item: T, set: Set<T>) => R,
+		mapper: (value: T, source: ReadonlySet<T>) => R,
 	): Set<R>;
 
 	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
-	toArray: PhantomSetConstructor["keys"];
+
 	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
 
 	/**
-	 * Exists for typechecking purposes.
-	 *
-	 * Under the hood it is just a reference to {@link table.freeze} function.
-	 *
-	 * Returns the set itself.
+	 * Safely freezes the set by using {@link table.isfrozen}
 	 */
 	freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
 
@@ -88,6 +83,8 @@ interface PhantomSetConstructor {
 		set: ReadonlySet<T>,
 		mapper: (item: T, self: typeof set) => R,
 	): Set<R>;
+
+	toArray: PhantomSetConstructor["keys"];
 }
 
 declare const PhantomSet: PhantomSetConstructor;

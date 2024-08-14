@@ -19,9 +19,7 @@ local function difference(set: Set<unknown>, ...: Set<unknown>): Set<unknown>
     local diff = table.clone(set)
 
     for index = 1, select("#", ...) do
-        local otherSet = select(index, ...) :: Set<unknown>
-
-        for value in otherSet do
+        for value in select(index, ...) :: Set<unknown> do
             diff[value] = nil
         end
     end

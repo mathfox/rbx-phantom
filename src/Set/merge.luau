@@ -15,13 +15,11 @@ type Set<T> = types.Set<T>
     local newSet = merge(set1, set2) -- { hello = true, world = true, cat = true, dog = true }
     ```
 ]=]
-local function merge<T>(...: any): Set<T>
-    local result = {}
+local function merge<T>(...: Set<T>): Set<T>
+    local result: Set<T> = {}
 
     for setIndex = 1, select("#", ...) do
-        local set = select(setIndex, ...)
-
-        for item in set do
+        for item in select(setIndex, ...) do
             result[item] = true
         end
     end

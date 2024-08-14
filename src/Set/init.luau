@@ -16,16 +16,14 @@ local exports = {
     isSubset = require(script.isSubset),
     isSuperset = require(script.isSuperset),
     keys = require(script.keys),
-
     map = require(script.map),
     merge = require(script.merge),
-
-    freeze = table.freeze,
 }
 
 -- Aliases
 exports.toArray = exports.keys
 
-table.freeze(exports)
+-- Re-exports
+exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 return exports

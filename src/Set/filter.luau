@@ -16,15 +16,15 @@ type Set<T> = types.Set<T>
     end) -- { world = true }
     ```
 ]=]
-local function filter<T>(
+local function filter<T, R>(
     set: Set<T>,
-    predicate: (item: T, set: Set<T>) -> unknown
-): Set<T>
-    local result: Set<T> = {}
+    predicate: (value: T, set: Set<T>) -> R
+): Set<R>
+    local result: Set<R> = {}
 
-    for item in set do
-        if predicate(item, set) then
-            result[item] = true
+    for value in set do
+        if predicate(value, set) then
+            result[value :: any] = true
         end
     end
 

@@ -45,61 +45,72 @@ return function()
                 and set[select(4, ...)] == true
                 and set[select(5, ...)] == true
                 and set[select(6, ...)] == true
+        elseif size == 7 then
+            return set[select(1, ...)] == true
+                and set[select(2, ...)] == true
+                and set[select(3, ...)] == true
+                and set[select(4, ...)] == true
+                and set[select(5, ...)] == true
+                and set[select(6, ...)] == true
+                and set[select(7, ...)] == true
+        elseif size == 8 then
+            return set[select(1, ...)] == true
+                and set[select(2, ...)] == true
+                and set[select(3, ...)] == true
+                and set[select(4, ...)] == true
+                and set[select(5, ...)] == true
+                and set[select(6, ...)] == true
+                and set[select(7, ...)] == true
+                and set[select(8, ...)] == true
         else
             for index = 1, size do
-                set[select(index, ...)] = true
+                if not set[select(index, ...)] then
+                    return false
+                end
             end
+
+            return true
         end
     end
 
-    Bencharoo.compare("has (x1) - non match", {
-        selectBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
+    for count = 1, 8 do
+        local args = {}
 
-                selectBasedHas(set, 1)
-            end
-        end),
-        loopBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
+        for index = 1, count do
+            table.insert(args, index)
+        end
 
-                loopBasedHas(set, 1)
-            end
-        end),
-    })
+        local zeroMatch = {}
+        local allMatch = {}
 
-    Bencharoo.compare("has (x1) - non match", {
-        selectBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
+        for index = 1, count do
+            allMatch[index] = true
+        end
 
-                selectBasedHas(set, 1)
-            end
-        end),
-        loopBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
+        Bencharoo.compare(`has (x{count}) - zero match`, {
+            selectBasedHas = Bencharoo.benchmark(1000, function(...)
+                for _ = 1, 100_000 do
+                    selectBasedHas(zeroMatch, ...)
+                end
+            end, unpack(args)),
+            loopBasedHas = Bencharoo.benchmark(1000, function(...)
+                for _ = 1, 100_000 do
+                    loopBasedHas(zeroMatch, ...)
+                end
+            end, unpack(args)),
+        })
 
-                loopBasedHas(set, 1)
-            end
-        end),
-    })
-
-    Bencharoo.compare("has (x1) - non match", {
-        selectBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
-
-                selectBasedHas(set, 1)
-            end
-        end),
-        loopBasedHas = Bencharoo.benchmark(100, function()
-            for _ = 1, 100_000 do
-                local set = { [1] = true }
-
-                loopBasedHas(set, 1)
-            end
-        end),
-    })
+        Bencharoo.compare(`has (x{count}) - all match`, {
+            selectBasedHas = Bencharoo.benchmark(1000, function(...)
+                for _ = 1, 100_000 do
+                    selectBasedHas(allMatch, ...)
+                end
+            end, unpack(args)),
+            loopBasedHas = Bencharoo.benchmark(1000, function(...)
+                for _ = 1, 100_000 do
+                    loopBasedHas(allMatch, ...)
+                end
+            end, unpack(args)),
+        })
+    end
 end

@@ -16,19 +16,19 @@ type Set<T> = types.Set<T>
     local diffSym = differenceSymmetric(set1, set2) -- { world = true, cat = true, dog = true }
     ```
 ]=]
-local function differenceSymmetric(...: Set<unknown>): Set<unknown>
-    local diff = table.clone(select(1, ...) :: Set<unknown>)
+local function differenceSymmetric<T>(...: Set<T>): Set<T>
+    local diff = table.clone(select(1, ...) :: Set<T>)
 
     for index = 2, select("#", ...) do
-        local otherSet = select(index, ...) :: Set<unknown>
-
-        for item in otherSet do
-            diff[item] = (if diff[item] == nil then true else false) :: any
+        for value in select(index, ...) :: Set<unknown> do
+            diff[value :: T] = (
+                if diff[value :: T] == nil then true else false
+            ) :: any
         end
     end
 
-    for item, keep in diff do
-        diff[item] = (if keep then true else nil) :: any
+    for value, keep in diff do
+        diff[value] = (if keep then true else nil) :: any
     end
 
     return diff
