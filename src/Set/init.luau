@@ -24,7 +24,6 @@ local exports = {
 }
 
 -- Aliases
-exports.deleteFromSet = exports.delete
 exports.toArray = exports.keys
 
 table.freeze(exports)
