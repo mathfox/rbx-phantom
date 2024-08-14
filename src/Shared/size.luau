@@ -1,6 +1,6 @@
 --!strict
+--!native
 
-@native
 local function size(value: { [any]: any })
     local count = 0
 

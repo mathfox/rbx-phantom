@@ -1,6 +1,6 @@
 --!strict
+--!native
 
-@native
 local function keys<K>(object: { [K]: any }): { K }
     local result = {}
 

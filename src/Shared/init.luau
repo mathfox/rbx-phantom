@@ -1,3 +1,6 @@
+--!strict
+--!native
+
 local exports = {
     freeze = table.freeze,
     values = require(script.values),

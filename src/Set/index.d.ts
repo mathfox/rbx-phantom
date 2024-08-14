@@ -71,9 +71,9 @@ interface PhantomSetConstructor {
 	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
 
 	/**
-	 * Safely freezes the set by using {@link table.isfrozen}
+	 * Safely freezes the set by using {@link table.isfrozen}.
 	 */
-	freeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
+	safeFreeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
 
 	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
 
