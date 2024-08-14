@@ -4,7 +4,7 @@
 	"version": "0.0.5",
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
-	"files": ["src", "!**/*.spec.luau"],
+	"files": ["src", "!**/*.spec.luau", "!**/*.bench.luau"],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/mathfox/rbx-phantom.git"
