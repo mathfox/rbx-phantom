@@ -1,60 +1,48 @@
 export function strictEqual(...values: ReadonlyArray<unknown>): boolean;
 
+export type InferArrayValue<T> = T extends ReadonlyArray<infer Value>
+	? Value
+	: never;
+
+export type InferMapKey<T> = T extends ReadonlyMap<infer Key, unknown>
+	? Key
+	: never;
+export type InferMapValue<T> = T extends ReadonlyMap<unknown, infer Value>
+	? Value
+	: never;
+
 export type InferSetValue<T> = T extends ReadonlySet<infer V> ? V : never;
 
-export type PhantomNone = { readonly __none__: unique symbol };
+export type InferObjectKey<T> = T extends ReadonlyArray<unknown>
+	? number
+	: T extends ReadonlyMap<infer Key, unknown>
+		? Key
+		: T extends ReadonlySet<infer Key>
+			? Key
+			: T extends object
+				? keyof T
+				: never;
 
-export type ExcludeNone<T> = Exclude<T, PhantomNone>;
+export type InferObjectValue<T> = T extends ReadonlyArray<infer Value>
+	? Value
+	: T extends ReadonlyMap<unknown, infer Value>
+		? Value
+		: T extends ReadonlySet<unknown>
+			? true
+			: T extends object
+				? T[keyof T]
+				: never;
 
-export type ObjectKey = string | number | symbol;
-
-export type ObjectIndexSignature = string | number | symbol;
-
-export type AnySet = Set<unknown>;
-
-export type FromEntries<K extends ObjectKey, T extends Array<[K, unknown]>> = {
-	[P in T[number][0]]: Extract<T[number], [P, unknown]>[1];
-};
-
-export type ReadonlyDeep<T> = T extends (infer U)[]
-	? ReadonlyDeepArray<U>
+export type DeepReadonly<T> = T extends ReadonlyArray<infer R>
+	? DeepReadonlyArray<R>
 	: T extends Callback
 		? T
 		: T extends object
-			? ReadonlyDeepObject<T>
+			? DeepReadonlyObject<T>
 			: T;
 
-export type ObjectFromKeyValueArrays<
-	Keys extends Array<ObjectKey>,
-	Values extends Array<unknown>,
-> = ObjectFromKeyValuePairs<KeyValuePairsFromLists<Keys, Values>>;
+export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 
-export type ReplaceType<T, F, R> = F extends T ? Exclude<T, F> | R : T;
-
-export type TryIndex<T extends object, K> = K extends keyof T
-	? T[K]
-	: undefined;
-
-interface ReadonlyDeepArray<T> extends ReadonlyArray<ReadonlyDeep<T>> {}
-
-type ReadonlyDeepObject<T> = {
-	readonly [P in keyof T]: ReadonlyDeep<T[P]>;
+export type DeepReadonlyObject<T> = {
+	readonly [P in keyof T]: DeepReadonly<T[P]>;
 };
-
-type KeyValuePairsFromLists<
-	Keys extends Array<ObjectKey>,
-	Values extends Array<unknown>,
-> = {
-	[index in keyof Keys]: index extends keyof Values
-		? [Keys[index], Values[index]]
-		: never;
-};
-
-type ObjectFromKeyValuePairs<
-	KV extends Array<[ObjectKey, unknown]>,
-	T = {
-		[index in keyof KV]: KV[index] extends [ObjectKey, unknown]
-			? Record<KV[index][0], KV[index][1]>
-			: never;
-	},
-> = UnionToIntersection<T[keyof T]>;

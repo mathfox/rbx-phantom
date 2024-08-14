@@ -1,6 +1,8 @@
 export * from "./Util";
 export * from "./None";
 
+type kek = Reado;
+
 import PhantomArray from "./Array";
 import PhantomDictionary from "./Map";
 import PhantomSet from "./Set";
