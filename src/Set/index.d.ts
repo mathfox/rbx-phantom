@@ -69,24 +69,6 @@ interface PhantomSetConstructor {
 		mapper: (value: T, source: ReadonlySet<T>) => R,
 	): Set<R>;
 
-	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
-	toArray: PhantomSetConstructor["keys"];
-
-	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
-
-	/**
-	 * Safely freezes the set by using {@link table.isfrozen}.
-	 */
-	safeFreeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
-
-	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
-
-	map<T, R>(
-		this: void,
-		set: ReadonlySet<T>,
-		mapper: (item: T, self: typeof set) => R,
-	): Set<R>;
-
 	merge<T>(
 		this: void,
 		...sets: ReadonlyArray<ReadonlySet<T> | undefined>
@@ -100,6 +82,19 @@ interface PhantomSetConstructor {
 		this: void,
 		...sets: ReadonlyArray<ReadonlySet<T> | undefined>
 	): Set<T>;
+
+	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
+
+	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
+
+	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+
+	/**
+	 * Safely freezes the set by using {@link table.isfrozen}.
+	 */
+	safeFreeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
+
+	toArray: PhantomSetConstructor["keys"];
 }
 
 export declare const PhantomSet: PhantomSetConstructor;

@@ -24,8 +24,9 @@ local PhantomSet = {
 
 -- Re-exports
 PhantomSet.keys = require(script.Parent.Shared.keys)
-PhantomSet.safeFreeze = require(script.Parent.Shared.safeFreeze)
 PhantomSet.values = require(script.Parent.Shared.values)
+PhantomSet.entries = require(script.Parent.Shared.entries)
+PhantomSet.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
 PhantomSet.toArray = PhantomSet.keys

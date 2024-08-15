@@ -52,6 +52,8 @@ PhantomArray.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
 PhantomArray.values = table.clone
+PhantomArray.deepCompareArray =
+    require(script.Parent.Shared.deepCompare).deepCompareArray
 
 local exports = {
     PhantomArray = PhantomArray,

@@ -14,6 +14,7 @@ local PhantomShared = {
     deepEquals = require(script.deepEquals),
     deepFreeze = require(script.deepFreeze),
     deepSafeFreeze = require(script.deepSafeFreeze),
+    entries = require(script.entries),
     keys = require(script.keys),
     safeFreeze = require(script.safeFreeze),
     size = require(script.size),
