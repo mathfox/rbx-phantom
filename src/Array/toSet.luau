@@ -1,25 +1,25 @@
 --!strict
-local _T = require(script.Parent.Parent.Types)
+--!native
 
---[=[
-	@function toSet
-	@within Array
+local setTypes = require(script.Parent.Parent.Set.types)
+local types = require(script.Parent.types)
 
-	@param array {T} -- The array to convert to a set.
-	@return Set<T> -- The set.
+type Set<T> = setTypes.Set<T>
+type Array<T> = types.Array<T>
 
+--[[
 	Converts an array to a set.
 
 	```lua
 	local array = { "a", "b", "b", "c", "d" }
 
-	local set = ToSet(array) -- { a = true, b = true, c = true, d = true }
+	local set = toSet(array) -- { a = true, b = true, c = true, d = true }
 	```
-]=]
-local function toSet<T>(array: { T }): _T.Set<T>
-    local set = {}
+]]
+local function toSet<T>(array: Array<T>): Set<T>
+    local set: Set<T> = {}
 
-    for _, value in ipairs(array) do
+    for _, value in array do
         set[value] = true
     end
 

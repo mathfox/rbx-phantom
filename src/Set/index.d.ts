@@ -1,5 +1,7 @@
 export type InferSetValue<T> = T extends ReadonlySet<infer V> ? V : never;
 
+export type UnknownSet = Set<unknown>;
+
 interface PhantomSetConstructor {
 	/**
 	 * This function filters out the `undefined` before adding a value.

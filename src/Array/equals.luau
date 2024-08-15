@@ -1,43 +1,27 @@
 --!strict
 --!native
 
-local strictEqual = require(script.Parent.Parent.Util.strictEqual)
+local compareArray = require(script.Parent.Parent.Shared.compare).compareArray
+local isArray = require(script.Parent.isArray)
 local types = require(script.Parent.types)
 
 type Array<T> = types.Array<T>
 
-local function compare(a, b)
-    if type(a) ~= "table" or type(b) ~= "table" then
-        return a == b
-    end
+local function equals(...: Array<unknown>): boolean
+    local firstValue = select(1, ...)
 
-    local aLength = #a
-
-    if #b ~= aLength then
+    if not isArray(firstValue) then
         return false
     end
 
-    for i = 1, aLength do
-        if a[i] ~= b[i] then
+    for index = 2, select("#", ...) do
+        local value = select(index, ...)
+
+        if not isArray(value) then
             return false
         end
-    end
 
-    return true
-end
-
-local function equals(...: Array<unknown>): boolean
-    if strictEqual(...) then
-        return true
-    end
-
-    local totalArgs = select("#", ...)
-    local firstItem = select(1, ...)
-
-    for i = 2, totalArgs do
-        local item = select(i, ...)
-
-        if not compare(firstItem, item) then
+        if not compareArray(firstValue, value) then
             return false
         end
     end

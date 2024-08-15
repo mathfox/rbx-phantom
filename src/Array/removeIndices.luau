@@ -1,41 +1,38 @@
 --!strict
---[=[
-	@function removeIndices
-	@within Array
+--!native
 
-	@param array {T} -- The array to remove the indices from.
-	@param ... ...number -- The indices to remove the values from (can be negative).
-	@return {T} -- The array with the values removed.
+local types = require(script.Parent.types)
 
+type Array<T> = types.Array<T>
+
+--[[
 	Removes values from an array at the given indices.
 
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = RemoveIndices(array, 1, 2) -- { 3 }
-	local new = RemoveIndices(array, 0, -1) -- { 1 }
+	local new = removeIndices(array, 1, 2) -- { 3 }
+	local new = removeIndices(array, 0, -1) -- { 1 }
 	```
-]=]
-local function removeIndices<T>(array: { T }, ...: number): { T }
-	local length = #array
-	local indices = {}
-	local result = {}
+]]
+local function removeIndices<T>(array: Array<T>, ...: number): Array<T>
+    local length = #array
+    local result = table.clone(array)
+    local indices = {}
 
-	for _, index in ipairs({ ... }) do
-		if index < 1 then
-			index += length
-		end
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-		indices[index] = true
-	end
+        indices[if value < 0 then length + 1 + value else value + 1] = true
+    end
 
-	for index, value in ipairs(array) do
-		if not indices[index] then
-			table.insert(result, value)
-		end
-	end
+    for index = length, 1, -1 do
+        if indices[index] then
+            result[index] = nil
+        end
+    end
 
-	return result
+    return result
 end
 
 return removeIndices

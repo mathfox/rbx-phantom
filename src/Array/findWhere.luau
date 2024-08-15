@@ -1,6 +1,10 @@
 --!strict
 --!native
 
+local types = require(script.Parent.types)
+
+type Array<T> = types.Array<T>
+
 --[[
 	Finds the index of the first item in the array that passes the predicate.
 
@@ -13,17 +17,15 @@
 	```
 ]]
 local function findWhere<T>(
-    array: { T },
-    predicate: (value: T, index: number, array: { T }) -> any,
-    from: number?
-): number?
-    local length = #array
-
-    from = if type(from) == "number"
-        then if from < 1 then length + from else from
-        else 1
-
-    for index = from, #array do
+    array: Array<T>,
+    predicate: (
+        value: T,
+        index: number,
+        array: Array<T>
+    ) -> any,
+    from: number | nil
+): number | nil
+    for index = if from then if from < 0 then #array + 1 + from else from + 1 else 1, #array do
         if predicate(array[index], index, array) then
             return index
         end

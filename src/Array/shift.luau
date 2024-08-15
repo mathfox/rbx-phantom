@@ -1,33 +1,28 @@
 --!strict
---[=[
-	@function shift
-	@within Array
+--!native
 
-	@param array {T} -- The array to shift.
-	@param count? number -- The number of items to shift.
-	@return {T} -- The shifted array.
+local types = require(script.Parent.types)
 
-	Removes the first item from an array and returns the array
-	with the item removed.
+type Array<T> = types.Array<T>
+
+--[[
+	Removes the first item from an array and returns the array with the item removed.
 
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Shift(array) -- { 2, 3 }
-	local new = Shift(array, 2) -- { 3 }
+	local new = shift(array) -- { 2, 3 }
+	local new = shift(array, 2) -- { 3 }
 	```
-]=]
-local function shift<T>(array: { T }, count: number?): { T }
-	local length = #array
-	local result = {}
+]]
+local function shift<T>(array: Array<T>, count: number | nil): Array<T>
+    local result = {}
 
-	count = if type(count) == "number" then count + 1 else 2
+    for index = if count then count + 1 else 2, #array do
+        table.insert(result, array[index])
+    end
 
-	for i = count, length do
-		table.insert(result, array[i])
-	end
-
-	return result
+    return result
 end
 
 return shift

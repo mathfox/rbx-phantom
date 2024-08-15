@@ -1,43 +1,30 @@
 --!strict
---[=[
-	@function slice
-	@within Array
+--!native
 
-	@param array {T} -- The array to slice.
-	@param from? number -- The index to start from (can be negative).
-	@param to? number -- The index to end at (can be negative).
-	@return {T} -- The sliced array.
+local types = require(script.Parent.types)
 
+type Array<T> = types.Array<T>
+
+--[[
 	Slices an array.
 
 	```lua
 	local array = { 1, 2, 3, 4, 5 }
 
-	local new = Slice(array, 2, 3) -- { 2, 3 }
-	local new = Slice(array, -2, -1) -- { 3, 4 }
-	local new = Slice(array, 3) -- { 3, 4, 5 }
+	local new = slice(array, 2, 3) -- { 2, 3 }
+	local new = slice(array, -2, -1) -- { 3, 4 }
+	local new = slice(array, 3) -- { 3, 4, 5 }
 	```
-]=]
-local function slice<T>(array: { T }, from: number?, to: number?): { T }
-	local length = #array
-	local result = {}
+]]
+local function slice<T>(array: Array<T>, from: number?, to: number?): Array<T>
+    local length = #array
+    local result = {}
 
-	from = if type(from) == "number" then from else 1
-	to = if type(to) == "number" then to else length
+    for index = if from then if from < 0 then length + 1 + from else from + 1 else 1, if to then if to < 0 then length + 1 + to else to + 1 else length do
+        table.insert(result, array[index])
+    end
 
-	if from < 1 then
-		from += length
-	end
-
-	if to < 1 then
-		to += length
-	end
-
-	for i = from, to do
-		table.insert(result, array[i])
-	end
-
-	return result
+    return result
 end
 
 return slice

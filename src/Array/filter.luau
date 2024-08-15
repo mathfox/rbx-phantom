@@ -6,9 +6,8 @@ local types = require(script.Parent.types)
 type Array<T> = types.Array<T>
 
 --[[
-	Filters an array using a filterer callback. Any items that do not pass the filterer will be removed from the array.
-
-	If no filterer is provided, all items will be kept.
+	Filters an array using a filterer callback.
+    Any items that do not pass the filterer will be removed from the array.
 
 	```lua
 	local array = { 1, 2, 3 }
@@ -24,13 +23,13 @@ local function filter<T>(
         value: T,
         index: number,
         array: Array<T>
-    ) -> boolean
+    ) -> unknown
 ): Array<unknown>
-    local result = table.clone(array)
+    local result = {}
 
     for index = 1, #array do
         if not predicate(array[index], index, array) then
-            result[index] = nil
+            table.insert(result, array[index])
         end
     end
 

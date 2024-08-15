@@ -1,11 +1,11 @@
 --!strict
---[=[
-	@function reverse
-	@within Array
+--!native
 
-	@param array {T} -- The array to reverse.
-	@return {T} -- The reversed array.
+local types = require(script.Parent.types)
 
+type Array<T> = types.Array<T>
+
+--[[
 	Reverses the order of the items in an array.
 
 	```lua
@@ -13,15 +13,18 @@
 
 	local new = Reverse(array) -- { 3, 2, 1 }
 	```
-]=]
-local function reverse<T>(array: { T }): { T }
-	local result = {}
+]]
+local function reverse<T>(t: Array<T>): Array<T>
+    local n = #t
+    local i = 1
 
-	for index = #array, 1, -1 do
-		table.insert(result, array[index])
-	end
+    while i < n do
+        t[i], t[n] = t[n], t[i]
+        i = i + 1
+        n = n - 1
+    end
 
-	return result
+    return t
 end
 
 return reverse

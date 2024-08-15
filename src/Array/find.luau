@@ -13,11 +13,11 @@
 	local index = find(array, "hello", 2) -- 3
 	```
 ]]
-local function find<T>(array: { T }, value: any, from: number?): number?
+local function find<T>(array: { T }, value: any, from: number | nil): number | nil
     return table.find(
         array,
         value,
-        if from then if from < 1 then #array + from else from else 1
+        if from then if from < 0 then #array + 1 + from else from + 1 else 1
     )
 end
 

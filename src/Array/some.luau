@@ -1,6 +1,10 @@
 --!strict
 --!native
 
+local types = require(script.Parent.types)
+
+type Array<T> = types.Array<T>
+
 --[[
 	Checks whether some item in the array passes the predicate.
 
@@ -17,8 +21,8 @@
 	```
 ]]
 local function some<T>(
-    array: { T },
-    predicate: (value: T, index: number, array: { T }) -> any
+    array: Array<T>,
+    predicate: (value: T, index: number, array: Array<T>) -> any
 ): boolean
     for index = 1, #array do
         if predicate(array[index], index, array) then

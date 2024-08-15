@@ -2,7 +2,7 @@
 --!native
 
 local toSet = require(script.Parent.toSet)
-local toArray = require(script.Parent.Parent.Set).toArray
+local keys = require(script.Parent.Parent.Set).PhantomSet.keys
 local setDifference = require(script.Parent.Parent.Set.difference)
 local types = require(script.Parent.types)
 
@@ -26,13 +26,13 @@ local function difference<T>(array: Array<T>, ...: Array<T>): Array<T>
         local otherArray = select(index, ...)
 
         if type(otherArray) == "table" then
-            table.insert(otherSets, toSet(nextArray))
+            table.insert(otherSets, toSet(otherArray))
         end
     end
 
     local differenceSet = setDifference(arraySet, unpack(otherSets))
 
-    return toArray(differenceSet)
+    return keys(differenceSet :: any)
 end
 
 return difference

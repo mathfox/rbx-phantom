@@ -3,11 +3,14 @@
 
 local types = require(script.types)
 local deepCompare = require(script.deepCompare)
+local compare = require(script.compare)
 
 export type AnyTable = types.AnyTable
 export type UnknownTable = types.UnknownTable
 
 local PhantomShared = {
+    compare = compare.compare,
+    compareArray = compare.compareArray,
     deepClone = require(script.deepClone),
     deepCompare = deepCompare.deepCompare,
     deepCompareArray = deepCompare.deepCompareArray,
