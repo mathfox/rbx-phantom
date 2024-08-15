@@ -14,7 +14,7 @@ export type Set<T> = Set.Set<T>
 local Phantom = {
     Array = Array.PhantomArray,
     Map = Map.PhantomMap,
-    None = None,
+    None = None.None,
     Set = Set.PhantomSet,
     Shared = require(script.Shared).PhantomShared,
 

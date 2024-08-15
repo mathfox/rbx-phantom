@@ -1,13 +1,13 @@
-export = PhantomDictionary;
+export type InferMapKey<T> = T extends ReadonlyMap<infer Key, unknown>
+	? Key
+	: never;
+export type InferMapValue<T> = T extends ReadonlyMap<unknown, infer Value>
+	? Value
+	: never;
 
-import type {
-	ExcludeNone,
-	FromEntries,
-	ObjectFromKeyValueArrays,
-	ObjectKey,
-	ReadonlyDeep,
-	TryIndex,
-} from "../Util";
+interface PhantomMapConstructor {}
+
+export declare const PhantomMap: PhantomMapConstructor;
 
 declare namespace PhantomDictionary {
 	export function copy<T extends object>(dictionary: T): T;

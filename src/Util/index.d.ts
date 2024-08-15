@@ -153,12 +153,3 @@ export type Tuple<
 > = Length extends CurrentLength
 	? Acc
 	: Tuple<Length, Type, [...Acc, Type], Incr[CurrentLength]>;
-
-export type InferMapKey<T> = T extends ReadonlyMap<infer Key, unknown>
-	? Key
-	: never;
-export type InferMapValue<T> = T extends ReadonlyMap<unknown, infer Value>
-	? Value
-	: never;
-
-export type InferSetValue<T> = T extends ReadonlySet<infer V> ? V : never;

@@ -1,3 +1,5 @@
+export type InferSetValue<T> = T extends ReadonlySet<infer V> ? V : never;
+
 interface PhantomSetConstructor {
 	/**
 	 * This function filters out the `undefined` before adding a value.
@@ -100,6 +102,4 @@ interface PhantomSetConstructor {
 	): Set<T>;
 }
 
-declare const PhantomSet: PhantomSetConstructor;
-
-export = PhantomSet;
+export declare const PhantomSet: PhantomSetConstructor;

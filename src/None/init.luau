@@ -14,4 +14,8 @@ export type None = typeof(None)
 --    return "Phantom.None"
 --end
 
-return None
+local exports = {
+    None = None,
+}
+
+return exports
