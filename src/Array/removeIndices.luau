@@ -23,12 +23,14 @@ local function removeIndices<T>(array: Array<T>, ...: number): Array<T>
     for index = 1, select("#", ...) do
         local value = select(index, ...)
 
-        indices[if value < 0 then length + 1 + value else value + 1] = true
+        if value ~= nil then
+            indices[if value < 0 then length + 1 + value else value + 1] = true
+        end
     end
 
     for index = length, 1, -1 do
         if indices[index] then
-            result[index] = nil
+            table.remove(result, index)
         end
     end
 

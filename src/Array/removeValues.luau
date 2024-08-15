@@ -19,6 +19,7 @@ local function removeValues<T>(array: Array<T>, ...: T): Array<T>
 
     for index = 1, select("#", ...) do
         local value = select(index, ...)
+
         if value ~= nil then
             valueSet[value] = true
         end
@@ -28,7 +29,7 @@ local function removeValues<T>(array: Array<T>, ...: T): Array<T>
 
     for index = #array, 1, -1 do
         if valueSet[array[index]] then
-            result[index] = nil
+            table.remove(result, index)
         end
     end
 

@@ -1,23 +1,21 @@
 return function()
-	local Reverse = require(script.Parent.reverse)
+    local reverse = require(script.Parent.reverse)
 
-	it("should reverse the given array", function()
-		local array = { 1, 2, 3 }
+    it("should reverse the given array", function()
+        local array = { 1, 2, 3 }
 
-		local reversed = Reverse(array)
+        local reversed = reverse(array)
 
-		expect(reversed[1]).to.equal(3)
-		expect(reversed[2]).to.equal(2)
-		expect(reversed[3]).to.equal(1)
-	end)
+        expect(reversed[1]).to.equal(3)
+        expect(reversed[2]).to.equal(2)
+        expect(reversed[3]).to.equal(1)
+    end)
 
-	it("should not modify the original array", function()
-		local array = { 1, 2, 3 }
+    it("should modify the original array", function()
+        local array = { 1, 2, 3 }
 
-		Reverse(array)
+        local newArray = reverse(array)
 
-		expect(array[1]).to.equal(1)
-		expect(array[2]).to.equal(2)
-		expect(array[3]).to.equal(3)
-	end)
+        expect(array).to.equal(newArray)
+    end)
 end

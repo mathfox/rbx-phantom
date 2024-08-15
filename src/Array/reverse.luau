@@ -11,7 +11,7 @@ type Array<T> = types.Array<T>
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Reverse(array) -- { 3, 2, 1 }
+	local new = reverse(array) -- { 3, 2, 1 }
 	```
 ]]
 local function reverse<T>(t: Array<T>): Array<T>

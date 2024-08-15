@@ -17,8 +17,9 @@ type Array<T> = types.Array<T>
 local function unshift<T>(array: Array<T>, ...: T): Array<T>
     local result = table.clone(array)
 
-    for index = 1, select("#", ...) do
+    for index = select("#", ...), 1, -1 do
         local value = select(index, ...)
+
         if value ~= nil then
             table.insert(result, 1, value)
         end

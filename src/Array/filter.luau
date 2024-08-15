@@ -27,9 +27,9 @@ local function filter<T>(
 ): Array<unknown>
     local result = {}
 
-    for index = 1, #array do
-        if not predicate(array[index], index, array) then
-            table.insert(result, array[index])
+    for index, value in array do
+        if predicate(value, index, array) then
+            table.insert(result, value)
         end
     end
 

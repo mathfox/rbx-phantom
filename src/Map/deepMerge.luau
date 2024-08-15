@@ -28,7 +28,7 @@ local function deepMerge<T>(...: any): T
             continue
         end
 
-        for key, value in pairs(dictionary) do
+        for key, value in dictionary do
             if value == None then
                 result[key] = nil
             elseif type(value) == "table" then
