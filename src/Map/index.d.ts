@@ -7,7 +7,7 @@ import type {
 	ObjectKey,
 	ReadonlyDeep,
 	TryIndex,
-} from "./Util";
+} from "../Util";
 
 declare namespace PhantomDictionary {
 	export function copy<T extends object>(dictionary: T): T;

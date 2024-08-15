@@ -2,7 +2,7 @@
 --!native
 
 local toSet = require(script.Parent.toSet)
-local toArray = require(script.Parent.Parent.Set.toArray)
+local toArray = require(script.Parent.Parent.Set).toArray
 local setDifference = require(script.Parent.Parent.Set.difference)
 local types = require(script.Parent.types)
 

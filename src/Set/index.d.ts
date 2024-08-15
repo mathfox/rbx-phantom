@@ -10,7 +10,7 @@ interface PhantomSetConstructor {
 	delete<T>(
 		this: void,
 		set: ReadonlySet<T>,
-		...values: ReadonlyArray<T>
+		...values: ReadonlyArray<T | undefined>
 	): Set<T>;
 
 	/**
@@ -19,16 +19,7 @@ interface PhantomSetConstructor {
 	difference<T>(
 		this: void,
 		set: ReadonlySet<T>,
-		...otherSets: ReadonlyArray<ReadonlySet<T>>
-	): Set<T>;
-
-	/**
-	 * Returns a set of values that are in the first set, but not in the other sets, and vice versa.
-	 * Simply speaking, this returns a unique entries in the sets provided.
-	 */
-	differenceSymmetric<T>(
-		this: void,
-		...sets: ReadonlyArray<ReadonlySet<T>>
+		...otherSets: ReadonlyArray<ReadonlySet<T> | undefined>
 	): Set<T>;
 
 	/**
@@ -88,6 +79,15 @@ interface PhantomSetConstructor {
 		set: ReadonlySet<T>,
 		mapper: (item: T, self: typeof set) => R,
 	): Set<R>;
+
+	/**
+	 * Returns a set of values that are in the first set, but not in the other sets, and vice versa.
+	 * Simply speaking, this returns a unique entries in the sets provided.
+	 */
+	symmetricDifference<T>(
+		this: void,
+		...sets: ReadonlyArray<ReadonlySet<T> | undefined>
+	): Set<T>;
 }
 
 declare const PhantomSet: PhantomSetConstructor;
