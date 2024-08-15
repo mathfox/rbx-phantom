@@ -7,7 +7,10 @@ type Set<T> = types.Set<T>
 
 local function add<T>(set: Set<T>, ...: T): Set<T>
     for index = 1, select("#", ...) do
-        set[select(index, ...)] = true
+        local value = select(index, ...)
+        if value ~= nil then
+            set[value] = true
+        end
     end
 
     return set

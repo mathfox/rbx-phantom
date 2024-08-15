@@ -1,6 +1,12 @@
 interface PhantomSetConstructor {
-	add<T>(set: Set<T>, ...values: ReadonlyArray<T>): Set<T>;
+	/**
+	 * This function filters out the `undefined` before adding a value.
+	 */
+	add<T>(set: Set<T>, ...values: ReadonlyArray<T | undefined>): Set<T>;
 
+	/**
+	 * This function filters out the `undefined` before deleting a value.
+	 */
 	delete<T>(
 		this: void,
 		set: ReadonlySet<T>,

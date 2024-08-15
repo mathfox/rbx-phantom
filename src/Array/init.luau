@@ -6,7 +6,6 @@ export type Array<T> = types.Array<T>
 
 local exports = {
     at = require(script.at),
-    cloneDeep = require(script.cloneDeep),
     concat = require(script.concat),
     difference = require(script.difference),
 
@@ -23,7 +22,7 @@ local exports = {
     freezeDeep = require(script.freezeDeep),
     includes = require(script.includes),
     insert = require(script.insert),
-    is = require(script.is),
+    isArray = require(script.isArray),
     last = require(script.last),
     map = require(script.map),
     pop = require(script.pop),
@@ -46,11 +45,13 @@ local exports = {
     update = require(script.update),
     zip = require(script.zip),
     zipAll = require(script.zipAll),
-
-    freeze = table.freeze,
-    values = table.clone,
 }
 
-table.freeze(exports)
+-- Re-exports
+exports.deepClone = require(script.Parent.Shared.deepClone)
+exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
+
+-- Aliases
+exports.values = table.clone
 
 return exports
