@@ -1,45 +1,30 @@
 --!strict
+--!native
 
-local None = require(script.Parent.Parent.None)
+local isArray = require(script.Parent.isArray)
+local types = require(script.Parent.types)
 
---[=[
-	@function concat
-	@within Array
+type Array<T> = types.Array<T>
 
-	@param ... ...any -- The arrays to concatenate.
-	@return {T} -- The concatenated array.
+--[[
+    @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
+]]
+local function concat<T>(...: Array<T> | T | nil): Array<T>
+    local result = {}
 
-	Joins multiple arrays together into a single array.
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-	#### Aliases
+        if value ~= nil then
+            if isArray(value) then
+                table.move(value, 1, #value, #result + 1, result)
+            else
+                table.insert(result, value)
+            end
+        end
+    end
 
-	`join`, `merge`
-
-	```lua
-	local table1 = { 1, 2, 3 }
-	local table2 = { 4, 5, 6 }
-
-	local new = concat(table1, table2) -- { 1, 2, 3, 4, 5, 6 }
-	```
-]=]
-local function concat<T>(...: any): { T }
-	local result = {}
-
-	for arrayIndex = 1, select("#", ...) do
-		local array = select(arrayIndex, ...)
-
-		if type(array) ~= "table" then
-			continue
-		end
-
-		for _, item in ipairs(array) do
-			if item ~= None then
-				table.insert(result, item)
-			end
-		end
-	end
-
-	return result
+    return result
 end
 
 return concat

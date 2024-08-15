@@ -1,38 +1,38 @@
 --!strict
---[=[
-	@class Set
+--!native
 
-	Sets are a collection of values. They are used to store unique values.
-	They are essentially a dictionary, but each value is stored as a boolean.
-	This means that a value can only be in a set once.
+local types = require(script.types)
 
-	```lua
-	local set = { hello = true }
+export type Set<T> = types.Set<T>
+export type AnySet = types.AnySet
+export type UnknownSet = types.UnknownSet
 
-	local newSet = Add(set, "world") -- { hello = true, world = true }
-	```
-]=]
-local set = {
-	add = require(script.add),
-	copy = require(script.copy),
-	count = require(script.count),
-	delete = require(script.delete),
-	difference = require(script.difference),
-	differenceSymmetric = require(script.differenceSymmetric),
-	filter = require(script.filter),
-	fromArray = require(script.fromArray),
-	has = require(script.has),
-	intersection = require(script.intersection),
-	isSubset = require(script.isSubset),
-	isSuperset = require(script.isSuperset),
-	map = require(script.map),
-	merge = require(script.merge),
-	toArray = require(script.toArray),
+local PhantomSet = {
+    add = require(script.add),
+    delete = require(script.delete),
+    difference = require(script.difference),
+    filter = require(script.filter),
+    fromArray = require(script.fromArray),
+    has = require(script.has),
+    intersection = require(script.intersection),
+    isSubset = require(script.isSubset),
+    isSuperset = require(script.isSuperset),
+    map = require(script.map),
+    merge = require(script.merge),
+    symmetricDifference = require(script.symmetricDifference),
 }
 
-set.fromList = set.fromArray
-set.join = set.merge
-set.subtract = set.delete
-set.union = set.merge
+-- Re-exports
+PhantomSet.keys = require(script.Parent.Shared.keys)
+PhantomSet.values = require(script.Parent.Shared.values)
+PhantomSet.entries = require(script.Parent.Shared.entries)
+PhantomSet.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
-return set
+-- Aliases
+PhantomSet.toArray = PhantomSet.keys
+
+local exports = {
+    PhantomSet = PhantomSet,
+}
+
+return exports

@@ -1,36 +1,31 @@
 --!strict
---[=[
-	@function push
-	@within Array
+--!native
 
-	@param array {T} -- The array to push an element to.
-	@param ... ...T -- The elements to push.
-	@return {T} -- The array with the pushed elements.
+local types = require(script.Parent.types)
 
+type Array<T> = types.Array<T>
+
+--[[
 	Adds elements to the end of the array.
-
-	#### Aliases
-
-	`append`
 
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Push(array, 4, 5, 6) -- { 1, 2, 3, 4, 5, 6 }
+	local new = push(array, 4, 5, 6) -- { 1, 2, 3, 4, 5, 6 }
 	```
-]=]
-local function push<T>(array: { T }, ...: T): { T }
-	local result = {}
+]]
+local function push<T>(array: Array<T>, ...: T): Array<T>
+    local result = table.clone(array)
 
-	for _, value in ipairs(array) do
-		table.insert(result, value)
-	end
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-	for _, value in ipairs({ ... }) do
-		table.insert(result, value)
-	end
+        if value ~= nil then
+            table.insert(result, value)
+        end
+    end
 
-	return result
+    return result
 end
 
 return push

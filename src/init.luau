@@ -1,60 +1,41 @@
 --!strict
-local Types = require(script.Types)
+--!native
 
---[=[
-	@class Phantom
+local Array = require(script.Array)
+local Map = require(script.Map)
+local None = require(script.None)
+local Set = require(script.Set)
+local Shared = require(script.Shared)
 
-	Phantom is a library for manipulating arrays. It provides a number of
-	functions for manipulating arrays (lists), dictionaries, and sets.
+export type Array<T> = Array.Array<T>
+export type AnyArray = Array.AnyArray
+export type UnknownArray = Array.UnknownArray
 
-	Phantom is comprised of a number of submodules. Each submodule provides
-	a number of functions for manipulating a specific type of data, and
-	can be accessed via their respective names within the Phantom module
-	(e.g. `Phantom.Array.at()`), or accessed directly (e.g. `local at = require(Phantom.Array.at)`).
+export type Map<K, V> = Map.Map<K, V>
+export type AnyMap = Map.AnyMap
+export type UnknownMap = Map.UnknownMap
 
-	Some methods and modules also have aliases, which can are documented in the
-	corresponding submodule/method's documentation.
+export type None = None.None
 
-	See the individual submodule pages for full documentation.
+export type Set<T> = Set.Set<T>
+export type AnySet = Set.AnySet
+export type UnknownSet = Set.UnknownSet
 
-	The Luau types `Dictionary<K, V>`, `Array<T>` (aliased as `List<T>`) and `Set<T>` are exported from the Phantom module (e.g. they can be used via `Phantom.Array<string>`), but are also available from [Phantom.Types].
-]=]
+export type AnyTable = Shared.AnyTable
+export type UnknownTable = Shared.UnknownTable
+
 local Phantom = {
-	Array = require(script.Array),
-	Dictionary = require(script.Dictionary),
-	Set = require(script.Set),
+    Array = Array.PhantomArray,
+    Map = Map.PhantomMap,
+    None = None.None,
+    Set = Set.PhantomSet,
+    Shared = Shared.PhantomShared,
 
-	None = require(script.None),
-	Types = require(script.Types),
-
-	equalObjects = require(script.Util.equalObjects),
-	isEmpty = require(script.Util.isEmpty),
+    strictEqual = require(script.Util).strictEqual,
 }
 
-Phantom.List = Phantom.Array
+local exports = {
+    Phantom = Phantom,
+}
 
---- @prop Array Array
---- @within Phantom
-
---- @prop List Array
---- @within Phantom
---- @tag Alias
-
---- @prop Dictionary Dictionary
---- @within Phantom
-
---- @prop Set Set
---- @within Phantom
-
---- @prop Types Types
---- @within Phantom
-
-export type Dictionary<K, V> = Types.Dictionary<K, V>
-
-export type Array<T> = Types.Array<T>
-export type List<T> = Array<T>
-export type Set<T> = Types.Set<T>
-
-table.freeze(Phantom)
-
-return Phantom
+return exports

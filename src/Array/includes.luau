@@ -1,21 +1,14 @@
 --!strict
+--!native
+
 local find = require(script.Parent.find)
+local types = require(script.Parent.types)
 
---[=[
-	@function includes
-	@within Array
+type UnknownArray = types.UnknownArray
 
-	@param array {T} -- The array to search.
-	@param value any -- The value to search for.
-	@param from? number -- The index to start searching from.
-	@return boolean -- Whether the array contains the value.
-
-	Checks whether the array contains the value. This is a wrapper
-	around `Find`.
-
-	#### Aliases
-
-	`contains`, `has`
+--[[
+	Checks whether the array contains the value.
+    This is a wrapper around `find`.
 
 	```lua
 	local array = { "hello", "world", "goodbye" }
@@ -24,9 +17,13 @@ local find = require(script.Parent.find)
 	local value = Includes(array, "phantom") -- false
 	local value = Includes(array, "hello", 2) -- false
 	```
-]=]
-local function includes<T>(array: { T }, value: any, from: number?): boolean
-	return find(array, value, from) ~= nil
+]]
+local function includes(
+    array: UnknownArray,
+    value: any,
+    from: number | nil
+): boolean
+    return find(array, value, from) ~= nil
 end
 
 return includes

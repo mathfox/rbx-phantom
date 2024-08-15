@@ -1,32 +1,31 @@
 --!strict
---[=[
-	@function unshift
-	@within Array
+--!native
 
-	@param array {T} -- The array to insert the values to.
-	@param ... ...T -- The values to insert.
-	@return {T} -- The array with the values inserted.
+local types = require(script.Parent.types)
 
+type Array<T> = types.Array<T>
+
+--[[
 	Inserts values to the beginning of an array.
-
-	#### Aliases
-
-	`prepend`
 
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Unshift(array, 4, 5) -- { 4, 5, 1, 2, 3 }
+	local new = unshift(array, 4, 5) -- { 4, 5, 1, 2, 3 }
 	```
-]=]
-local function unshift<T>(array: { T }, ...: T): { T }
-	local result = { ... }
+]]
+local function unshift<T>(array: Array<T>, ...: T): Array<T>
+    local result = table.clone(array)
 
-	for _, value in ipairs(array) do
-		table.insert(result, value)
-	end
+    for index = select("#", ...), 1, -1 do
+        local value = select(index, ...)
 
-	return result
+        if value ~= nil then
+            table.insert(result, 1, value)
+        end
+    end
+
+    return result
 end
 
 return unshift

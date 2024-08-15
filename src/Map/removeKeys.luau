@@ -1,0 +1,23 @@
+--!strict
+--!native
+
+--[[
+    Removes the given keys from the given dictionary.
+
+    ```lua
+    local dictionary = { hello = "world", cat = "meow", dog = "woof", unicorn = "rainbow" }
+
+    local withoutCatDog = removeKeys(dictionary, "cat", "dog") -- { hello = "world", unicorn = "rainbow" }
+    ```
+]]
+local function removeKeys<K, V>(dictionary: { [K]: V }, ...: K): { [K]: V }
+    local result = table.clone(dictionary)
+
+    for _, key in { ... } do
+        result[key] = nil
+    end
+
+    return result
+end
+
+return removeKeys

@@ -1,22 +1,20 @@
 --!strict
---[=[
-  @function has
-  @within Set
+--!native
 
-  @param set { [T]: boolean } -- The set to check.
-  @param value any -- The value to check for.
-  @return boolean -- Whether the value is in the set.
+local types = require(script.Parent.types)
 
-  Checks whether a value is in a set.
+type Set<T> = types.Set<T>
 
-  ```lua
-  local set = { hello = true }
+local function has(set: Set<unknown>, ...: unknown): boolean
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-  local has = Has(set, "hello") -- true
-  ```
-]=]
-local function has<T>(set: { [T]: boolean }, value: any): boolean
-	return set[value] == true
+        if value ~= nil and not set[value] then
+            return false
+        end
+    end
+
+    return true
 end
 
 return has

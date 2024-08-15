@@ -1,62 +1,32 @@
 --!strict
+--!native
 
-local Util = require(script.Parent.Parent.Util)
+local compareArray = require(script.Parent.Parent.Shared.compare).compareArray
+local isArray = require(script.Parent.isArray)
+local types = require(script.Parent.types)
 
-local function compare(a, b)
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return a == b
-	end
+type Array<T> = types.Array<T>
 
-	local aLength = #a
+local function equals(...: Array<unknown>): boolean
+    local firstValue = select(1, ...)
 
-	if #b ~= aLength then
-		return false
-	end
+    if not isArray(firstValue) then
+        return false
+    end
 
-	for i = 1, aLength do
-		if a[i] ~= b[i] then
-			return false
-		end
-	end
+    for index = 2, select("#", ...) do
+        local value = select(index, ...)
 
-	return true
-end
+        if not isArray(value) then
+            return false
+        end
 
---[=[
-	@function equals
-	@within Array
+        if not compareArray(firstValue, value) then
+            return false
+        end
+    end
 
-	@param ... ...{any} -- The arrays to compare.
-	@return boolean -- Whether the arrays are equal.
-
-	Compares two arrays for equality.
-
-	```lua
-	local array = { 1, 2, 3 }
-	local other = { 1, 2, 3 }
-
-	local value = equals(array, other) -- true
-	local value = equals(array, other, { 1, 2, 3 }) -- true
-	local value = equals(array, other, { 1, 2, 4 }) -- false
-	```
-]=]
-local function equals<T>(...: { T }): boolean
-	if Util.equalObjects(...) then
-		return true
-	end
-
-	local totalArgs = select("#", ...)
-	local firstItem = select(1, ...)
-
-	for i = 2, totalArgs do
-		local item = select(i, ...)
-
-		if not compare(firstItem, item) then
-			return false
-		end
-	end
-
-	return true
+    return true
 end
 
 return equals

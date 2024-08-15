@@ -1,33 +1,28 @@
 --!strict
---[=[
-	@function pop
-	@within Array
+--!native
 
-	@param array {T} -- The array to pop an element from.
-	@param count? number = 1 -- The number of elements to pop.
-	@return {T} -- An array with the popped elements removed.
+local types = require(script.Parent.types)
 
-	Removes an element from the end of the array, and returns
-	the array with the popped elements removed.
+type Array<T> = types.Array<T>
+
+--[[
+	Removes an element from the end of the array, and returns the array with the popped elements removed.
 
 	```lua
 	local array = { 1, 2, 3 }
 
-	local new = Pop(array) -- { 1, 2 }
-	local new = Pop(array, 2) -- { 1 }
+	local new = pop(array) -- { 1, 2 }
+	local new = pop(array, 2) -- { 1 }
 	```
-]=]
-local function pop<T>(array: { T }, count: number?): { T }
-	local length = #array
-	local result = {}
+]]
+local function pop<T>(array: Array<T>, count: number | nil): Array<T>
+    local result = {}
 
-	count = if type(count) == "number" then count else 1
+    for index = 1, #array - (if count then count else 1) do
+        table.insert(result, array[index])
+    end
 
-	for i = 1, length - count do
-		table.insert(result, array[i])
-	end
-
-	return result
+    return result
 end
 
 return pop

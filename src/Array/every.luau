@@ -1,37 +1,25 @@
 --!strict
---[=[
-	@function every
-	@within Array
+--!native
 
-	@param array {T} -- The array to check.
-	@param predicate (value: T, index: number, array: {T}) -> any -- The predicate to use to check the array.
-	@return boolean -- Whether every item in the array passes the predicate.
+local types = require(script.Parent.types)
 
-	Checks whether every item in the array passes the predicate.
+type Array<T> = types.Array<T>
 
-	```lua
-	local array = { 1, 2, 3 }
-
-	local value = every(array, function(item, index)
-		return item > 0
-	end) -- true
-
-	local value = every(array, function(item, index)
-		return item > 1
-	end) -- false
-	```
-]=]
 local function every<T>(
-	array: { T },
-	predicate: (value: T, index: number, array: { T }) -> any
+    array: Array<T>,
+    predicate: (
+        value: T,
+        index: number,
+        array: Array<T>
+    ) -> unknown
 ): boolean
-	for index, value in ipairs(array) do
-		if not predicate(value, index, array) then
-			return false
-		end
-	end
+    for index = 1, #array do
+        if not predicate(array[index], index, array) then
+            return false
+        end
+    end
 
-	return true
+    return true
 end
 
 return every

@@ -1,33 +1,39 @@
 --!strict
-local ToSet = require(script.Parent.toSet)
+--!native
 
---[=[
-	@function removeValues
-	@within Array
+local types = require(script.Parent.types)
 
-	@param array {T} -- The array to remove values from.
-	@param ... T -- The values to remove.
-	@return {T} -- The array with the values removed.
+type Array<T> = types.Array<T>
 
+--[[
 	Removes values from an array.
 
 	```lua
 	local array = { "a", "b", "c", "c", "d", "e" }
 
-	local new = RemoveValues(array, "c", "d") -- { "a", "b", "e" }
+	local new = removeValues(array, "c", "d") -- { "a", "b", "e" }
 	```
-]=]
-local function removeValues<T>(array: { T }, ...: T): { T }
-	local valueSet = ToSet({ ... })
-	local result = {}
+]]
+local function removeValues<T>(array: Array<T>, ...: T): Array<T>
+    local valueSet = {}
 
-	for _, value in ipairs(array) do
-		if not valueSet[value] then
-			table.insert(result, value)
-		end
-	end
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-	return result
+        if value ~= nil then
+            valueSet[value] = true
+        end
+    end
+
+    local result = table.clone(array)
+
+    for index = #array, 1, -1 do
+        if valueSet[array[index]] then
+            table.remove(result, index)
+        end
+    end
+
+    return result
 end
 
 return removeValues

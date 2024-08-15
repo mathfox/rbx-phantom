@@ -1,34 +1,20 @@
 --!strict
---[=[
-  @function delete
-  @within Set
+--!native
 
-  @param set { [T]: boolean } -- The set to delete from.
-  @param ... ...T -- The values to delete.
-  @return { [T]: boolean } -- The set with the values deleted.
+local types = require(script.Parent.types)
 
-  Deletes values from a set.
+type Set<T> = types.Set<T>
 
-  Aliases: `subtract`
+local function delete<T>(set: Set<T>, ...: T | nil): Set<T>
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-  ```lua
-  local set = { hello = true, world = true }
+        if value ~= nil then
+            set[value] = nil
+        end
+    end
 
-  local newSet = Delete(set, "hello") -- { world = true }
-  ```
-]=]
-local function delete<T>(set: { [T]: boolean }, ...: T): { [T]: boolean }
-	local result = {}
-
-	for key, _ in pairs(set) do
-		result[key] = true
-	end
-
-	for _, value in ipairs({ ... }) do
-		result[value] = nil
-	end
-
-	return result
+    return set
 end
 
 return delete

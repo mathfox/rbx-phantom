@@ -1,38 +1,34 @@
 --!strict
---[=[
-  @function merge
-  @within Set
+--!native
 
-  @param ... ...any -- The sets to merge.
-  @return { [T]: boolean } -- The merged set.
+local types = require(script.Parent.types)
 
-  Combines one or more sets into a single set.
+type Set<T> = types.Set<T>
 
-  Aliases: `join`, `union`
+--[[
+    Combines one or more sets into a single set.
 
-  ```lua
-  local set1 = { hello = true, world = true }
-  local set2 = { cat = true, dog = true, hello = true }
+    ```lua
+    local set1 = { hello = true, world = true }
+    local set2 = { cat = true, dog = true, hello = true }
 
-  local merge = Merge(set1, set2) -- { hello = true, world = true, cat = true, dog = true }
-  ```
-]=]
-local function merge<T>(...: any): { [T]: boolean }
-	local result = {}
+    local newSet = merge(set1, set2) -- { hello = true, world = true, cat = true, dog = true }
+    ```
+]]
+local function merge<T>(...: Set<T> | nil): Set<T>
+    local result: Set<T> = {}
 
-	for setIndex = 1, select("#", ...) do
-		local set = select(setIndex, ...)
+    for index = 1, select("#", ...) do
+        local set = select(index, ...)
 
-		if type(set) ~= "table" then
-			continue
-		end
+        if set ~= nil then
+            for value in set do
+                result[value] = true
+            end
+        end
+    end
 
-		for key, _ in pairs(set) do
-			result[key] = true
-		end
-	end
-
-	return result
+    return result
 end
 
 return merge

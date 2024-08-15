@@ -1,14 +1,12 @@
 --!strict
---[=[
-	@function flatten
-	@within Array
+--!native
 
-	@param array {T} -- The array to flatten.
-	@param depth? number -- The depth to flatten the array to.
-	@return {T} -- The flattened array.
+local types = require(script.Parent.types)
 
-	Flattens an array. If depth is not specified, it will flatten
-	the array as far as it can go.
+type Array<T> = types.Array<T>
+
+--[[
+	Flattens an array. If depth is not specified, it will flatten the array as far as it can go.
 
 	```lua
 	local array = {
@@ -20,25 +18,23 @@
 	local new = flatten(array) -- { 1, 2, 3, 4, 5, 6, 7, 8, 9 }
 	local new = flatten(array, 1) -- { 1, 2, 3, 4, 5, 6, 7, { 8, 9 } }
 	```
-]=]
-local function flatten<T>(array: { T }, depth: number?): { T }
-	depth = if type(depth) == "number" then depth else math.huge
+]]
+local function flatten<T>(array: Array<T>, depth: number | nil): Array<T>
+    local result = {}
 
-	local result = {}
+    for _, value in array do
+        if type(value) == "table" and (not depth or depth > 0) then
+            local nested = flatten(value, if depth then depth - 1 else nil)
 
-	for _, value in ipairs(array) do
-		if type(value) == "table" and depth > 0 then
-			local nested = flatten(value, depth - 1)
+            for _, nestedValue in nested do
+                table.insert(result, nestedValue)
+            end
+        else
+            table.insert(result, value)
+        end
+    end
 
-			for _, nestedValue in ipairs(nested) do
-				table.insert(result, nestedValue)
-			end
-		else
-			table.insert(result, value)
-		end
-	end
-
-	return result
+    return result
 end
 
 return flatten

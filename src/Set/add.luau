@@ -1,32 +1,20 @@
 --!strict
---[=[
-  @function add
-  @within Set
+--!native
 
-  @param set { [T]: boolean } -- The set to add the value to.
-  @param ... ...T -- The values to add.
-  @return { [T]: boolean } -- The set with the values added.
+local types = require(script.Parent.types)
 
-  Adds values to a set.
+type Set<T> = types.Set<T>
 
-  ```lua
-  local set = { hello = true }
+local function add<T>(set: Set<T>, ...: T | nil): Set<T>
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
 
-  local newSet = Add(set, "world") -- { hello = true, world = true }
-  ```
-]=]
-local function add<T>(set: { [T]: boolean }, ...: T): { [T]: boolean }
-	local result = {}
+        if value ~= nil then
+            set[value] = true
+        end
+    end
 
-	for key, _ in pairs(set) do
-		result[key] = true
-	end
-
-	for _, value in ipairs({ ... }) do
-		result[value] = true
-	end
-
-	return result
+    return set
 end
 
 return add

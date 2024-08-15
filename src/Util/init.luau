@@ -1,5 +1,8 @@
-return {
-	equalObjects = require(script.equalObjects),
-	func = require(script.func),
-	isEmpty = require(script.isEmpty),
+--!strict
+--!native
+
+local exports = {
+    strictEqual = require(script.strictEqual),
 }
+
+return exports

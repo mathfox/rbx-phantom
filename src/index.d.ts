@@ -1,19 +1,9 @@
-export = Phantom;
-
-import type { PhantomNone } from "./Util";
-
 import PhantomArray from "./Array";
-import PhantomDictionary from "./Dictionary";
+import PhantomMap from "./Map";
+import None from "./None";
 import PhantomSet from "./Set";
+export * from "./Util";
 
-declare namespace Phantom {
-	export const None: PhantomNone;
-	export type None = PhantomNone;
-
-	export {
-		PhantomArray as Array,
-		PhantomArray as List,
-		PhantomDictionary as Dictionary,
-		PhantomSet as Set,
-	};
+export namespace Phantom {
+	export { PhantomArray as Array, PhantomMap as Map, PhantomSet as Set, None };
 }
