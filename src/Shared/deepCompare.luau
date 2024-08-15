@@ -27,6 +27,22 @@ local function deepCompareArray(a: UnknownArray, b: UnknownArray): boolean
     return true
 end
 
+local function deepCompareMap(a: UnknownTable, b: UnknownTable): boolean
+    for key, value in a :: UnknownTable do
+        if not deepCompare(value, (b :: UnknownTable)[key]) then
+            return false
+        end
+    end
+
+    for key, value in b :: UnknownTable do
+        if not deepCompare(value, (a :: UnknownTable)[key]) then
+            return false
+        end
+    end
+
+    return true
+end
+
 function deepCompare(a, b)
     if type(a) ~= "table" or type(b) ~= "table" then
         return a == b
@@ -47,24 +63,13 @@ function deepCompare(a, b)
 
     -- Here we know that both "a" and "b" are not arrays, but some table shape.
 
-    for key, value in a :: UnknownTable do
-        if not deepCompare(value, (b :: UnknownTable)[key]) then
-            return false
-        end
-    end
-
-    for key, value in b :: UnknownTable do
-        if not deepCompare(value, (a :: UnknownTable)[key]) then
-            return false
-        end
-    end
-
-    return true
+    return deepCompareMap(a :: UnknownTable, b :: UnknownTable)
 end
 
 local exports = {
     deepCompareArray = deepCompareArray,
     deepCompare = deepCompare,
+    deepCompareMap = deepCompareMap,
 }
 
 return exports

@@ -1,19 +1,22 @@
 return function()
-	local Has = require(script.Parent.has)
+    local has = require(script.Parent.has)
 
-	it("should return true if the dictionary has the given key", function()
-		local dictionary = { hello = "roblox", goodbye = "world" }
+    it("should return true if the dictionary has the given key", function()
+        local dictionary = { hello = "roblox", goodbye = "world" }
 
-		local hasHello = Has(dictionary, "hello")
+        local hasHello = has(dictionary, "hello")
 
-		expect(hasHello).to.equal(true)
-	end)
+        expect(hasHello).to.equal(true)
+    end)
 
-	it("should return false if the dictionary does not have the given key", function()
-		local dictionary = { hello = "roblox", goodbye = "world" }
+    it(
+        "should return false if the dictionary does not have the given key",
+        function()
+            local dictionary = { hello = "roblox", goodbye = "world" }
 
-		local hasCat = Has(dictionary, "cat")
+            local hasCat = has(dictionary, "cat")
 
-		expect(hasCat).to.equal(false)
-	end)
+            expect(hasCat).to.equal(false)
+        end
+    )
 end

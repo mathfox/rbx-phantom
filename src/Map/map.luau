@@ -1,40 +1,43 @@
 --!strict
---[=[
-  @function map
-  @within Dictionary
+--!native
 
-  @param dictionary {[K]: V} -- The dictionary to map.
-  @param mapper (value: V, key: K, dictionary: {[K]: V}) -> (Y?, X?) -- The mapper function.
-  @return {[X]: Y} -- The mapped dictionary.
+local types = require(script.Parent.types)
 
-  Maps the dictionary using the mapper function. The mapper function can
-  return a value and a key. If the mapper function does not return a key,
-  the original key will be used.
+type Map<K, V> = types.Map<K, V>
 
-  ```lua
-  local dictionary = { hello = 10, goodbye = 20 }
+--[[
+    Maps the dictionary using the mapper function.
+    The mapper function can return a value and a key.
+    If the mapper function does not return a key, the original key will be used.
 
-  local new = Map(dictionary, function(value, key)
-    return value * 2, key .. "!"
-  end) -- { ["hello!"] = 20, ["goodbye!"] = 40 }
+    ```lua
+    local sourceMap = { hello = 10, goodbye = 20 }
 
-  local new = Map(dictionary, function(value, key)
-    return value * 10
-  end) -- { hello = 100, goodbye = 200 }
-  ```
-]=]
-local function map<K, V, X, Y>(
-	dictionary: { [K]: V },
-	mapper: (value: V, key: K, dictionary: { [K]: V }) -> (Y?, X?)
-): { [X]: Y }
-	local mapped = {}
+    local new = map(sourceMap, function(value, key)
+        return value * 2, key .. "!"
+    end) -- { ["hello!"] = 20, ["goodbye!"] = 40 }
 
-	for key, value in pairs(dictionary) do
-		local mappedValue, mappedKey = mapper(value, key, dictionary)
-		mapped[mappedKey or key] = mappedValue
-	end
+    local new = map(sourceMap, function(value, key)
+        return value * 10
+    end) -- { hello = 100, goodbye = 200 }
+    ```
+]]
+local function map<K, V, K2, V2>(
+    sourceMap: Map<K, V>,
+    mapper: (
+        value: V,
+        key: K,
+        sourceMap: Map<K, V>
+    ) -> (V2, K2?)
+): { [K2 | K]: V2 }
+    local mapped: Map<K2 | K, V2> = {}
 
-	return mapped
+    for key, value in sourceMap do
+        local mappedValue, mappedKey = mapper(value, key, sourceMap)
+        mapped[mappedKey or key] = mappedValue
+    end
+
+    return mapped
 end
 
 return map

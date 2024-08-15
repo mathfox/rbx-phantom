@@ -1,35 +1,29 @@
 --!strict
+--!native
 
-local ToSet = require(script.Parent.Parent.Array.toSet)
+local toSet = require(script.Parent.Parent.Array.toSet)
 
---[=[
-  @function removeValues
-  @within Dictionary
+--[[
+    Removes the given values from the given dictionary.
 
-  @param dictionary {[K]: V} -- The dictionary to remove the values from.
-  @param values ...V -- The values to remove.
-  @return {[K]: V} -- The dictionary without the given values.
+    ```lua
+    local dictionary = { hello = "world", cat = "meow", unicorn = "rainbow", goodbye = "world" }
 
-  Removes the given values from the given dictionary.
-
-  ```lua
-  local dictionary = { hello = "world", cat = "meow", unicorn = "rainbow", goodbye = "world" }
-
-  local withoutWorld = RemoveValues(dictionary, "world") -- { cat = "meow", unicorn = "rainbow" }
-  local onlyWorld = RemoveValues(dictionary, "meow", "rainbow") -- { hello = "world", goodbye = "world" }
-  ```
-]=]
+    local withoutWorld = RemoveValues(dictionary, "world") -- { cat = "meow", unicorn = "rainbow" }
+    local onlyWorld = RemoveValues(dictionary, "meow", "rainbow") -- { hello = "world", goodbye = "world" }
+    ```
+]]
 local function removeValues<K, V>(dictionary: { [K]: V }, ...: V): { [K]: V }
-	local values = ToSet({ ... })
-	local result = {}
+    local values = toSet({ ... })
+    local result = {}
 
-	for key, value in pairs(dictionary) do
-		if not values[value] then
-			result[key] = value
-		end
-	end
+    for key, value in pairs(dictionary) do
+        if not values[value] then
+            result[key] = value
+        end
+    end
 
-	return result
+    return result
 end
 
 return removeValues

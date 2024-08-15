@@ -1,25 +1,30 @@
 --!strict
-local _T = require(script.Parent.Parent.Types)
+--!native
 
---[=[
-  @function has
-  @within Dictionary
+local types = require(script.Parent.types)
 
-  @param dictionary {[K]: V} -- The dictionary to check.
-  @param key any -- The key to check for.
-  @return boolean -- Whether or not the dictionary has the given key.
+type Map<K, V> = types.Map<K, V>
 
-  Checks whether or not the given dictionary has the given key.
+--[[
+    Checks whether or not the given dictionary has the given key.
 
-  ```lua
-  local dictionary = { hello = "roblox", goodbye = "world" }
+    ```lua
+    local dictionary = { hello = "roblox", goodbye = "world" }
 
-  local hasHello = Has(dictionary, "hello") -- true
-  local hasCat = Has(dictionary, "cat") -- false
-  ```
-]=]
-local function has(dictionary: _T.AnyDictionary, key: any): boolean
-	return dictionary[key] ~= nil
+    local hasHello = Has(dictionary, "hello") -- true
+    local hasCat = Has(dictionary, "cat") -- false
+    ```
+]]
+local function has<K>(map: Map<K, unknown>, ...: K): boolean
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
+
+        if value ~= nil and map[value] == nil then
+            return false
+        end
+    end
+
+    return true
 end
 
 return has
