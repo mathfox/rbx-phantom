@@ -6,26 +6,6 @@ local types = require(script.Parent.types)
 
 type Array<T> = types.Array<T>
 
-local function deepCompare(a: Array<unknown>, b: Array<unknown>): boolean
-    --if type(a) ~= "table" or type(b) ~= "table" then
-    --    return a == b
-    --end
-
-    local aLength = #a
-
-    if #b ~= aLength then
-        return false
-    end
-
-    for i = 1, aLength do
-        if not deepCompare(a[i], b[i]) then
-            return false
-        end
-    end
-
-    return true
-end
-
 --[[
 	Compares two arrays for equality using deep comparison.
 
@@ -47,11 +27,12 @@ local function deepEquals(...: unknown): boolean
 
     for index = 2, select("#", ...) do
         local value = select(index, ...)
+
         if not isArray(value) then
             return false
         end
 
-        if not deepCompare(firstValue, value) then
+        if not deepCompareArray(firstValue :: Array<unknown>, value) then
             return false
         end
     end
