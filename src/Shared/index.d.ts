@@ -45,6 +45,12 @@ interface PhantomSharedConstructor {
 	deepClone<T>(this: void, set: ReadonlySet<T>): Set<T>;
 	deepClone<T extends object>(object: T): T;
 
+	deepCompare(this: void, ...values: ReadonlyArray<unknown>): boolean;
+	deepCompareArray(
+		this: void,
+		...arrays: ReadonlyArray<ReadonlyArray<unknown>>
+	): boolean;
+
 	deepFreeze<T>(this: void, array: ReadonlyArray<T>): DeepReadonlyArray<T>;
 	deepFreeze<K, V>(
 		this: void,
