@@ -1,8 +1,11 @@
 --!strict
+--!native
 
 local types = require(script.types)
 
 export type Array<T> = types.Array<T>
+export type AnyArray = types.AnyArray
+export type UnknownArray = types.UnknownArray
 
 local PhantomArray = {
     at = require(script.at),

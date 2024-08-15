@@ -1,6 +1,3 @@
---!strict
---!native
-
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 
 local Bencharoo = require(ReplicatedStorage.Benchmarks.benchmark)

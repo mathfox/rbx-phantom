@@ -4,6 +4,8 @@
 local types = require(script.types)
 
 export type Map<K, V> = types.Map<K, V>
+export type AnyMap = types.AnyMap
+export type UnknownMap = types.UnknownMap
 
 local PhantomMap = {
     copyDeep = require(script.copyDeep),

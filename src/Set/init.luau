@@ -4,6 +4,8 @@
 local types = require(script.types)
 
 export type Set<T> = types.Set<T>
+export type AnySet = types.AnySet
+export type UnknownSet = types.UnknownSet
 
 local PhantomSet = {
     add = require(script.add),
