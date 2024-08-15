@@ -1,7 +1,7 @@
 --!strict
 --!native
 
-local function keys<K>(object: { [K]: any }): { K }
+local function keys<K>(object: { [K]: unknown }): { K }
     local result = {}
 
     for key in object do

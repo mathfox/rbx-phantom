@@ -1,28 +1,22 @@
-import type { PhantomNone, ReadonlyDeep, ReplaceType } from "./Util";
-
-type InferArgs<U> = U extends ReadonlyArray<infer A> ? A : U;
-
 interface PhantomArrayConstructor {
 	/**
 	 * @param index 0-based index
 	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/at
 	 */
-	at<const T>(
-		this: void,
-		array: ReadonlyArray<T>,
-		index: number,
-	): T | undefined;
-
-	cloneDeep<const T>(array: ReadonlyArray<T>): Array<T>;
+	at<T>(this: void, array: ReadonlyArray<T>, index: number): T | undefined;
 
 	/**
+	 * This function preserves sparse arrays such as { nil, nil, 3 } will become { nil, nil, 3, 4} when concatenated with 4.
+	 *
 	 * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 	 */
-	concat<const T>(
+	concat<T>(
 		this: void,
 		array: ReadonlyArray<T>,
 		...items: ReadonlyArray<T | ReadonlyArray<T>>
 	): Array<T>;
+
+	deepClone<T>(array: ReadonlyArray<T>): Array<T>;
 
 	/**
 	 * Returns an array of values that are in the first array, but not in the other arrays.

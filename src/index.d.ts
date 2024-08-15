@@ -1,16 +1,10 @@
-export * from "./Util";
-export * from "./None";
-
-type kek = Reado;
-
 import PhantomArray from "./Array";
-import PhantomDictionary from "./Map";
+import PhantomMap from "./Map";
+import None from "./None";
 import PhantomSet from "./Set";
 
-export declare namespace Phantom {
-	export {
-		PhantomArray as Array,
-		PhantomDictionary as Dictionary,
-		PhantomSet as Set,
-	};
+declare namespace Phantom {
+	export { PhantomArray as Array, PhantomMap as Map, PhantomSet as Set, None };
 }
+
+export = Phantom;

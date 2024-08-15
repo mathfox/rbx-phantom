@@ -1,4 +1,5 @@
 --!strict
+--!native
 
 local types = require(script.types)
 
@@ -15,15 +16,15 @@ local exports = {
     intersection = require(script.intersection),
     isSubset = require(script.isSubset),
     isSuperset = require(script.isSuperset),
-    keys = require(script.keys),
     map = require(script.map),
     merge = require(script.merge),
 }
 
+-- Re-exports
+exports.keys = require(script.Parent.Shared.keys)
+exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
+
 -- Aliases
 exports.toArray = exports.keys
-
--- Re-exports
-exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 return exports

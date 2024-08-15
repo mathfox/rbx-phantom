@@ -14,6 +14,7 @@ local exports = {
     Map = require(script.Map),
     None = None,
     Set = require(script.Set),
+    Shared = require(script.Shared),
 
     strictEqual = require(script.Util).strictEqual,
 }

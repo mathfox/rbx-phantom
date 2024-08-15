@@ -2,6 +2,7 @@
 --!native
 
 local exports = {
+    deepClone = require(script.deepClone),
     keys = require(script.keys),
     safeFreeze = require(script.safeFreeze),
     size = require(script.size),
