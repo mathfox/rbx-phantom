@@ -4,14 +4,12 @@ local types = require(script.types)
 
 export type Array<T> = types.Array<T>
 
-local exports = {
+local PhantomArray = {
     at = require(script.at),
     concat = require(script.concat),
     difference = require(script.difference),
-
     differenceSymmetric = require(script.differenceSymmetric),
     equals = require(script.equals),
-    equalsDeep = require(script.equalsDeep),
     every = require(script.every),
     filter = require(script.filter),
     find = require(script.find),
@@ -19,11 +17,9 @@ local exports = {
     findWhere = require(script.findWhere),
     findWhereLast = require(script.findWhereLast),
     flatten = require(script.flatten),
-    freezeDeep = require(script.freezeDeep),
     includes = require(script.includes),
     insert = require(script.insert),
     isArray = require(script.isArray),
-    last = require(script.last),
     map = require(script.map),
     pop = require(script.pop),
     push = require(script.push),
@@ -48,10 +44,14 @@ local exports = {
 }
 
 -- Re-exports
-exports.deepClone = require(script.Parent.Shared.deepClone)
-exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
+PhantomArray.deepClone = require(script.Parent.Shared.deepClone)
+PhantomArray.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
-exports.values = table.clone
+PhantomArray.values = table.clone
+
+local exports = {
+    PhantomArray = PhantomArray,
+}
 
 return exports

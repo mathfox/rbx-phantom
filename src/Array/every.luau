@@ -7,7 +7,11 @@ type Array<T> = types.Array<T>
 
 local function every<T>(
     array: Array<T>,
-    predicate: (value: T, index: number, array: Array<T>) -> any
+    predicate: (
+        value: T,
+        index: number,
+        array: Array<T>
+    ) -> unknown
 ): boolean
     for index = 1, #array do
         if not predicate(array[index], index, array) then

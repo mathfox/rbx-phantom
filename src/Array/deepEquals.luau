@@ -1,62 +1,62 @@
 --!strict
+--!native
 
-local Util = require(script.Parent.Parent.Util)
+local isArray = require(script.Parent.isArray)
+local types = require(script.Parent.types)
 
-local function compareDeep(a, b)
-	if type(a) ~= "table" or type(b) ~= "table" then
-		return a == b
-	end
+type Array<T> = types.Array<T>
 
-	local aLength = #a
+local function deepCompare(a: Array<unknown>, b: Array<unknown>): boolean
+    --if type(a) ~= "table" or type(b) ~= "table" then
+    --    return a == b
+    --end
 
-	if #b ~= aLength then
-		return false
-	end
+    local aLength = #a
 
-	for i = 1, aLength do
-		if not compareDeep(a[i], b[i]) then
-			return false
-		end
-	end
+    if #b ~= aLength then
+        return false
+    end
 
-	return true
+    for i = 1, aLength do
+        if not deepCompare(a[i], b[i]) then
+            return false
+        end
+    end
+
+    return true
 end
 
---[=[
-	@function equalsDeep
-	@within Array
-
-	@param ... ...{any} -- The arrays to compare.
-	@return boolean -- Whether the arrays are equal.
-
+--[[
 	Compares two arrays for equality using deep comparison.
 
 	```lua
 	local array = { 1, 2, 3, { 4, 5 } }
 	local other = { 1, 2, 3, { 4, 5 } }
 
-	local value = equalsDeep(array, other) -- true
-	local value = equalsDeep(array, other, { 1, 2, 3, { 4, 5 } }) -- true
-	local value = equalsDeep(array, other, { 1, 2, 3, { 4, 6 } }) -- false
+	local value = deepEquals(array, other) -- true
+	local value = deepEquals(array, other, { 1, 2, 3, { 4, 5 } }) -- true
+	local value = deepEquals(array, other, { 1, 2, 3, { 4, 6 } }) -- false
 	```
-]=]
-local function equalsDeep<T>(...: { T }): boolean
-	if Util.equalObjects(...) then
-		return true
-	end
+]]
+local function deepEquals(...: unknown): boolean
+    local firstValue = select(1, ...)
 
-	local totalArgs = select("#", ...)
-	local firstItem = select(1, ...)
+    if not isArray(firstValue) then
+        return false
+    end
 
-	for i = 2, totalArgs do
-		local item = select(i, ...)
+    for index = 2, select("#", ...) do
+        local value = select(index, ...)
+        if not isArray(value) then
+            return false
+        end
 
-		if not compareDeep(firstItem, item) then
-			return false
-		end
-	end
+        if not deepCompare(firstValue, value) then
+            return false
+        end
+    end
 
-	return true
+    return true
 end
 
-return equalsDeep
+return deepEquals

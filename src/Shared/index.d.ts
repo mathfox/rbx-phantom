@@ -1,3 +1,37 @@
+export type InferObjectKey<T> = T extends ReadonlyArray<unknown>
+	? number
+	: T extends ReadonlyMap<infer Key, unknown>
+		? Key
+		: T extends ReadonlySet<infer Key>
+			? Key
+			: T extends object
+				? keyof T
+				: never;
+
+export type InferObjectValue<T> = T extends ReadonlyArray<infer Value>
+	? Value
+	: T extends ReadonlyMap<unknown, infer Value>
+		? Value
+		: T extends ReadonlySet<unknown>
+			? true
+			: T extends object
+				? T[keyof T]
+				: never;
+
+export type DeepReadonly<T> = T extends ReadonlyArray<infer R>
+	? DeepReadonlyArray<R>
+	: T extends Callback
+		? T
+		: T extends object
+			? DeepReadonlyObject<T>
+			: T;
+
+export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
+
+export type DeepReadonlyObject<T> = {
+	readonly [P in keyof T]: DeepReadonly<T[P]>;
+};
+
 interface PhantomSharedConstructor {
 	keys(this: void, array: ReadonlyArray<unknown>): Array<number>;
 	keys<K>(this: void, map: ReadonlyMap<K, unknown>): Array<K>;
@@ -17,6 +51,4 @@ interface PhantomSharedConstructor {
 	values<T extends object, K extends keyof T>(object: T): Array<T[K]>;
 }
 
-declare const PhantomShared: PhantomSharedConstructor;
-
-export = PhantomShared;
+export declare const PhantomShared: PhantomSharedConstructor;

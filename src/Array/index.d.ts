@@ -1,3 +1,7 @@
+export type InferArrayValue<T> = T extends ReadonlyArray<infer Value>
+	? Value
+	: never;
+
 interface PhantomArrayConstructor {
 	/**
 	 * @param index 0-based index
@@ -15,6 +19,13 @@ interface PhantomArrayConstructor {
 		array: ReadonlyArray<T>,
 		...items: ReadonlyArray<ReadonlyArray<T> | T | undefined>
 	): Array<T>;
+
+	/**
+	 * This function will exit early with `false` if any of the values is not an array.
+	 */
+	deepEquals(...value: ReadonlyArray<unknown>): boolean;
+
+	freezeDeep<T>(array: ReadonlyArray<T>): ReadonlyDeep<T[]>;
 
 	deepClone<T>(array: ReadonlyArray<T>): Array<T>;
 
@@ -35,9 +46,7 @@ interface PhantomArrayConstructor {
 	isArray(this: void, value: unknown): value is Array<unknown>;
 }
 
-declare const PhantomArray: PhantomArrayConstructor;
-
-export = PhantomArray;
+export declare const PhantomArray: PhantomArrayConstructor;
 
 declare namespace PhantomArrayName {
 	export function concat<T>(...arrays: T[]): T;
@@ -51,8 +60,6 @@ declare namespace PhantomArrayName {
 	export function differenceSymmetric<T>(array: T[], ...values: T[]): T[];
 
 	export function equals(...arrays: unknown[]): boolean;
-
-	export function equalsDeep(...arrays: unknown[]): boolean;
 
 	export function every<T>(
 		array: T[],
@@ -89,8 +96,6 @@ declare namespace PhantomArrayName {
 	): number;
 
 	export function flatten<T>(array: T[], depth?: number): T[];
-
-	export function freezeDeep<T>(array: T[]): ReadonlyDeep<T[]>;
 
 	export function includes<T>(array: T[], value: T, from?: number): boolean;
 

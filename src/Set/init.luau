@@ -5,7 +5,7 @@ local types = require(script.types)
 
 export type Set<T> = types.Set<T>
 
-local exports = {
+local PhantomSet = {
     add = require(script.add),
     delete = require(script.delete),
     difference = require(script.difference),
@@ -21,11 +21,15 @@ local exports = {
 }
 
 -- Re-exports
-exports.keys = require(script.Parent.Shared.keys)
-exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
-exports.values = require(script.Parent.Shared.values)
+PhantomSet.keys = require(script.Parent.Shared.keys)
+PhantomSet.safeFreeze = require(script.Parent.Shared.safeFreeze)
+PhantomSet.values = require(script.Parent.Shared.values)
 
 -- Aliases
-exports.toArray = exports.keys
+PhantomSet.toArray = PhantomSet.keys
+
+local exports = {
+    PhantomSet = PhantomSet,
+}
 
 return exports

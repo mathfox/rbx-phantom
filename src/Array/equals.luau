@@ -2,6 +2,9 @@
 --!native
 
 local strictEqual = require(script.Parent.Parent.Util.strictEqual)
+local types = require(script.Parent.types)
+
+type Array<T> = types.Array<T>
 
 local function compare(a, b)
     if type(a) ~= "table" or type(b) ~= "table" then
@@ -23,7 +26,7 @@ local function compare(a, b)
     return true
 end
 
-local function equals<T>(...: { T }): boolean
+local function equals(...: Array<unknown>): boolean
     if strictEqual(...) then
         return true
     end

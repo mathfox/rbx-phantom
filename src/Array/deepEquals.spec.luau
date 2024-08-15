@@ -1,24 +1,24 @@
 return function()
-	local equalsDeep = require(script.Parent.equalsDeep)
+    local deepEquals = require(script.Parent.deepEquals)
 
-	it("should return true if the arrays are equal", function()
-		local array1 = { 1, 2, 3 }
-		local array2 = { 1, 2, 3 }
+    it("should return true if the arrays are equal", function()
+        local array1 = { 1, 2, 3 }
+        local array2 = { 1, 2, 3 }
 
-		expect(equalsDeep(array1, array2)).to.equal(true)
-	end)
+        expect(deepEquals(array1, array2)).to.equal(true)
+    end)
 
-	it("should return false if the arrays are not equal", function()
-		local array1 = { 1, 2, 3 }
-		local array2 = { 1, 2, 4 }
+    it("should return false if the arrays are not equal", function()
+        local array1 = { 1, 2, 3 }
+        local array2 = { 1, 2, 4 }
 
-		expect(equalsDeep(array1, array2)).to.equal(false)
-	end)
+        expect(deepEquals(array1, array2)).to.equal(false)
+    end)
 
-	it("should return true if nested arrays are equal", function()
-		local array1 = { 1, 2, { 3, 4 } }
-		local array2 = { 1, 2, { 3, 4 } }
+    it("should return true if nested arrays are equal", function()
+        local array1 = { 1, 2, { 3, 4 } }
+        local array2 = { 1, 2, { 3, 4 } }
 
-		expect(equalsDeep(array1, array2)).to.equal(true)
-	end)
+        expect(deepEquals(array1, array2)).to.equal(true)
+    end)
 end
