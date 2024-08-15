@@ -13,7 +13,7 @@ interface PhantomArrayConstructor {
 	concat<T>(
 		this: void,
 		array: ReadonlyArray<T>,
-		...items: ReadonlyArray<T | ReadonlyArray<T>>
+		...items: ReadonlyArray<ReadonlyArray<T> | T | undefined>
 	): Array<T>;
 
 	deepClone<T>(array: ReadonlyArray<T>): Array<T>;

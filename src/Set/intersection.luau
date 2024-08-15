@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Set<T> = types.Set<T>
 
---[=[
+--[[
     Creates the intersection of multiple sets.
     The intersection is when both sets have a value in common.
     Unmatched values are discarded.
@@ -16,7 +16,7 @@ type Set<T> = types.Set<T>
 
     local int = intersection(set1, set2) -- { world = true }
     ```
-]=]
+]]
 local function intersection(...: Set<unknown> | nil): Set<unknown>
     local result: Set<unknown> = {}
 

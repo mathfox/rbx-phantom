@@ -8,7 +8,7 @@ local types = require(script.Parent.types)
 
 type Array<T> = types.Array<T>
 
---[=[
+--[[
     Returns an array of values that are in the first array, but not in the other arrays.
 
     ```lua
@@ -17,7 +17,7 @@ type Array<T> = types.Array<T>
 
     local diff = difference(array1, array2) -- { "world" }
     ```
-]=]
+]]
 local function difference<T>(array: Array<T>, ...: Array<T>): Array<T>
     local arraySet = toSet(array)
     local otherSets = {}

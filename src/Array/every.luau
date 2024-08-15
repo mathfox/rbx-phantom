@@ -9,8 +9,8 @@ local function every<T>(
     array: Array<T>,
     predicate: (value: T, index: number, array: Array<T>) -> any
 ): boolean
-    for index, value in ipairs(array) do
-        if not predicate(value, index, array) then
+    for index = 1, #array do
+        if not predicate(array[index], index, array) then
             return false
         end
     end

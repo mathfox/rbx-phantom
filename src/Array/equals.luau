@@ -1,7 +1,7 @@
 --!strict
 --!native
 
-local Util = require(script.Parent.Parent.Util)
+local strictEqual = require(script.Parent.Parent.Util.strictEqual)
 
 local function compare(a, b)
     if type(a) ~= "table" or type(b) ~= "table" then
@@ -24,7 +24,7 @@ local function compare(a, b)
 end
 
 local function equals<T>(...: { T }): boolean
-    if Util.equalObjects(...) then
+    if strictEqual(...) then
         return true
     end
 

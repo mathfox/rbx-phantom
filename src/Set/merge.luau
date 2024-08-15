@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Set<T> = types.Set<T>
 
---[=[
+--[[
     Combines one or more sets into a single set.
 
     ```lua
@@ -14,13 +14,17 @@ type Set<T> = types.Set<T>
 
     local newSet = merge(set1, set2) -- { hello = true, world = true, cat = true, dog = true }
     ```
-]=]
-local function merge<T>(...: Set<T>): Set<T>
+]]
+local function merge<T>(...: Set<T> | nil): Set<T>
     local result: Set<T> = {}
 
-    for setIndex = 1, select("#", ...) do
-        for item in select(setIndex, ...) do
-            result[item] = true
+    for index = 1, select("#", ...) do
+        local set = select(index, ...)
+
+        if set ~= nil then
+            for value in set do
+                result[value] = true
+            end
         end
     end
 

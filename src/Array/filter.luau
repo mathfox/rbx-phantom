@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Array<T> = types.Array<T>
 
---[=[
+--[[
 	Filters an array using a filterer callback. Any items that do not pass the filterer will be removed from the array.
 
 	If no filterer is provided, all items will be kept.
@@ -17,7 +17,7 @@ type Array<T> = types.Array<T>
 		return item > 1
 	end) -- { 2, 3 }
 	```
-]=]
+]]
 local function filter<T>(
     array: Array<T>,
     predicate: (
@@ -26,11 +26,11 @@ local function filter<T>(
         array: Array<T>
     ) -> boolean
 ): Array<unknown>
-    local result = table.create(#array)
+    local result = table.clone(array)
 
-    for index, value in array do
-        if predicate(value, index, array) then
-            table.insert(result, value)
+    for index = 1, #array do
+        if not predicate(array[index], index, array) then
+            result[index] = nil
         end
     end
 

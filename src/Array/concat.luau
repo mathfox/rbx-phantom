@@ -9,18 +9,18 @@ type Array<T> = types.Array<T>
 --[[
     @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
 ]]
-local function concat<T>(...: T | Array<T>): Array<T>
+local function concat<T>(...: Array<T> | T | nil): Array<T>
     local result = {}
 
     for index = 1, select("#", ...) do
         local value = select(index, ...)
 
-        if isArray(value) then
-            for index = 1, #value do
-                table.insert(result, value[index])
+        if value ~= nil then
+            if isArray(value) then
+                table.move(value, 1, #value, #result + 1, result)
+            else
+                table.insert(result, value)
             end
-        else
-            table.insert(result, value)
         end
     end
 

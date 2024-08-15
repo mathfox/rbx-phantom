@@ -1,7 +1,7 @@
 --!strict
 --!native
 
---[=[
+--[[
     Checks if the given object is an array.
 
     ```lua
@@ -13,7 +13,7 @@
     Array.isArray(dictionary) -- false
     Array.isArray(mixed) -- false
     ```
-]=]
+]]
 local function isArray(value: any): boolean
     if type(value) ~= "table" then
         return false

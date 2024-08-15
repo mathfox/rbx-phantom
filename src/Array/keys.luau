@@ -1,9 +1,12 @@
-local function keys(array)
+--!strict
+--!native
+
+local function keys(array: { unknown }): { number }
     local size = #array
     local result = table.create(size, 1)
 
     for index = 2, size do
-        result[index] += result[index - 1]
+        result[index] = index
     end
 
     return result

@@ -85,6 +85,11 @@ interface PhantomSetConstructor {
 		mapper: (item: T, self: typeof set) => R,
 	): Set<R>;
 
+	merge<T>(
+		this: void,
+		...sets: ReadonlyArray<ReadonlySet<T> | undefined>
+	): Set<T>;
+
 	/**
 	 * Returns a set of values that are in the first set, but not in the other sets, and vice versa.
 	 * Simply speaking, this returns a unique entries in the sets provided.
