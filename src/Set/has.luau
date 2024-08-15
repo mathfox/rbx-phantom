@@ -7,7 +7,9 @@ type Set<T> = types.Set<T>
 
 local function has(set: Set<unknown>, ...: unknown): boolean
     for index = 1, select("#", ...) do
-        if not set[select(index, ...)] then
+        local value = select(index, ...)
+
+        if value ~= nil and not set[value] then
             return false
         end
     end

@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Set<T> = types.Set<T>
 
---[=[
+--[[
     Checks whether a set is a subset of another set.
 
     ```lua
@@ -14,7 +14,7 @@ type Set<T> = types.Set<T>
 
     local is = isSubset(subset, set) -- true
     ```
-]=]
+]]
 local function isSubset(subset: Set<unknown>, superset: Set<unknown>): boolean
     for item in subset do
         if not superset[item] then

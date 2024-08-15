@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Set<T> = types.Set<T>
 
---[=[
+--[[
     Returns a set of values that are in the first set, but not in the other sets.
 
     ```lua
@@ -14,7 +14,7 @@ type Set<T> = types.Set<T>
 
     local diff = difference(set1, set2) -- { world = true }
     ```
-]=]
+]]
 local function difference(
     set: Set<unknown>,
     ...: Set<unknown> | nil

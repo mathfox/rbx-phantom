@@ -17,19 +17,30 @@ type Set<T> = types.Set<T>
     local int = intersection(set1, set2) -- { world = true }
     ```
 ]=]
-local function intersection(...: Set<unknown>): Set<unknown>
-    local setCount = select("#", ...)
-    local firstSet = select(1, ...)
-
+local function intersection(...: Set<unknown> | nil): Set<unknown>
     local result: Set<unknown> = {}
+
+    local length = select("#", ...)
+    local firstIndex = 1
+    local firstSet
+
+    while not firstSet do
+        firstSet = select(firstIndex, ...)
+
+        if not firstSet and firstIndex == length then
+            return result
+        end
+
+        firstIndex += 1
+    end
 
     for item in firstSet do
         local intersects = true
 
-        for index = 2, setCount do
+        for index = firstIndex, length do
             local set = select(index, ...)
 
-            if not set[item] then
+            if set ~= nil and not set[item] then
                 intersects = false
 
                 break

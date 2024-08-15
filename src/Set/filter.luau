@@ -5,7 +5,7 @@ local types = require(script.Parent.types)
 
 type Set<T> = types.Set<T>
 
---[=[
+--[[
     Filters a set using a predicate. Any items that do not pass the predicate will be removed from the set.
 
     ```lua
@@ -15,7 +15,7 @@ type Set<T> = types.Set<T>
         return value ~= "hello"
     end) -- { world = true }
     ```
-]=]
+]]
 local function filter<T, R>(
     set: Set<T>,
     predicate: (value: T, set: Set<T>) -> R

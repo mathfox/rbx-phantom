@@ -34,15 +34,20 @@ interface PhantomSetConstructor {
 	): Set<T>;
 
 	/**
-	 * The same as using {@link Set} constructor.
-	 *
-	 * There is no advantage to use this function with TypeScript, it exists only for the Luau usage purposes.
+	 * This function filters out the `undefined`.
 	 */
-	fromArray<const T>(this: void, array: ReadonlyArray<T>): Set<T>;
+	fromArray<T>(this: void, array: ReadonlyArray<T | undefined>): Set<T>;
 
-	has<T>(this: void, set: ReadonlySet<T>, ...values: ReadonlyArray<T>): boolean;
+	has<T>(
+		this: void,
+		set: ReadonlySet<T>,
+		...values: ReadonlyArray<T | undefined>
+	): boolean;
 
-	intersection<T>(this: void, ...sets: ReadonlyArray<ReadonlySet<T>>): Set<T>;
+	intersection<T>(
+		this: void,
+		...sets: ReadonlyArray<ReadonlySet<T> | undefined>
+	): Set<T>;
 
 	isSubset(
 		this: void,

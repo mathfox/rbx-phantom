@@ -8,8 +8,12 @@ type Set<T> = types.Set<T>
 local function fromArray<T>(array: { T }): Set<T>
     local result = {} :: Set<T>
 
-    for _, item in array do
-        result[item] = true
+    for index = 1, #array do
+        local value = array[index]
+
+        if value ~= nil then
+            result[value] = true
+        end
     end
 
     return result

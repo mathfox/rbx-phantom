@@ -1,7 +1,7 @@
 --!strict
 --!native
 
-local function values<V>(object: { [any]: V }): { V }
+local function values<V>(object: { [unknown]: V }): { V }
     local result = {}
 
     for _, value in object do
