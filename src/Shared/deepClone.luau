@@ -1,16 +1,16 @@
 --!strict
 --!native
 
-local function cloneDeep<K, V>(object: { [K]: V }): { [K]: V }
+local function deepClone<K, V>(object: { [K]: V }): { [K]: V }
     local result = table.clone(object)
 
-    for index, value in object do
+    for key, value in object do
         if type(value) == "table" then
-            result[index] = cloneDeep(value) :: any
+            result[key] = deepClone(value) :: any
         end
     end
 
     return result
 end
 
-return cloneDeep
+return deepClone
