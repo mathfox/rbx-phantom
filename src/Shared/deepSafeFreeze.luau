@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function deepSafeFreeze<K, V>(object: { [K]: V }): { [K]: V }
     if not table.isfrozen(object) then

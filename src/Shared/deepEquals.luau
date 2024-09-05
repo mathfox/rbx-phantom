@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local strictEqual = require(script.Parent.Parent.Util.strictEqual)
 local deepCompare = require(script.Parent.deepCompare).deepCompare

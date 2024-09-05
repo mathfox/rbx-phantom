@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function deepFreeze<K, V>(object: { [K]: V }): { [K]: V }
     table.freeze(object)

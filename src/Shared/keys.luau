@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function keys<K>(object: { [K]: unknown }): { K }
     local result = {}

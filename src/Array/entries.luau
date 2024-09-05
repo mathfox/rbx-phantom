@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
     Differs from shared version, allowing for [number, nil] entries.

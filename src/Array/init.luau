@@ -36,7 +36,6 @@ local PhantomArray = {
     shuffle = require(script.shuffle),
     slice = require(script.slice),
     some = require(script.some),
-    strictIsArray = require(script.strictIsArray),
     symmetricDifference = require(script.symmetricDifference),
     toSet = require(script.toSet),
     unshift = require(script.unshift),
@@ -48,8 +47,7 @@ PhantomArray.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
 PhantomArray.values = table.clone
-PhantomArray.deepCompareArray =
-    require(script.Parent.Shared.deepCompare).deepCompareArray
+PhantomArray.deepCompareArray = require(script.Parent.Shared.deepCompare).deepCompareArray
 
 local exports = {
     PhantomArray = PhantomArray,

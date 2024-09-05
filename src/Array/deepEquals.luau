@@ -1,8 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
-local deepCompareArray =
-    require(script.Parent.Parent.Shared.deepCompare).deepCompareArray
+local deepCompareArray = require(script.Parent.Parent.Shared.deepCompare).deepCompareArray
 local isArray = require(script.Parent.isArray)
 local types = require(script.Parent.types)
 

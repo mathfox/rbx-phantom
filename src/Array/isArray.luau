@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
     Checks if the given object is an array.

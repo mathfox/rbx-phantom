@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function deepClone<K, V>(object: { [K]: V }): { [K]: V }
     local result = table.clone(object)

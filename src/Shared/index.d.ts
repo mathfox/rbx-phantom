@@ -1,3 +1,17 @@
+import type { compare, compareArray, compareTable } from "./compare";
+import type { deepClone } from "./deepClone";
+import type { deepCompare, deepCompareArray, deepCompareTable } from "./deepCompare";
+import type { deepEquals } from "./deepEquals";
+import type { deepFreeze } from "./deepFreeze";
+import type { deepSafeFreeze } from "./deepSafeFreeze";
+import type { entries } from "./entries";
+import type { keys } from "./keys";
+import type { safeFreeze } from "./safeFreeze";
+import type { size } from "./size";
+import type { values } from "./values";
+
+export * from "./DeepReadonly";
+
 export type InferObjectKey<T> = T extends ReadonlyArray<unknown>
 	? number
 	: T extends ReadonlyMap<infer Key, unknown>
@@ -18,95 +32,32 @@ export type InferObjectValue<T> = T extends ReadonlyArray<infer Value>
 				? T[keyof T]
 				: never;
 
-export type DeepReadonly<T> = T extends ReadonlyArray<infer R>
-	? DeepReadonlyArray<R>
-	: T extends Callback
-		? T
-		: T extends ReadonlyMap<infer Key, infer Value>
-			? ReadonlyMap<Key, DeepReadonly<Value>>
-			: T extends object
-				? DeepReadonlyObject<T>
-				: T;
-
-//export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
-export type DeepReadonlyArray<T> = _<ReadonlyArray<DeepReadonly<T>>>;
-
-export type DeepReadonlyObject<T> = _<{
-	readonly [P in keyof T]: DeepReadonly<T[P]>;
-}>;
-
-export type DeepReadonlyMap<T> = T extends ReadonlyMap<infer Key, infer Value>
-	? ReadonlyMap<Key, DeepReadonly<Value>>
-	: never;
-
 interface PhantomSharedConstructor {
-	compare(this: void, a: unknown, b: unknown): boolean;
-	compareArray(
-		this: void,
-		a: ReadonlyArray<unknown>,
-		b: ReadonlyArray<unknown>,
-	): boolean;
-	compareMap(
-		this: void,
-		a: ReadonlyMap<unknown, unknown>,
-		b: ReadonlyMap<unknown, unknown>,
-	): boolean;
+	compare: typeof compare;
+	compareArray: typeof compareArray;
+	compareTable: typeof compareTable;
 
-	deepClone<T>(this: void, array: ReadonlyArray<T>): Array<T>;
-	deepClone<K, V>(this: void, map: ReadonlyMap<K, V>): Map<K, V>;
-	deepClone<T>(this: void, set: ReadonlySet<T>): Set<T>;
-	deepClone<T extends object>(object: T): T;
+	deepClone: typeof deepClone;
 
-	deepCompare(this: void, ...values: ReadonlyArray<unknown>): boolean;
-	deepCompareArray(
-		this: void,
-		...arrays: ReadonlyArray<ReadonlyArray<unknown>>
-	): boolean;
-	deepCompareMap(
-		this: void,
-		...maps: ReadonlyArray<ReadonlyMap<unknown, unknown>>
-	): boolean;
+	deepCompare: typeof deepCompare;
+	deepCompareArray: typeof deepCompareArray;
+	deepCompareTable: typeof deepCompareTable;
 
-	deepFreeze<T>(this: void, array: ReadonlyArray<T>): DeepReadonlyArray<T>;
-	deepFreeze<K, V>(
-		this: void,
-		map: ReadonlyMap<K, V>,
-	): ReadonlyMap<K, DeepReadonly<V>>;
-	deepFreeze<T>(this: void, set: ReadonlySet<T>): ReadonlySet<DeepReadonly<T>>;
-	deepFreeze<T extends object>(object: T): DeepReadonly<T>;
+	deepEquals: typeof deepEquals;
 
-	deepSafeFreeze<T>(this: void, array: ReadonlyArray<T>): DeepReadonlyArray<T>;
-	deepSafeFreeze<K, V>(
-		this: void,
-		map: ReadonlyMap<K, V>,
-	): ReadonlyMap<K, DeepReadonly<V>>;
-	deepSafeFreeze<T>(
-		this: void,
-		set: ReadonlySet<T>,
-	): ReadonlySet<DeepReadonly<T>>;
-	deepSafeFreeze<T extends object>(object: T): DeepReadonly<T>;
+	deepFreeze: typeof deepFreeze;
 
-	entries<T>(this: void, array: ReadonlyArray<T>): Array<[number, T]>;
-	entries<K, V>(this: void, map: ReadonlyMap<K, V>): Array<[K, V]>;
-	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
-	entries<T extends object>(object: T): Array<[keyof T, T[keyof T]]>;
+	deepSafeFreeze: typeof deepSafeFreeze;
 
-	keys(this: void, array: ReadonlyArray<unknown>): Array<number>;
-	keys<K>(this: void, map: ReadonlyMap<K, unknown>): Array<K>;
-	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
-	keys<T extends object, K extends keyof T>(object: T): Array<K>;
+	entries: typeof entries;
 
-	safeFreeze<T>(this: void, array: ReadonlyArray<T>): ReadonlyArray<T>;
-	safeFreeze<K, const V>(this: void, map: ReadonlyMap<K, V>): ReadonlyMap<K, V>;
-	safeFreeze<T>(this: void, set: ReadonlySet<T>): ReadonlySet<T>;
-	safeFreeze<T extends object>(this: void, object: T): Readonly<T>;
+	keys: typeof keys;
 
-	size(object: object): number;
+	safeFreeze: typeof safeFreeze;
 
-	values<T>(this: void, array: ReadonlyArray<T>): Array<T>;
-	values<V>(this: void, map: ReadonlyMap<unknown, V>): Array<V>;
-	values(this: void, set: ReadonlySet<unknown>): Array<true>;
-	values<T extends object, K extends keyof T>(object: T): Array<T[K]>;
+	size: typeof size;
+
+	values: typeof values;
 }
 
 export declare const PhantomShared: PhantomSharedConstructor;

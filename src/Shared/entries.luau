@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function entries<K, V>(object: { [K]: V }): { [number]: { [number]: K | V } }
     local result = {}

@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local types = require(script.Parent.types)
 
@@ -17,15 +18,11 @@ type Array<T> = types.Array<T>
 	end) -- { 2, 3 }
 	```
 ]]
-local function filter<T>(
-    array: Array<T>,
-    predicate: (
-        value: T,
-        index: number,
-        array: Array<T>
-    ) -> unknown
+local function filter<TValue>(
+    array: Array<TValue>,
+    predicate: (value: TValue, index: number, array: Array<TValue>) -> unknown
 ): Array<unknown>
-    local result = {}
+    local result: Array<unknown> = {}
 
     for index, value in array do
         if predicate(value, index, array) then

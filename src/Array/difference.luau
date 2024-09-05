@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local toSet = require(script.Parent.toSet)
 local keys = require(script.Parent.Parent.Set).PhantomSet.keys
