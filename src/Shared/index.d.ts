@@ -1,36 +1,16 @@
 import type { compare, compareArray, compareTable } from "./compare";
-import type { deepClone } from "./deepClone";
+import type deepClone from "./deepClone";
 import type { deepCompare, deepCompareArray, deepCompareTable } from "./deepCompare";
-import type { deepEquals } from "./deepEquals";
-import type { deepFreeze } from "./deepFreeze";
-import type { deepSafeFreeze } from "./deepSafeFreeze";
-import type { entries } from "./entries";
-import type { keys } from "./keys";
-import type { safeFreeze } from "./safeFreeze";
-import type { size } from "./size";
-import type { values } from "./values";
+import type deepEquals from "./deepEquals";
+import type deepFreeze from "./deepFreeze";
+import type deepSafeFreeze from "./deepSafeFreeze";
+import type entries from "./entries";
+import type keys from "./keys";
+import type safeFreeze from "./safeFreeze";
+import type size from "./size";
+import type values from "./values";
 
-export * from "./DeepReadonly";
-
-export type InferObjectKey<T> = T extends ReadonlyArray<unknown>
-	? number
-	: T extends ReadonlyMap<infer Key, unknown>
-		? Key
-		: T extends ReadonlySet<infer Key>
-			? Key
-			: T extends object
-				? keyof T
-				: never;
-
-export type InferObjectValue<T> = T extends ReadonlyArray<infer Value>
-	? Value
-	: T extends ReadonlyMap<unknown, infer Value>
-		? Value
-		: T extends ReadonlySet<unknown>
-			? true
-			: T extends object
-				? T[keyof T]
-				: never;
+export * from "../Util/DeepReadonly";
 
 interface PhantomSharedConstructor {
 	compare: typeof compare;
@@ -60,4 +40,6 @@ interface PhantomSharedConstructor {
 	values: typeof values;
 }
 
-export declare const PhantomShared: PhantomSharedConstructor;
+declare const PhantomShared: PhantomSharedConstructor;
+
+export default PhantomShared;

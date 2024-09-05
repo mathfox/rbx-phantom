@@ -2,10 +2,13 @@
 --!native
 --!optimize 2
 
+local types = require(script.Parent.types)
+local sharedTypes = require(script.Parent.Parent.Shared.types)
+
 --[[
     Differs from shared version, allowing for [number, nil] entries.
 ]]
-local function entries<T>(array: { T }): { [number]: { [number]: T | number } }
+local function entries<TValue>(array: types.Array<TValue>): types.Array<sharedTypes.Table<number, number | TValue>>
     local size = #array
     local result = table.create(size)
 

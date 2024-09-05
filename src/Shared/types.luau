@@ -2,8 +2,10 @@
 --!native
 --!optimize 2
 
-export type AnyTable = { [any]: any }
+export type Table<TKey, TValue> = { [TKey]: TValue }
 
-export type UnknownTable = { [unknown]: unknown }
+export type AnyTable = Table<any, any>
+
+export type UnknownTable = Table<unknown, unknown>
 
 return nil

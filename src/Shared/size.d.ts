@@ -1,1 +1,1 @@
-export function size(object: object): number;
+export default function size(object: object): number;

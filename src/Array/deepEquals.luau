@@ -6,8 +6,6 @@ local deepCompareArray = require(script.Parent.Parent.Shared.deepCompare).deepCo
 local isArray = require(script.Parent.isArray)
 local types = require(script.Parent.types)
 
-type UnknownArray = types.UnknownArray
-
 --[[
 	Compares two arrays for equality using deep comparison.
 
@@ -34,7 +32,7 @@ local function deepEquals(...: unknown): boolean
             return false
         end
 
-        if not deepCompareArray(firstValue :: UnknownArray, value) then
+        if not deepCompareArray(firstValue :: types.UnknownArray, value) then
             return false
         end
     end

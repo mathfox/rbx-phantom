@@ -1,4 +1,15 @@
-export function strictEqual(...values: ReadonlyArray<unknown>): boolean;
+export * from "./DeepReadonly";
+export * from "./Infer";
+
+import type strictEqual from "./strictEqual";
+
+interface PhantomUtilConstructor {
+	strictEqual: typeof strictEqual;
+}
+
+declare const PhantomUtil: PhantomUtilConstructor;
+
+export default PhantomUtil;
 
 export type Incr = [
 	1,
@@ -150,6 +161,4 @@ export type Tuple<
 	Type,
 	Acc extends Array<Type> = [],
 	CurrentLength extends number = 0,
-> = Length extends CurrentLength
-	? Acc
-	: Tuple<Length, Type, [...Acc, Type], Incr[CurrentLength]>;
+> = Length extends CurrentLength ? Acc : Tuple<Length, Type, [...Acc, Type], Incr[CurrentLength]>;

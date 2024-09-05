@@ -3,11 +3,9 @@
 --!optimize 2
 
 local toSet = require(script.Parent.toSet)
-local keys = require(script.Parent.Parent.Set).PhantomSet.keys
+local keys = require(script.Parent.Parent.Shared.keys)
 local setDifference = require(script.Parent.Parent.Set.difference)
 local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
 
 --[[
     Returns an array of values that are in the first array, but not in the other arrays.
@@ -19,7 +17,7 @@ type Array<T> = types.Array<T>
     local diff = difference(array1, array2) -- { "world" }
     ```
 ]]
-local function difference<T>(array: Array<T>, ...: Array<T>): Array<T>
+local function difference<TValue>(array: types.Array<TValue>, ...: types.Array<TValue>): types.Array<TValue>
     local arraySet = toSet(array)
     local otherSets = {}
 

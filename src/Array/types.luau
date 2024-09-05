@@ -1,7 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
-export type Array<T> = { T }
+export type Array<TValue> = { TValue }
 
 export type AnyArray = Array<any>
 

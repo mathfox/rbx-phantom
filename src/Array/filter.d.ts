@@ -1,4 +1,4 @@
-export default function filter<T>(
-	array: ReadonlyArray<T>,
-	filterer: (value: T, index: number, array: ReadonlyArray<T>) => unknown,
-): Array<T>;
+export default function filter<TValue>(
+	array: ReadonlyArray<TValue>,
+	predicate: (value: TValue, index: number, array: ReadonlyArray<TValue>) => unknown,
+): Array<TValue>;

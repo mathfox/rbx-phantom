@@ -24,18 +24,14 @@ export type UnknownSet = Set.UnknownSet
 export type AnyTable = Shared.AnyTable
 export type UnknownTable = Shared.UnknownTable
 
-local Phantom = {
+local exports = {
     Array = Array.PhantomArray,
     Map = Map.PhantomMap,
     None = None.None,
     Set = Set.PhantomSet,
     Shared = Shared.PhantomShared,
 
-    strictEqual = require(script.Util).strictEqual,
-}
-
-local exports = {
-    Phantom = Phantom,
+    Util = require(script.Util),
 }
 
 return exports
