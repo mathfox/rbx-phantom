@@ -15,10 +15,7 @@ type Set<T> = types.Set<T>
     local diff = difference(set1, set2) -- { world = true }
     ```
 ]]
-local function difference(
-    set: Set<unknown>,
-    ...: Set<unknown> | nil
-): Set<unknown>
+local function difference(set: Set<unknown>, ...: Set<unknown> | nil): Set<unknown>
     local diff = table.clone(set)
 
     for index = 1, select("#", ...) do

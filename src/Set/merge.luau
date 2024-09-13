@@ -1,9 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
 local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
 
 --[[
     Combines one or more sets into a single set.
@@ -15,8 +14,8 @@ type Set<T> = types.Set<T>
     local newSet = merge(set1, set2) -- { hello = true, world = true, cat = true, dog = true }
     ```
 ]]
-local function merge<T>(...: Set<T> | nil): Set<T>
-    local result: Set<T> = {}
+local function merge<TValue>(...: types.Set<TValue> | nil): types.Set<TValue>
+    local result: types.Set<TValue> = {}
 
     for index = 1, select("#", ...) do
         local set = select(index, ...)
