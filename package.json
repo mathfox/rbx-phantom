@@ -7,7 +7,8 @@
 		"serve:tests": "rojo serve tests.project.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
 		"check": "bunx @biomejs/biome check --write",
-		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
+		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json",
+		"patch-include": "bun --cwd ./tests/ patch-include.ts"
 	},
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",

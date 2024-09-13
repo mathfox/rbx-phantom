@@ -15,5 +15,8 @@
         "outDir": "out",
         "rootDir": "src",
         "declaration": true
-    }
+    },
+    "include": [
+        "src"
+    ]
 }

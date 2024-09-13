@@ -7,9 +7,7 @@ import type equals from "./equals";
 import type every from "./every";
 import type find from "./find";
 
-export type InferArrayValue<TInput> = TInput extends ReadonlyArray<infer TValue>
-	? TValue
-	: never;
+export type InferArrayValue<TInput> = TInput extends ReadonlyArray<infer TValue> ? TValue : never;
 
 export type UnknownArray = Array<unknown>;
 
@@ -27,11 +25,7 @@ interface PhantomArrayConstructor {
 export declare const PhantomArray: PhantomArrayConstructor;
 
 export declare namespace PhantomArray2 {
-	function findLast<T>(
-		array: ReadonlyArray<T>,
-		value: T,
-		from?: number,
-	): number | undefined;
+	function findLast<T>(array: ReadonlyArray<T>, value: T, from?: number): number | undefined;
 
 	function findWhere<T>(
 		array: ReadonlyArray<T>,
@@ -45,18 +39,9 @@ export declare namespace PhantomArray2 {
 		from?: number,
 	): number | undefined;
 
-	function flatten<T>(
-		array: ReadonlyArray<T>,
-		depth?: number,
-	): ReadonlyArray<T>;
+	function flatten<T>(array: ReadonlyArray<T>, depth?: number): ReadonlyArray<T>;
 
-	function includes<T>(
-		array: ReadonlyArray<T>,
-		value: T,
-		from?: number,
-	): boolean;
-
-	function isArray(value: unknown): value is ReadonlyArray<unknown>;
+	function includes<T>(array: ReadonlyArray<T>, value: T, from?: number): boolean;
 
 	function keys(array: ReadonlyArray<unknown>): Array<number>;
 
@@ -67,42 +52,23 @@ export declare namespace PhantomArray2 {
 
 	function pop<T>(array: ReadonlyArray<T>, count?: number): Array<T>;
 
-	function push<T>(
-		array: ReadonlyArray<T>,
-		...values: ReadonlyArray<T>
-	): Array<T>;
+	function push<T>(array: ReadonlyArray<T>, ...values: ReadonlyArray<T>): Array<T>;
 
 	function reduce<T, U>(
 		array: ReadonlyArray<T>,
-		reducer: (
-			accumulator: U,
-			value: T,
-			index: number,
-			array: ReadonlyArray<T>,
-		) => U,
+		reducer: (accumulator: U, value: T, index: number, array: ReadonlyArray<T>) => U,
 		initialValue?: U,
 	): U;
 
 	function reduceRight<T, U>(
 		array: ReadonlyArray<T>,
-		reducer: (
-			accumulator: U,
-			value: T,
-			index: number,
-			array: ReadonlyArray<T>,
-		) => U,
+		reducer: (accumulator: U, value: T, index: number, array: ReadonlyArray<T>) => U,
 		initialValue?: U,
 	): U;
 
-	function removeIndices<T>(
-		array: ReadonlyArray<T>,
-		...indices: ReadonlyArray<number>
-	): Array<T>;
+	function removeIndices<T>(array: ReadonlyArray<T>, ...indices: ReadonlyArray<number>): Array<T>;
 
-	function removeValues<T>(
-		array: ReadonlyArray<T>,
-		...values: ReadonlyArray<T>
-	): Array<T>;
+	function removeValues<T>(array: ReadonlyArray<T>, ...values: ReadonlyArray<T>): Array<T>;
 
 	function reverse<T>(array: ReadonlyArray<T>): Array<T>;
 
@@ -110,11 +76,7 @@ export declare namespace PhantomArray2 {
 
 	function shuffle<T>(array: ReadonlyArray<T>): Array<T>;
 
-	function slice<T>(
-		array: ReadonlyArray<T>,
-		from?: number,
-		to?: number,
-	): Array<T>;
+	function slice<T>(array: ReadonlyArray<T>, from?: number, to?: number): Array<T>;
 
 	function some<T>(
 		array: ReadonlyArray<T>,
@@ -123,16 +85,11 @@ export declare namespace PhantomArray2 {
 
 	function strictIsArray(value: object): boolean;
 
-	function symmetricDifference<T>(
-		...values: ReadonlyArray<ReadonlyArray<T>>
-	): Array<T>;
+	function symmetricDifference<T>(...values: ReadonlyArray<ReadonlyArray<T>>): Array<T>;
 
 	function toSet<T>(array: ReadonlyArray<T>): Set<T>;
 
-	function unshift<T>(
-		array: ReadonlyArray<T>,
-		...values: ReadonlyArray<T>
-	): Array<T>;
+	function unshift<T>(array: ReadonlyArray<T>, ...values: ReadonlyArray<T>): Array<T>;
 
 	function deepClone<T>(array: ReadonlyArray<T>): Array<T>;
 
@@ -140,10 +97,7 @@ export declare namespace PhantomArray2 {
 
 	function values<T>(array: ReadonlyArray<T>): Array<T>;
 
-	function deepCompareArray(
-		a: ReadonlyArray<unknown>,
-		b: ReadonlyArray<unknown>,
-	): boolean;
+	function deepCompareArray(a: ReadonlyArray<unknown>, b: ReadonlyArray<unknown>): boolean;
 }
 
 export default PhantomArray;

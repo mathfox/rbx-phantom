@@ -25,6 +25,7 @@ local function isArray(value: any): boolean
         return true
     end
 
+    -- We intentionally avoid using `rawlen` because we want structures like `Draft` to work.
     local length = #value
 
     if length == 0 then
@@ -34,6 +35,7 @@ local function isArray(value: any): boolean
     local count = 0
     local sum = 0
 
+    -- We intentionally use generalized iteration so that structures like `Draft` will work as intended.
     for key in value do
         if type(key) ~= "number" then
             return false
