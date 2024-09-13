@@ -1,19 +1,19 @@
-export type InferObjectKey<T> = T extends ReadonlyArray<unknown>
+export type InferKey<TInput> = TInput extends ReadonlyArray<unknown>
 	? number
-	: T extends ReadonlyMap<infer Key, unknown>
-		? Key
-		: T extends ReadonlySet<infer Key>
-			? Key
-			: T extends object
-				? keyof T
+	: TInput extends ReadonlyMap<infer TKey, unknown>
+		? TKey
+		: TInput extends ReadonlySet<infer TKey>
+			? TKey
+			: TInput extends object
+				? keyof TInput
 				: never;
 
-export type InferObjectValue<T> = T extends ReadonlyArray<infer Value>
-	? Value
-	: T extends ReadonlyMap<unknown, infer Value>
-		? Value
-		: T extends ReadonlySet<unknown>
+export type InferValue<TInput> = TInput extends ReadonlyArray<infer TValue>
+	? TValue
+	: TInput extends ReadonlyMap<unknown, infer TValue>
+		? TValue
+		: TInput extends ReadonlySet<unknown>
 			? true
-			: T extends object
-				? T[keyof T]
+			: TInput extends object
+				? TInput[keyof TInput]
 				: never;
