@@ -1,1 +1,3 @@
-export default function equals(...arrays: ReadonlyArray<unknown>): boolean;
+declare function equals(...arrays: ReadonlyArray<unknown>): boolean;
+
+export = equals;

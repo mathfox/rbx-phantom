@@ -7,7 +7,7 @@ local isArray = require(script.Parent.isArray)
 local types = require(script.Parent.types)
 
 --[[
-	Compares two arrays for equality using deep comparison.
+	Compares arrays for equality using deep comparison.
 
 	```lua
 	local array = { 1, 2, 3, { 4, 5 } }

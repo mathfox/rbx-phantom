@@ -1,6 +1,3 @@
-return function()
-	local concat = require(script.Parent.concat)
-
 	it("should join multiple arrays together into a single array", function()
 		local table1 = { 1, 2, 3 }
 		local table2 = { 4, 5, 6 }
@@ -50,4 +47,3 @@ return function()
 		expect(new[5]).to.equal(6)
 		expect(new[6]).to.equal(table2[3])
 	end)
-end

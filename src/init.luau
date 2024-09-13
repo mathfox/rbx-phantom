@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local Array = require(script.Array)
 local Map = require(script.Map)

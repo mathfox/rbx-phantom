@@ -7,6 +7,7 @@ local sharedTypes = require(script.Parent.Parent.Shared.types)
 
 --[[
     Differs from shared version, allowing for [number, nil] entries.
+    Also pre-allocates the memory before inserting the entries.
 ]]
 local function entries<TValue>(array: types.Array<TValue>): types.Array<sharedTypes.Table<number, number | TValue>>
     local size = #array

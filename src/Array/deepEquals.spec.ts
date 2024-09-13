@@ -1,4 +1,3 @@
-return function()
     local deepEquals = require(script.Parent.deepEquals)
 
     it("should return true if the arrays are equal", function()
@@ -21,4 +20,3 @@ return function()
 
         expect(deepEquals(array1, array2)).to.equal(true)
     end)
-end

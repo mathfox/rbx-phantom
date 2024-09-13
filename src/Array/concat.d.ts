@@ -3,7 +3,9 @@
  *
  * @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/concat
  */
-export default function concat<TValue>(
+declare function concat<TValue>(
 	array: ReadonlyArray<TValue>,
 	...values: ReadonlyArray<ReadonlyArray<TValue> | TValue | undefined>
 ): Array<TValue>;
+
+export = concat;

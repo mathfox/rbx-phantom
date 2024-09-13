@@ -9,8 +9,6 @@ local types = require(script.Parent.types)
 type UnknownArray = arrayTypes.UnknownArray
 type UnknownTable = types.UnknownTable
 
-local compare: (left: unknown, right: unknown) -> boolean
-
 --[[
     This function assumes that both values are checked with `isArray` function.
 
@@ -24,7 +22,7 @@ local function compareArray(left: UnknownArray, right: UnknownArray): boolean
     end
 
     for index = 1, leftLength do
-        if not compare(left, right) then
+        if left ~= right then
             return false
         end
     end
@@ -37,13 +35,13 @@ end
 ]]
 local function compareTable(left: UnknownTable, right: UnknownTable): boolean
     for key, value in left do
-        if not compare(value, right[key]) then
+        if value ~= right[key] then
             return false
         end
     end
 
     for key, value in right do
-        if not compare(value, left[key]) then
+        if value ~= left[key] then
             return false
         end
     end
@@ -59,7 +57,7 @@ end
     - If the values are array it checks for their equality using `compareArray` function.
     - Otherwise it checks for equality using `compareTable` function.
 ]]
-function compare(left: unknown, right: unknown): boolean
+local function compare(left: unknown, right: unknown): boolean
     if type(left) ~= "table" or type(right) ~= "table" then
         return left == right
     end
