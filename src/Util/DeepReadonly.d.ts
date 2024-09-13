@@ -19,3 +19,7 @@ export type DeepReadonlyObject<TInput> = _<{
 export type DeepReadonlyMap<TInput> = TInput extends ReadonlyMap<infer TKey, infer TValue>
 	? ReadonlyMap<TKey, DeepReadonly<TValue>>
 	: never;
+
+export type DeepReadonlySet<TInput> = TInput extends ReadonlySet<infer TValue>
+	? ReadonlySet<DeepReadonly<TValue>>
+	: never;

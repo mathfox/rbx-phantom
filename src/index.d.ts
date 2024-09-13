@@ -1,16 +1,8 @@
-import PhantomArray from "./Array";
-import PhantomMap from "./Map";
-import None from "./None";
-import PhantomSet from "./Set";
-import type PhantomShared from "./Shared";
-import type PhantomUtil from "./Util";
-export * from "./Util";
+import PhantomShared from "./Shared";
+import PhantomUtil from "./Util";
 
-interface PhantomConstructor {
-	Shared: typeof PhantomShared;
-	Util: typeof PhantomUtil;
+declare namespace Phantom {
+	export { PhantomUtil as Util, PhantomShared as Shared };
 }
 
-declare const Phantom: PhantomConstructor;
-
-export default Phantom;
+export = Phantom;

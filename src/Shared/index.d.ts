@@ -1,45 +1,33 @@
-import type { compare, compareArray, compareTable } from "./compare";
-import type deepClone from "./deepClone";
-import type { deepCompare, deepCompareArray, deepCompareTable } from "./deepCompare";
-import type deepEquals from "./deepEquals";
-import type deepFreeze from "./deepFreeze";
-import type deepSafeFreeze from "./deepSafeFreeze";
-import type entries from "./entries";
-import type keys from "./keys";
-import type safeFreeze from "./safeFreeze";
-import type size from "./size";
-import type values from "./values";
+import { compare, compareArray, compareTable } from "./compare";
+import deepClone from "./deepClone";
+import { deepCompare, deepCompareArray, deepCompareTable } from "./deepCompare";
+import deepEquals from "./deepEquals";
+import deepFreeze from "./deepFreeze";
+import deepSafeFreeze from "./deepSafeFreeze";
+import entries from "./entries";
+import keys from "./keys";
+import safeFreeze from "./safeFreeze";
+import size from "./size";
+import values from "./values";
 
-export * from "../Util/DeepReadonly";
-
-interface PhantomSharedConstructor {
-	compare: typeof compare;
-	compareArray: typeof compareArray;
-	compareTable: typeof compareTable;
-
-	deepClone: typeof deepClone;
-
-	deepCompare: typeof deepCompare;
-	deepCompareArray: typeof deepCompareArray;
-	deepCompareTable: typeof deepCompareTable;
-
-	deepEquals: typeof deepEquals;
-
-	deepFreeze: typeof deepFreeze;
-
-	deepSafeFreeze: typeof deepSafeFreeze;
-
-	entries: typeof entries;
-
-	keys: typeof keys;
-
-	safeFreeze: typeof safeFreeze;
-
-	size: typeof size;
-
-	values: typeof values;
+declare namespace PhantomShared {
+	export {
+		compare,
+		compareArray,
+		compareTable,
+		deepClone,
+		deepCompare,
+		deepCompareArray,
+		deepCompareTable,
+		deepEquals,
+		deepFreeze,
+		deepSafeFreeze,
+		entries,
+		keys,
+		safeFreeze,
+		size,
+		values,
+	};
 }
 
-declare const PhantomShared: PhantomSharedConstructor;
-
-export default PhantomShared;
+export = PhantomShared;

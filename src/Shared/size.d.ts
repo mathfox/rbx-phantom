@@ -1,1 +1,3 @@
-export default function size(object: object): number;
+declare function size(object: object): number;
+
+export = size;
