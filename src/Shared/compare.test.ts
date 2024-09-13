@@ -13,6 +13,8 @@ describe("compare", () => {
 	});
 
 	it("should work for shallow table structures", () => {
+		expect(compare([1, 2, 3], [1, 2, 3])).toBe(true);
+
 		expect(
 			compare(
 				{
@@ -39,6 +41,8 @@ describe("compare", () => {
 	});
 
 	it("should fail on non-primitive values", () => {
+		expect(compare([1, 2, {}], [1, 2, {}])).toBe(false);
+
 		expect(
 			compare(
 				{

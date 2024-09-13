@@ -3,18 +3,11 @@
 --!optimize 2
 
 local isArray = require(script.Parent.Parent.Array.isArray)
-local arrayTypes = require(script.Parent.Parent.Array.types)
-local types = require(script.Parent.types)
-
-type UnknownArray = arrayTypes.UnknownArray
-type UnknownTable = types.UnknownTable
 
 --[[
     This function assumes that both values are checked with `isArray` function.
-
-    Each value is checked for equality using `compare` function.
 ]]
-local function compareArray(left: UnknownArray, right: UnknownArray): boolean
+local function compareArray(left: { unknown }, right: { unknown }): boolean
     local leftLength = #left
 
     if #right ~= leftLength then
@@ -22,7 +15,7 @@ local function compareArray(left: UnknownArray, right: UnknownArray): boolean
     end
 
     for index = 1, leftLength do
-        if left ~= right then
+        if left[index] ~= right[index] then
             return false
         end
     end
@@ -30,10 +23,7 @@ local function compareArray(left: UnknownArray, right: UnknownArray): boolean
     return true
 end
 
---[[
-    Compares the equality of the values in both tables using `compare` function.
-]]
-local function compareTable(left: UnknownTable, right: UnknownTable): boolean
+local function compareTable(left: { [unknown]: unknown }, right: { [unknown]: unknown }): boolean
     for key, value in left do
         if value ~= right[key] then
             return false
@@ -62,22 +52,22 @@ local function compare(left: unknown, right: unknown): boolean
         return left == right
     end
 
-    local leftIsArray = isArray(left :: UnknownTable)
-    local rightIsArray = isArray(right :: UnknownTable)
+    local leftIsArray = isArray(left :: { [unknown]: unknown })
+    local rightIsArray = isArray(right :: { [unknown]: unknown })
 
     if leftIsArray then
         if not rightIsArray then
             return false
         end
 
-        return compareArray(left :: UnknownArray, right :: UnknownArray)
+        return compareArray(left :: { unknown }, right :: { unknown })
     elseif rightIsArray then
         return false
     end
 
     -- Here we know that both "left" and "right" are not arrays, but some table shape.
 
-    return compareTable(left :: UnknownTable, right :: UnknownTable)
+    return compareTable(left :: { [unknown]: unknown }, right :: { [unknown]: unknown })
 end
 
 local exports = {

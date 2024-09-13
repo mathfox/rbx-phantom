@@ -7,8 +7,7 @@
 		"serve:tests": "rojo serve tests.project.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
 		"check": "bunx @biomejs/biome check --write",
-		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json",
-		"patch-include": "bun --cwd ./tests/ patch-include.ts"
+		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
 	},
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
@@ -17,7 +16,7 @@
 		"type": "git",
 		"url": "git+https://github.com/mathfox/rbx-phantom.git"
 	},
-	"keywords": ["array", "dictionary", "immutable", "roblox", "table"],
+	"keywords": ["roblox", "roblox-ts", "table", "array", "dictionary", "record", "map", "set", "immutable"],
 	"author": {
 		"name": "Ivan Leontev",
 		"url": "https://github.com/mathfox"
@@ -30,14 +29,12 @@
 	"publishConfig": {
 		"access": "public"
 	},
-	"dependencies": {
-		"@rbxts/compiler-types": "^2.3.0-types.1",
-		"@rbxts/types": "1.0.787"
-	},
 	"devDependencies": {
+		"@rbxts/compiler-types": "3.0.0-types.0",
+		"@rbxts/types": "1.0.805",
 		"@rbxts/jest": "^0.1.0",
 		"@rbxts/jest-globals": "^0.1.0",
-		"roblox-ts": "^2.3.0-dev-3e0f196",
-		"typescript": "^5.6.0-dev.20240801"
+		"roblox-ts": "^3.0.0-dev-d1d5486",
+		"typescript": "^5.7.0-dev.20240913"
 	}
 }
