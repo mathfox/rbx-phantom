@@ -1,11 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
-
-local function has(set: Set<unknown>, ...: unknown): boolean
+local function has<TValue>(set: { [TValue]: true }, ...: TValue | nil): boolean
     for index = 1, select("#", ...) do
         local value = select(index, ...)
 

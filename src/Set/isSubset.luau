@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
+--!optimize 2
 
 --[[
     Checks whether a set is a subset of another set.
@@ -15,7 +12,7 @@ type Set<T> = types.Set<T>
     local is = isSubset(subset, set) -- true
     ```
 ]]
-local function isSubset(subset: Set<unknown>, superset: Set<unknown>): boolean
+local function isSubset(subset: { [unknown]: true }, superset: { [unknown]: true }): boolean
     for item in subset do
         if not superset[item] then
             return false

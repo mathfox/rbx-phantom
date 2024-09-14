@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
+--!optimize 2
 
 --[[
     Returns a set of values that are in the first set, but not in the other sets.
@@ -15,14 +12,14 @@ type Set<T> = types.Set<T>
     local diff = difference(set1, set2) -- { world = true }
     ```
 ]]
-local function difference(set: Set<unknown>, ...: Set<unknown> | nil): Set<unknown>
+local function difference<TValue>(set: { [TValue]: true }, ...: { [TValue]: true } | nil): { [TValue]: true }
     local diff = table.clone(set)
 
     for index = 1, select("#", ...) do
         local otherSet = select(index, ...)
 
         if otherSet ~= nil then
-            for value in otherSet :: Set<unknown> do
+            for value in otherSet :: { [TValue]: true } do
                 diff[value] = nil
             end
         end

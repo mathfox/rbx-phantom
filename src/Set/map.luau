@@ -1,15 +1,18 @@
 --!strict
 --!native
+--!optimize 2
 
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
-
-local function map<T, R>(set: Set<T>, mapper: (item: T, set: Set<T>) -> R): Set<R>
-    local result = {} :: Set<R>
+local function map<TValue, TOutput>(
+    set: { [TValue]: true },
+    mapper: (value: TValue, setRef: { [TValue]: true }) -> TOutput
+): { [TOutput]: true }
+    local result: { [TOutput]: true } = {}
 
     for key in set do
-        result[mapper(key, set)] = true
+        local newKey = mapper(key, set)
+        if newKey ~= nil then
+            result[newKey] = true
+        end
     end
 
     return result

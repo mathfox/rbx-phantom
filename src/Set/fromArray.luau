@@ -1,19 +1,12 @@
 --!strict
 --!native
+--!optimize 2
 
-local types = require(script.Parent.types)
+local function fromArray<TValue>(array: { TValue }): { [TValue]: true }
+    local result: { [TValue]: true } = {}
 
-type Set<T> = types.Set<T>
-
-local function fromArray<T>(array: { T }): Set<T>
-    local result = {} :: Set<T>
-
-    for index = 1, #array do
-        local value = array[index]
-
-        if value ~= nil then
-            result[value] = true
-        end
+    for _, value in array do
+        result[value] = true
     end
 
     return result

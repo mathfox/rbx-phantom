@@ -1,6 +1,3 @@
-/**
- * This function filters out the `undefined`.
- */
-declare function fromArray<TValue>(array: ReadonlyArray<TValue | undefined>): Set<TValue>;
+declare function fromArray<TValue>(array: ReadonlyArray<TValue>): Set<TValue>;
 
 export = fromArray;

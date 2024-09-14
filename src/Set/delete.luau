@@ -2,9 +2,7 @@
 --!native
 --!optimize 2
 
-local types = require(script.Parent.types)
-
-local function delete<TValue>(set: types.Set<TValue>, ...: TValue | nil): types.Set<TValue>
+local function delete<TValue>(set: { [TValue]: true }, ...: TValue | nil): { [TValue]: true }
     for index = 1, select("#", ...) do
         local value = select(index, ...)
 

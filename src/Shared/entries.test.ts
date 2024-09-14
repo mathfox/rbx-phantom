@@ -9,8 +9,7 @@ it("should return a list of entries as key-value pairs", () => {
 
 	const value = entries(map);
 
-	expect(value).toStrictEqual([
-		["hello", "roblox"],
-		["goodbye", "world"],
-	]);
+	expect(value.size()).toBe(2);
+	expect(value).toContainEqual(["hello", "roblox"]);
+	expect(value).toContainEqual(["goodbye", "world"]);
 });
