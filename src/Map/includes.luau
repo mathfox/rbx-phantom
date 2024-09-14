@@ -1,28 +1,35 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Map<K, V> = types.Map<K, V>
+--!optimize 2
 
 --[[
-    Checks whether or not the given dictionary includes the given value.
+    Checks whether or not the given map includes the given value.
 
     ```lua
-    local dictionary = { hello = "roblox", goodbye = "world" }
+    local map = { hello = "roblox", goodbye = "world" }
 
-    local includesRoblox = includes(dictionary, "roblox") -- true
-    local includesCat = includes(dictionary, "cat") -- false
+    local includesRoblox = includes(map, "roblox") -- true
+    local includesCat = includes(map, "cat") -- false
     ```
 ]]
-local function includes<K, V>(map: Map<K, V>, value: V): boolean
-    for _, v in map do
-        if v == value then
-            return true
+local function includes<TValue>(map: { [unknown]: TValue }, ...): boolean
+    for index = 1, select("#", ...) do
+        local value = select(index, ...)
+        local found = false
+
+        for _, v in map do
+            if value == v then
+                found = true
+                break
+            end
+        end
+
+        if not found then
+            return false
         end
     end
 
-    return false
+    return true
 end
 
 return includes

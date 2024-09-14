@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
     Creates a dictionary from the given arrays, where the first array is used
@@ -12,11 +13,10 @@
     local dictionary = FromArrays(keys, values) -- { hello = "roblox", goodbye = "world" }
     ```
 ]]
-local function fromArrays<K, V>(keys: { K }, values: { V }): { [K]: V }
-    local keysLength = #keys
+local function fromArrays<TKey, TValue>(keys: { TKey }, values: { TValue }): { [TKey]: TValue }
     local result = {}
 
-    for i = 1, keysLength do
+    for i = 1, #keys do
         result[keys[i]] = values[i]
     end
 

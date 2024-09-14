@@ -5,6 +5,7 @@
         "module": "CommonJS",
         "moduleResolution": "Node",
         "noLib": true,
+        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "moduleDetection": "force",
         "strict": true,

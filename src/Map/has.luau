@@ -1,21 +1,18 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Map<K, V> = types.Map<K, V>
+--!optimize 2
 
 --[[
-    Checks whether or not the given dictionary has the given key.
+    Checks whether or not the given map has the given key.
 
     ```lua
-    local dictionary = { hello = "roblox", goodbye = "world" }
+    local map = { hello = "roblox", goodbye = "world" }
 
-    local hasHello = Has(dictionary, "hello") -- true
-    local hasCat = Has(dictionary, "cat") -- false
+    local hasHello = has(map, "hello") -- true
+    local hasCat = has(map, "cat") -- false
     ```
 ]]
-local function has<K>(map: Map<K, unknown>, ...: K): boolean
+local function has<TKey>(map: { [TKey]: unknown }, ...: TKey): boolean
     for index = 1, select("#", ...) do
         local value = select(index, ...)
 

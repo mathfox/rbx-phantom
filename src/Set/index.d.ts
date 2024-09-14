@@ -8,33 +8,40 @@ import intersection from "./intersection";
 import isSubset from "./isSubset";
 import isSuperset from "./isSuperset";
 import map from "./map";
+import merge from "./merge";
+import symmetricDifference from "./symmetricDifference";
 import type { AnySet, InferSetValue, UnknownSet } from "./types";
 
 declare namespace PhantomSet {
-	export { add, delete_ as delete, difference, filter, fromArray, has, intersection, isSubset, isSuperset, map };
+	export {
+		add,
+		delete_ as delete,
+		difference,
+		filter,
+		fromArray,
+		has,
+		intersection,
+		isSubset,
+		isSuperset,
+		map,
+		merge,
+		symmetricDifference,
+	};
 
 	export type { InferSetValue, UnknownSet, AnySet };
-}
 
-interface PhantomSetConstructor {
-	merge<T>(this: void, ...sets: ReadonlyArray<ReadonlySet<T> | undefined>): Set<T>;
+	function keys<TValue>(set: ReadonlySet<TValue>): Array<TValue>;
 
-	/**
-	 * Returns a set of values that are in the first set, but not in the other sets, and vice versa.
-	 * Simply speaking, this returns a unique entries in the sets provided.
-	 */
-	symmetricDifference<T>(this: void, ...sets: ReadonlyArray<ReadonlySet<T> | undefined>): Set<T>;
+	export { keys, keys as toArray };
 
-	keys<T>(this: void, set: ReadonlySet<T>): Array<T>;
+	export function values<TValue>(set: ReadonlySet<TValue>): Array<true>;
 
-	values<T>(this: void, set: ReadonlySet<T>): Array<true>;
-
-	entries<T>(this: void, set: ReadonlySet<T>): Array<[T, true]>;
+	export function entries<TValue>(set: ReadonlySet<TValue>): Array<[TValue, true]>;
 
 	/**
 	 * Safely freezes the set by using {@link table.isfrozen}.
 	 */
-	safeFreeze<T>(this: void, set: Set<T>): ReadonlySet<T>;
-
-	toArray: PhantomSetConstructor["keys"];
+	export function safeFreeze<TValue>(set: Set<TValue>): ReadonlySet<TValue>;
 }
+
+export = PhantomSet;
