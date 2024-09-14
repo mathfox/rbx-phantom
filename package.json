@@ -3,10 +3,10 @@
 	"description": "Data manipulation library for Roblox",
 	"version": "0.2.0",
 	"scripts": {
-		"serve": "rojo serve default.project.json",
+		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
 		"check": "bunx @biomejs/biome check --write",
-		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
+		"prepublishOnly": "bun run check"
 	},
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
