@@ -1,7 +1,7 @@
 declare namespace PhantomArray {
-	export {};
-
 	export type {};
+
+	export {};
 
 	export function deepClone<T>(array: ReadonlyArray<T>): Array<T>;
 

@@ -16,7 +16,7 @@ local setDifference = require(script.Parent.Parent.Set.difference)
     local diff = difference(array1, array2) -- { "world" }
     ```
 ]]
-local function difference<TValue>(array: { TValue }, ...: { TValue }): { TValue }
+local function difference<TValue>(array: { TValue }, ...: { TValue } | nil): { TValue }
     local arraySet = toSet(array)
     local otherSets = {}
 

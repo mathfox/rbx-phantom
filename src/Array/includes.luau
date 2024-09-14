@@ -11,9 +11,9 @@ local find = require(script.Parent.find)
 	```lua
 	local array = { "hello", "world", "goodbye" }
 
-	local value = Includes(array, "hello") -- true
-	local value = Includes(array, "phantom") -- false
-	local value = Includes(array, "hello", 2) -- false
+	local value = includes(array, "hello") -- true
+	local value = includes(array, "phantom") -- false
+	local value = includes(array, "hello", 2) -- false
 	```
 ]]
 local function includes<TValue>(array: { TValue }, value: TValue, from: number | nil): boolean
