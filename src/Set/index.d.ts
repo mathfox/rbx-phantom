@@ -13,6 +13,8 @@ import symmetricDifference from "./symmetricDifference";
 import type { AnySet, InferSetValue, UnknownSet } from "./types";
 
 declare namespace PhantomSet {
+	export type { InferSetValue, UnknownSet, AnySet };
+
 	export {
 		add,
 		delete_ as delete,
@@ -28,11 +30,7 @@ declare namespace PhantomSet {
 		symmetricDifference,
 	};
 
-	export type { InferSetValue, UnknownSet, AnySet };
-
-	function keys<TValue>(set: ReadonlySet<TValue>): Array<TValue>;
-
-	export { keys, keys as toArray };
+	export function keys<TValue>(set: ReadonlySet<TValue>): Array<TValue>;
 
 	export function values<TValue>(set: ReadonlySet<TValue>): Array<true>;
 
@@ -42,6 +40,8 @@ declare namespace PhantomSet {
 	 * Safely freezes the set by using {@link table.isfrozen}.
 	 */
 	export function safeFreeze<TValue>(set: Set<TValue>): ReadonlySet<TValue>;
+
+	export { keys as toArray };
 }
 
 export = PhantomSet;

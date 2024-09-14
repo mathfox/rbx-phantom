@@ -1,23 +1,23 @@
 --!strict
 --!native
+--!optimize 2
 
-local deepCompare =
-    require(script.Parent.Parent.Shared.deepCompare).deepCompareMap
+local deepCompareTable = require(script.Parent.Parent.Shared.deepCompare).deepCompareTable
 local isMap = require(script.Parent.isMap)
 
 --[[
-    Compares two dictionaries for equality using deep comparison.
+    Compares maps for equality using deep comparison.
 
     ```lua
-    local dictionary = { hello = "world", goodbye = { world = "hello" } }
+    local map = { hello = "world", goodbye = { world = "hello" } }
     local other1 = { hello = "world", goodbye = { world = "hello" } }
     local other2 = { hello = "hello", world = "goodbye" }
 
-    local value = EqualsDeep(dictionary, other1) -- true
-    local value = EqualsDeep(dictionary, other1, other2) -- false
+    local value = deepEquals(dictionary, other1) -- true
+    local value = deepEquals(dictionary, other1, other2) -- false
     ```
 ]]
-local function equalsDeep(...: unknown): boolean
+local function deepEquals(...: unknown): boolean
     local firstValue = select(1, ...)
 
     if not isMap(firstValue) then
@@ -31,7 +31,7 @@ local function equalsDeep(...: unknown): boolean
             return false
         end
 
-        if not deepCompare(firstValue :: any, value) then
+        if not deepCompareTable(firstValue :: any, value) then
             return false
         end
     end
@@ -39,4 +39,4 @@ local function equalsDeep(...: unknown): boolean
     return true
 end
 
-return equalsDeep
+return deepEquals

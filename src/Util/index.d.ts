@@ -11,8 +11,6 @@ import strictEqual from "./strictEqual";
 import type { Tuple } from "./Tuple";
 
 declare namespace PhantomUtil {
-	export { strictEqual };
-
 	export type {
 		DeepReadonly,
 		DeepReadonlyObject,
@@ -25,6 +23,8 @@ declare namespace PhantomUtil {
 		InferKey,
 		InferValue,
 	};
+
+	export { strictEqual };
 }
 
 export = PhantomUtil;

@@ -26,7 +26,7 @@ local function merge(...: any)
             continue
         end
 
-        for key, value in pairs(dictionary) do
+        for key, value in dictionary do
             result[key] = if value == None then nil else value
         end
     end

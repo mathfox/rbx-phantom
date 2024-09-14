@@ -1,22 +1,34 @@
 {
 	"name": "@rbxts/phantom",
-	"description": "Data manipulation library for Roblox.",
+	"description": "Data manipulation library for Roblox",
 	"version": "0.1.0",
 	"scripts": {
 		"serve": "rojo serve default.project.json",
-		"serve:tests": "rojo serve tests.project.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
 		"check": "bunx @biomejs/biome check --write",
 		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json"
 	},
 	"main": "src/init.luau",
 	"typings": "src/index.d.ts",
-	"files": ["src", "!**/*.spec.luau", "!**/*.bench.luau"],
+	"files": ["src", "!src/**/*.bench.luau", "!src/jest.config.ts", "!src/**/*.test.ts"],
+	"keywords": [
+		"roblox",
+		"roblox-ts",
+		"table",
+		"object",
+		"array",
+		"dictionary",
+		"record",
+		"map",
+		"set",
+		"immutable",
+		"manipulation",
+		"mutation"
+	],
 	"repository": {
 		"type": "git",
 		"url": "git+https://github.com/mathfox/rbx-phantom.git"
 	},
-	"keywords": ["roblox", "roblox-ts", "table", "array", "dictionary", "record", "map", "set", "immutable"],
 	"author": {
 		"name": "Ivan Leontev",
 		"url": "https://github.com/mathfox"
@@ -30,8 +42,8 @@
 		"access": "public"
 	},
 	"devDependencies": {
-		"@rbxts/compiler-types": "3.0.0-types.0",
-		"@rbxts/types": "1.0.805",
+		"@rbxts/compiler-types": "^3.0.0-types.0",
+		"@rbxts/types": "^1.0.805",
 		"@rbxts/jest": "^0.1.0",
 		"@rbxts/jest-globals": "^0.1.0",
 		"roblox-ts": "^3.0.0-dev-d1d5486",

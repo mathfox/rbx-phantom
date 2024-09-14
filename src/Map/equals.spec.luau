@@ -16,11 +16,6 @@ return function()
     end)
 
     it("should return false for nested dictionaries", function()
-        --[[
-      This is because the nested dictionaries have different memory addresses,
-      despite having the same values. Use equalsDeep instead if you want to
-      compare nested dictionaries.
-    --]]
         local dictionary1 = { hello = "world", goodbye = { world = "hello" } }
         local dictionary2 = { hello = "world", goodbye = { world = "hello" } }
 
