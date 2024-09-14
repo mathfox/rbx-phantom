@@ -1,6 +1,6 @@
 import { expect, it } from "@rbxts/jest-globals";
-import deepMerge from "./deepMerge";
 import None from "../None";
+import deepMerge from "./deepMerge";
 
 it("should combine two or more maps, where the last value overrides previous, recursively", () => {
 	const map_1 = {

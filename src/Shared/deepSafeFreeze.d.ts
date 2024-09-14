@@ -1,4 +1,4 @@
-import type { DeepReadonlyArray, DeepReadonly } from "../Util/DeepReadonly";
+import type { DeepReadonly, DeepReadonlyArray } from "../Util/DeepReadonly";
 
 declare function deepSafeFreeze<TValue>(array: ReadonlyArray<TValue>): DeepReadonlyArray<TValue>;
 

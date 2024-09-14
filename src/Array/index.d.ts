@@ -27,7 +27,7 @@ import slice from "./slice";
 import some from "./some";
 import symmetricDifference from "./symmetricDifference";
 import toSet from "./toSet";
-import type { InferArrayValue, UnknownArray, AnyArray } from "./types";
+import type { AnyArray, InferArrayValue, UnknownArray } from "./types";
 import unshift from "./unshift";
 
 declare namespace PhantomArray {

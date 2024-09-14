@@ -5,10 +5,10 @@ import type {
 	DeepReadonlyObject,
 	DeepReadonlySet,
 } from "./DeepReadonly";
-import type { Decr, Incr } from "./helpers";
 import type { InferKey, InferValue } from "./Infer";
-import strictEqual from "./strictEqual";
 import type { Tuple } from "./Tuple";
+import type { Decr, Incr } from "./helpers";
+import strictEqual from "./strictEqual";
 
 declare namespace PhantomUtil {
 	export type {

@@ -1,6 +1,6 @@
 import { expect, it } from "@rbxts/jest-globals";
-import merge from "./merge";
 import None from "../None";
+import merge from "./merge";
 
 it("should combine two or more maps, where the last value overrides previous", () => {
 	const map_1 = new Map([
