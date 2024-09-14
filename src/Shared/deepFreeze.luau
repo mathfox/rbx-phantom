@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 
-local function deepFreeze<K, V>(object: { [K]: V }): { [K]: V }
+local function deepFreeze<TKey, TValue>(object: { [TKey]: TValue }): { [TKey]: TValue }
     table.freeze(object)
 
     for key, value in object do

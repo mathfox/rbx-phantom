@@ -14,10 +14,13 @@ local exports = {
     compare = compare.compare,
     compareArray = compare.compareArray,
     compareTable = compare.compareTable,
+
     deepClone = require(script.deepClone),
+
     deepCompare = deepCompare.deepCompare,
     deepCompareArray = deepCompare.deepCompareArray,
     deepCompareTable = deepCompare.deepCompareTable,
+
     deepEquals = require(script.deepEquals),
     deepFreeze = require(script.deepFreeze),
     deepSafeFreeze = require(script.deepSafeFreeze),

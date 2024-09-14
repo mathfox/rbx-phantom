@@ -3,7 +3,7 @@
  */
 declare function difference<TValue>(
 	array: ReadonlyArray<TValue>,
-	...otherArrays: ReadonlyArray<ReadonlyArray<TValue>>
+	...otherArrays: ReadonlyArray<ReadonlyArray<TValue> | undefined>
 ): Array<TValue>;
 
 export = difference;

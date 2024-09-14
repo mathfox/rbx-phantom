@@ -7,6 +7,6 @@
 		"enabled": false
 	},
 	"files": {
-		"include": ["src", "./package.json"]
+		"include": ["src", "./package.json", "./*.project.json"]
 	}
 }

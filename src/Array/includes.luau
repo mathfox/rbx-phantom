@@ -1,10 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
 local find = require(script.Parent.find)
-local types = require(script.Parent.types)
-
-type UnknownArray = types.UnknownArray
 
 --[[
 	Checks whether the array contains the value.
@@ -18,11 +16,7 @@ type UnknownArray = types.UnknownArray
 	local value = Includes(array, "hello", 2) -- false
 	```
 ]]
-local function includes(
-    array: UnknownArray,
-    value: any,
-    from: number | nil
-): boolean
+local function includes<TValue>(array: { TValue }, value: TValue, from: number | nil): boolean
     return find(array, value, from) ~= nil
 end
 

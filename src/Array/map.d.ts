@@ -1,6 +1,6 @@
-declare function map<T, U>(
-	array: ReadonlyArray<T>,
-	mapper: (value: T, index: number, array: ReadonlyArray<T>) => U,
-): Array<U>;
+declare function map<TValue, TOutput>(
+	array: ReadonlyArray<TValue>,
+	mapper: (value: TValue, index: number, arrayRef: typeof array) => TOutput | undefined,
+): Array<TOutput>;
 
 export = map;

@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 
-local function deepSafeFreeze<K, V>(object: { [K]: V }): { [K]: V }
+local function deepSafeFreeze<TKey, TValue>(object: { [TKey]: TValue }): { [TKey]: TValue }
     if not table.isfrozen(object) then
         table.freeze(object)
     end

@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Slices an array.
@@ -16,7 +13,7 @@ type Array<T> = types.Array<T>
 	local new = slice(array, 3) -- { 3, 4, 5 }
 	```
 ]]
-local function slice<T>(array: Array<T>, from: number?, to: number?): Array<T>
+local function slice<TValue>(array: { TValue }, from: number?, to: number?): { TValue }
     local length = #array
     local result = {}
 

@@ -1,7 +1,7 @@
-declare function reduceRight<T, U>(
-	array: ReadonlyArray<T>,
-	reducer: (accumulator: U, value: T, index: number, array: ReadonlyArray<T>) => U,
-	initialValue?: U,
-): U;
+declare function reduceRight<TValue, TOutput>(
+	array: ReadonlyArray<TValue>,
+	reducer: (accumulator: TOutput, value: TValue, index: number, arrayRef: typeof array) => TOutput,
+	initialValue?: TOutput | undefined,
+): TOutput;
 
 export = reduceRight;

@@ -1,3 +1,5 @@
-declare function symmetricDifference<TValue>(...values: ReadonlyArray<ReadonlyArray<TValue>>): Array<TValue>;
+declare function symmetricDifference<TValue>(
+	...values: ReadonlyArray<ReadonlyArray<TValue> | undefined>
+): Array<TValue>;
 
 export = symmetricDifference;

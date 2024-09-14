@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local types = require(script.types)
 
@@ -7,7 +8,7 @@ export type Map<K, V> = types.Map<K, V>
 export type AnyMap = types.AnyMap
 export type UnknownMap = types.UnknownMap
 
-local PhantomMap = {
+local exports = {
     deepEquals = require(script.deepEquals),
     deepMerge = require(script.deepMerge),
     equals = require(script.equals),
@@ -29,12 +30,8 @@ local PhantomMap = {
 }
 
 -- Re-exports
-PhantomMap.keys = require(script.Parent.Shared.keys)
-PhantomMap.values = require(script.Parent.Shared.values)
-PhantomMap.entries = require(script.Parent.Shared.entries)
-
-local exports = {
-    PhantomMap = PhantomMap,
-}
+exports.keys = require(script.Parent.Shared.keys)
+exports.values = require(script.Parent.Shared.values)
+exports.entries = require(script.Parent.Shared.entries)
 
 return exports

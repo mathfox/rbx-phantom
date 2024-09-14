@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 
-local function entries<K, V>(object: { [K]: V }): { [number]: { [number]: K | V } }
+local function entries<TKey, TValue>(object: { [TKey]: TValue }): { [number]: { [number]: TKey | TValue } }
     local result = {}
 
     for key, value in object do

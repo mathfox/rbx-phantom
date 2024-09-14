@@ -1,12 +1,9 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
-	Reverses the order of the items in an array.
+	Reverses the order of the items in an array in-place.
 
 	```lua
 	local array = { 1, 2, 3 }
@@ -14,17 +11,17 @@ type Array<T> = types.Array<T>
 	local new = reverse(array) -- { 3, 2, 1 }
 	```
 ]]
-local function reverse<T>(t: Array<T>): Array<T>
-    local n = #t
+local function reverse<TValue>(array: { TValue }): { TValue }
+    local n = #array
     local i = 1
 
     while i < n do
-        t[i], t[n] = t[n], t[i]
-        i = i + 1
-        n = n - 1
+        array[i], array[n] = array[n], array[i]
+        i += 1
+        n -= 1
     end
 
-    return t
+    return array
 end
 
 return reverse

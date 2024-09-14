@@ -1,6 +1,6 @@
 declare function filter<TValue>(
 	array: ReadonlyArray<TValue>,
-	predicate: (value: TValue, index: number, array: ReadonlyArray<TValue>) => unknown,
+	predicate: (value: TValue, index: number, arrayRef: typeof array) => unknown,
 ): Array<TValue>;
 
 export = filter;

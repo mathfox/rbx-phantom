@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
 	Luau can't distinguish between a nil value and a non-existent value.
@@ -14,8 +15,4 @@ export type None = typeof(None)
 --    return "Phantom.None"
 --end
 
-local exports = {
-    None = None,
-}
-
-return exports
+return None

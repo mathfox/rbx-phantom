@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Removes values from an array.
@@ -14,7 +11,7 @@ type Array<T> = types.Array<T>
 	local new = removeValues(array, "c", "d") -- { "a", "b", "e" }
 	```
 ]]
-local function removeValues<T>(array: Array<T>, ...: T): Array<T>
+local function removeValues<TValue>(array: { TValue }, ...: TValue | nil): { TValue }
     local valueSet = {}
 
     for index = 1, select("#", ...) do

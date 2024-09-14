@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local types = require(script.types)
 
@@ -7,7 +8,7 @@ export type Set<T> = types.Set<T>
 export type AnySet = types.AnySet
 export type UnknownSet = types.UnknownSet
 
-local PhantomSet = {
+local exports = {
     add = require(script.add),
     delete = require(script.delete),
     difference = require(script.difference),
@@ -23,16 +24,12 @@ local PhantomSet = {
 }
 
 -- Re-exports
-PhantomSet.keys = require(script.Parent.Shared.keys)
-PhantomSet.values = require(script.Parent.Shared.values)
-PhantomSet.entries = require(script.Parent.Shared.entries)
-PhantomSet.safeFreeze = require(script.Parent.Shared.safeFreeze)
+exports.keys = require(script.Parent.Shared.keys)
+exports.values = require(script.Parent.Shared.values)
+exports.entries = require(script.Parent.Shared.entries)
+exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
-PhantomSet.toArray = PhantomSet.keys
-
-local exports = {
-    PhantomSet = PhantomSet,
-}
+exports.toArray = exports.keys
 
 return exports

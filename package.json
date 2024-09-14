@@ -1,6 +1,6 @@
 {
 	"name": "@rbxts/phantom",
-	"description": "Immutable data library for Luau.",
+	"description": "Data manipulation library for Roblox.",
 	"version": "0.1.0",
 	"scripts": {
 		"serve": "rojo serve default.project.json",

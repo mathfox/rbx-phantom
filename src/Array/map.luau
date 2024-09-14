@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Maps the array using the mapper function.
@@ -16,15 +13,11 @@ type Array<T> = types.Array<T>
 	end) -- { 2, 4, 6 }
 	```
 ]]
-local function map<T, U>(
-    array: Array<T>,
-    mapper: (
-        value: T,
-        index: number,
-        array: Array<T>
-    ) -> U | nil
-): Array<U>
-    local mapped = {}
+local function map<TValue, TOutput>(
+    array: { TValue },
+    mapper: (value: TValue, index: number, arrayRef: { TValue }) -> TOutput | nil
+): { TOutput }
+    local mapped: { TOutput } = {}
 
     for index, value in array do
         local mappedValue = mapper(value, index, array)

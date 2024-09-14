@@ -4,9 +4,6 @@
 
 local compareArray = require(script.Parent.Parent.Shared.compare).compareArray
 local isArray = require(script.Parent.isArray)
-local types = require(script.Parent.types)
-
-type UnknownArray = types.UnknownArray
 
 local function equals(...: unknown): boolean
     local firstValue = select(1, ...)
@@ -22,7 +19,7 @@ local function equals(...: unknown): boolean
             return false
         end
 
-        if not compareArray(firstValue :: UnknownArray, value) then
+        if not compareArray(firstValue :: { unknown }, value) then
             return false
         end
     end

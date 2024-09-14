@@ -12,13 +12,19 @@ import values from "./values";
 
 declare namespace PhantomShared {
 	export {
+		// compare
 		compare,
 		compareArray,
 		compareTable,
+		//
+
 		deepClone,
+		// deepCompare
 		deepCompare,
 		deepCompareArray,
 		deepCompareTable,
+		//
+
 		deepEquals,
 		deepFreeze,
 		deepSafeFreeze,
