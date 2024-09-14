@@ -1,7 +1,7 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Data manipulation library for Roblox",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"scripts": {
 		"serve": "rojo serve default.project.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
