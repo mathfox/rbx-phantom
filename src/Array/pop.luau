@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Removes an element from the end of the array, and returns the array with the popped elements removed.
@@ -15,7 +12,7 @@ type Array<T> = types.Array<T>
 	local new = pop(array, 2) -- { 1 }
 	```
 ]]
-local function pop<T>(array: Array<T>, count: number | nil): Array<T>
+local function pop<TValue>(array: { TValue }, count: number | nil): { TValue }
     local result = {}
 
     for index = 1, #array - (if count then count else 1) do

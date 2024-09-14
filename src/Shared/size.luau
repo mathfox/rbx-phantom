@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function size(value: { [unknown]: unknown }): number
     local count = 0

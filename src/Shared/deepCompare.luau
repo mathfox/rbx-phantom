@@ -1,25 +1,26 @@
 --!strict
 --!native
+--!optimize 2
 
-local strictIsArray = require(script.Parent.Parent.Array.strictIsArray)
+local isArray = require(script.Parent.Parent.Array.isArray)
 local arrayTypes = require(script.Parent.Parent.Array.types)
 local types = require(script.Parent.types)
 
 type UnknownArray = arrayTypes.UnknownArray
 type UnknownTable = types.UnknownTable
 
-local deepCompare: (a: unknown, b: unknown) -> boolean
+local deepCompare: (left: unknown, right: unknown) -> boolean
 
 -- Assumes that both values are checked with `isArray` function.
-local function deepCompareArray(a: UnknownArray, b: UnknownArray): boolean
-    local aLength = #a
+local function deepCompareArray(left: UnknownArray, right: UnknownArray): boolean
+    local leftLength = #left
 
-    if #b ~= aLength then
+    if #right ~= leftLength then
         return false
     end
 
-    for index = 1, aLength do
-        if not deepCompare(a[index], b[index]) then
+    for index = 1, leftLength do
+        if not deepCompare(left[index], right[index]) then
             return false
         end
     end
@@ -27,15 +28,15 @@ local function deepCompareArray(a: UnknownArray, b: UnknownArray): boolean
     return true
 end
 
-local function deepCompareMap(a: UnknownTable, b: UnknownTable): boolean
-    for key, value in a :: UnknownTable do
-        if not deepCompare(value, (b :: UnknownTable)[key]) then
+local function deepCompareTable(left: UnknownTable, right: UnknownTable): boolean
+    for key, value in left do
+        if not deepCompare(value, right[key]) then
             return false
         end
     end
 
-    for key, value in b :: UnknownTable do
-        if not deepCompare(value, (a :: UnknownTable)[key]) then
+    for key, value in right do
+        if not deepCompare(value, left[key]) then
             return false
         end
     end
@@ -43,33 +44,33 @@ local function deepCompareMap(a: UnknownTable, b: UnknownTable): boolean
     return true
 end
 
-function deepCompare(a, b)
-    if type(a) ~= "table" or type(b) ~= "table" then
-        return a == b
+function deepCompare(left, right)
+    if type(left) ~= "table" or type(right) ~= "table" then
+        return left == right
     end
 
-    local aIsArray = strictIsArray(a :: UnknownTable)
-    local bIsArray = strictIsArray(b :: UnknownTable)
+    local leftIsArray = isArray(left :: UnknownTable)
+    local rightIsArray = isArray(right :: UnknownTable)
 
-    if aIsArray then
-        if not bIsArray then
+    if leftIsArray then
+        if not rightIsArray then
             return false
         end
 
-        return deepCompareArray(a :: UnknownArray, b :: UnknownArray)
-    elseif bIsArray then
+        return deepCompareArray(left :: UnknownArray, right :: UnknownArray)
+    elseif rightIsArray then
         return false
     end
 
     -- Here we know that both "a" and "b" are not arrays, but some table shape.
 
-    return deepCompareMap(a :: UnknownTable, b :: UnknownTable)
+    return deepCompareTable(left :: UnknownTable, right :: UnknownTable)
 end
 
 local exports = {
-    deepCompareArray = deepCompareArray,
     deepCompare = deepCompare,
-    deepCompareMap = deepCompareMap,
+    deepCompareArray = deepCompareArray,
+    deepCompareTable = deepCompareTable,
 }
 
 return exports

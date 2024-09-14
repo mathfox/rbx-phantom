@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local types = require(script.types)
 
@@ -7,7 +8,7 @@ export type Array<T> = types.Array<T>
 export type AnyArray = types.AnyArray
 export type UnknownArray = types.UnknownArray
 
-local PhantomArray = {
+local exports = {
     at = require(script.at),
     concat = require(script.concat),
     deepEquals = require(script.deepEquals),
@@ -33,26 +34,19 @@ local PhantomArray = {
     removeValues = require(script.removeValues),
     reverse = require(script.reverse),
     shift = require(script.shift),
-    shuffle = require(script.shuffle),
     slice = require(script.slice),
     some = require(script.some),
-    strictIsArray = require(script.strictIsArray),
     symmetricDifference = require(script.symmetricDifference),
     toSet = require(script.toSet),
     unshift = require(script.unshift),
 }
 
 -- Re-exports
-PhantomArray.deepClone = require(script.Parent.Shared.deepClone)
-PhantomArray.safeFreeze = require(script.Parent.Shared.safeFreeze)
+exports.deepClone = require(script.Parent.Shared.deepClone)
+exports.safeFreeze = require(script.Parent.Shared.safeFreeze)
 
 -- Aliases
-PhantomArray.values = table.clone
-PhantomArray.deepCompareArray =
-    require(script.Parent.Shared.deepCompare).deepCompareArray
-
-local exports = {
-    PhantomArray = PhantomArray,
-}
+exports.values = table.clone
+exports.deepCompareArray = require(script.Parent.Shared.deepCompare).deepCompareArray
 
 return exports

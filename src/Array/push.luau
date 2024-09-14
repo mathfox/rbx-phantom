@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Adds elements to the end of the array.
@@ -14,7 +11,7 @@ type Array<T> = types.Array<T>
 	local new = push(array, 4, 5, 6) -- { 1, 2, 3, 4, 5, 6 }
 	```
 ]]
-local function push<T>(array: Array<T>, ...: T): Array<T>
+local function push<TValue>(array: { TValue }, ...: TValue | nil): { TValue }
     local result = table.clone(array)
 
     for index = 1, select("#", ...) do

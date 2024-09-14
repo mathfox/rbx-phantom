@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Inserts values to the beginning of an array.
@@ -14,7 +11,7 @@ type Array<T> = types.Array<T>
 	local new = unshift(array, 4, 5) -- { 4, 5, 1, 2, 3 }
 	```
 ]]
-local function unshift<T>(array: Array<T>, ...: T): Array<T>
+local function unshift<TValue>(array: { TValue }, ...: TValue | nil): { TValue }
     local result = table.clone(array)
 
     for index = select("#", ...), 1, -1 do

@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
+--!optimize 2
 
 --[[
     Creates the intersection of multiple sets.
@@ -17,8 +14,8 @@ type Set<T> = types.Set<T>
     local int = intersection(set1, set2) -- { world = true }
     ```
 ]]
-local function intersection(...: Set<unknown> | nil): Set<unknown>
-    local result: Set<unknown> = {}
+local function intersection<TValue>(...: { [TValue]: true } | nil): { [TValue]: true }
+    local result: { [TValue]: true } = {}
 
     local length = select("#", ...)
     local firstIndex = 1

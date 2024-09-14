@@ -1,16 +1,17 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
-    Flips a dictionary. Keys become values and values become keys.
+    Flips a map. Keys become values and values become keys.
 
     ```lua
-    local dictionary = { hello = "roblox", goodbye = "world" }
+    local map = { hello = "roblox", goodbye = "world" }
 
-    local new = flip(dictionary) -- { world = "goodbye", roblox = "hello" }
+    flip(map) -- { world = "goodbye", roblox = "hello" }
     ```
 ]]
-local function flip<K, V>(map: { [K]: V }): { [V]: K }
+local function flip<TKey, TValue>(map: { [TKey]: TValue }): { [TValue]: TKey }
     local result = {}
 
     for key, value in map do

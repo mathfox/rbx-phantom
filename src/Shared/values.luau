@@ -1,7 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
-local function values<V>(object: { [unknown]: V }): { V }
+local function values<TValue>(object: { [unknown]: TValue }): { TValue }
     local result = {}
 
     for _, value in object do

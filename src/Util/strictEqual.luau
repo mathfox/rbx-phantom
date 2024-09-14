@@ -1,5 +1,6 @@
 --!strict
 --!native
+--!optimize 2
 
 local function strictEqual(...: unknown): boolean
     local firstValue = select(1, ...)

@@ -1,17 +1,23 @@
 {
-	"compilerOptions": {
-		"allowSyntheticDefaultImports": true,
-		"downlevelIteration": true,
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-		"noLib": true,
-		"forceConsistentCasingInFileNames": true,
-		"moduleDetection": "force",
-		"strict": true,
-		"target": "ESNext",
-		"typeRoots": ["node_modules/@rbxts"],
-		"outDir": "out",
-		"rootDir": "src",
-		"declaration": true
-	}
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "downlevelIteration": true,
+        "module": "CommonJS",
+        "moduleResolution": "Node",
+        "noLib": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "moduleDetection": "force",
+        "strict": true,
+        "target": "ESNext",
+        "typeRoots": [
+            "node_modules/@rbxts"
+        ],
+        "outDir": "out",
+        "rootDir": "src",
+        "declaration": true
+    },
+    "include": [
+        "src"
+    ]
 }

@@ -1,12 +1,9 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Map<K, V> = types.Map<K, V>
+--!optimize 2
 
 --[[
-    Maps the dictionary using the mapper function.
+    Maps the map using the mapper function.
     The mapper function can return a value and a key.
     If the mapper function does not return a key, the original key will be used.
 
@@ -22,18 +19,19 @@ type Map<K, V> = types.Map<K, V>
     end) -- { hello = 100, goodbye = 200 }
     ```
 ]]
-local function map<K, V, K2, V2>(
-    sourceMap: Map<K, V>,
+local function map<TKey, TValue, TOutputKey, TOutputValue>(
+    map: { [TKey]: TValue },
     mapper: (
-        value: V,
-        key: K,
-        sourceMap: Map<K, V>
-    ) -> (V2, K2?)
-): { [K2 | K]: V2 }
-    local mapped: Map<K2 | K, V2> = {}
+        value: TValue,
+        key: TKey,
+        mapRef: { [TKey]: TValue }
+    ) -> (TOutputValue, TOutputKey?)
+): { [TOutputKey | TKey]: TOutputValue }
+    local mapped: { [TOutputKey | TKey]: TOutputValue } = {}
 
-    for key, value in sourceMap do
-        local mappedValue, mappedKey = mapper(value, key, sourceMap)
+    for key, value in map do
+        local mappedValue, mappedKey = mapper(value, key, map)
+
         mapped[mappedKey or key] = mappedValue
     end
 

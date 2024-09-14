@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Removes the first item from an array and returns the array with the item removed.
@@ -15,7 +12,7 @@ type Array<T> = types.Array<T>
 	local new = shift(array, 2) -- { 3 }
 	```
 ]]
-local function shift<T>(array: Array<T>, count: number | nil): Array<T>
+local function shift<TValue>(array: { TValue }, count: number | nil): { TValue }
     local result = {}
 
     for index = if count then count + 1 else 2, #array do

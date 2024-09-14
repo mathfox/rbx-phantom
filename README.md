@@ -1,3 +1,3 @@
 # rbx-phantom
 
-Immutable data library for Luau.
+Data manipulation library for Roblox

@@ -1,17 +1,10 @@
 --!strict
 --!native
+--!optimize 2
 
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
-
-local function every<T>(
-    array: Array<T>,
-    predicate: (
-        value: T,
-        index: number,
-        array: Array<T>
-    ) -> unknown
+local function every<TValue>(
+    array: { TValue },
+    predicate: (value: TValue, index: number, arrayRef: { TValue }) -> unknown
 ): boolean
     for index = 1, #array do
         if not predicate(array[index], index, array) then

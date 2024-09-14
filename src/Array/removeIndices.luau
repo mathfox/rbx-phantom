@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Removes values from an array at the given indices.
@@ -15,7 +12,7 @@ type Array<T> = types.Array<T>
 	local new = removeIndices(array, 0, -1) -- { 1 }
 	```
 ]]
-local function removeIndices<T>(array: Array<T>, ...: number): Array<T>
+local function removeIndices<TValue>(array: { TValue }, ...: number | nil): { TValue }
     local length = #array
     local result = table.clone(array)
     local indices = {}

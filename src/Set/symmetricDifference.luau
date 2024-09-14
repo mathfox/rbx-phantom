@@ -1,11 +1,8 @@
 --!strict
 --!native
+--!optimize 2
 
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
-
---[=[
+--[[
     Returns a set of values that are in the first set, but not in the other sets, and vice versa.
     Simply speaking, this returns a unique entries in the sets provided.
 
@@ -17,18 +14,16 @@ type Set<T> = types.Set<T>
     ```
 
     @see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/symmetricDifference
-]=]
-local function symmetricDifference<T>(...: Set<T> | nil): Set<T>
+]]
+local function symmetricDifference<TValue>(...: { [TValue]: true } | nil): { [TValue]: true }
     local diff = {}
 
     for index = 1, select("#", ...) do
         local set = select(index, ...)
 
         if set ~= nil then
-            for value in set :: Set<unknown> do
-                diff[value :: T] = (
-                    if diff[value :: T] == nil then true else false
-                ) :: any
+            for value in set do
+                diff[value] = (if diff[value] == nil then true else false) :: any
             end
         end
     end

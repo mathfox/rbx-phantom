@@ -1,0 +1,15 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.0/schema.json",
+	"organizeImports": {
+		"enabled": true
+	},
+	"formatter": {
+		"lineWidth": 120
+	},
+	"linter": {
+		"enabled": false
+	},
+	"files": {
+		"include": ["src", "./package.json", "./*.project.json"]
+	}
+}

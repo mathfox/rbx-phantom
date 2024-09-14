@@ -1,25 +1,21 @@
 --!strict
 --!native
+--!optimize 2
 
-local strictIsArray = require(script.Parent.Parent.Array.strictIsArray)
-local arrayTypes = require(script.Parent.Parent.Array.types)
-local types = require(script.Parent.types)
+local isArray = require(script.Parent.Parent.Array.isArray)
 
-type UnknownArray = arrayTypes.UnknownArray
-type UnknownTable = types.UnknownTable
+--[[
+    This function assumes that both values are checked with `isArray` function.
+]]
+local function compareArray(left: { unknown }, right: { unknown }): boolean
+    local leftLength = #left
 
-local compare: (a: unknown, b: unknown) -> boolean
-
--- Assumes that both values are checked with `isArray` function.
-local function compareArray(a: UnknownArray, b: UnknownArray): boolean
-    local aLength = #a
-
-    if #b ~= aLength then
+    if #right ~= leftLength then
         return false
     end
 
-    for index = 1, aLength do
-        if a[index] ~= b[index] then
+    for index = 1, leftLength do
+        if left[index] ~= right[index] then
             return false
         end
     end
@@ -27,15 +23,15 @@ local function compareArray(a: UnknownArray, b: UnknownArray): boolean
     return true
 end
 
-local function compareMap(a: UnknownTable, b: UnknownTable): boolean
-    for key, value in a :: UnknownTable do
-        if value ~= (b :: UnknownTable)[key] then
+local function compareTable(left: { [unknown]: unknown }, right: { [unknown]: unknown }): boolean
+    for key, value in left do
+        if value ~= right[key] then
             return false
         end
     end
 
-    for key, value in b :: UnknownTable do
-        if value ~= (a :: UnknownTable)[key] then
+    for key, value in right do
+        if value ~= left[key] then
             return false
         end
     end
@@ -43,33 +39,41 @@ local function compareMap(a: UnknownTable, b: UnknownTable): boolean
     return true
 end
 
-function compare(a, b)
-    if type(a) ~= "table" or type(b) ~= "table" then
-        return a == b
+--[[
+    Checks for the equality of the two given values.
+
+    The rules of equality are:
+    - If the values are not a tables - it uses strict equality check.
+    - If the values are array it checks for their equality using `compareArray` function.
+    - Otherwise it checks for equality using `compareTable` function.
+]]
+local function compare(left: unknown, right: unknown): boolean
+    if type(left) ~= "table" or type(right) ~= "table" then
+        return left == right
     end
 
-    local aIsArray = strictIsArray(a :: UnknownTable)
-    local bIsArray = strictIsArray(b :: UnknownTable)
+    local leftIsArray = isArray(left :: { [unknown]: unknown })
+    local rightIsArray = isArray(right :: { [unknown]: unknown })
 
-    if aIsArray then
-        if not bIsArray then
+    if leftIsArray then
+        if not rightIsArray then
             return false
         end
 
-        return compareArray(a :: UnknownArray, b :: UnknownArray)
-    elseif bIsArray then
+        return compareArray(left :: { unknown }, right :: { unknown })
+    elseif rightIsArray then
         return false
     end
 
-    -- Here we know that both "a" and "b" are not arrays, but some table shape.
+    -- Here we know that both "left" and "right" are not arrays, but some table shape.
 
-    return compareMap(a :: UnknownTable, b :: UnknownTable)
+    return compareTable(left :: { [unknown]: unknown }, right :: { [unknown]: unknown })
 end
 
 local exports = {
-    compareArray = compareArray,
     compare = compare,
-    compareMap = compareMap,
+    compareArray = compareArray,
+    compareTable = compareTable,
 }
 
 return exports

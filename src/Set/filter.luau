@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Set<T> = types.Set<T>
+--!optimize 2
 
 --[[
     Filters a set using a predicate. Any items that do not pass the predicate will be removed from the set.
@@ -16,11 +13,11 @@ type Set<T> = types.Set<T>
     end) -- { world = true }
     ```
 ]]
-local function filter<T, R>(
-    set: Set<T>,
-    predicate: (value: T, set: Set<T>) -> R
-): Set<R>
-    local result: Set<R> = {}
+local function filter<TValue>(
+    set: { [TValue]: true },
+    predicate: (value: TValue, setRef: { [TValue]: true }) -> any
+): { [TValue]: true }
+    local result: { [TValue]: true } = {}
 
     for value in set do
         if predicate(value, set) then

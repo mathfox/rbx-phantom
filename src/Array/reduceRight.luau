@@ -1,9 +1,6 @@
 --!strict
 --!native
-
-local types = require(script.Parent.types)
-
-type Array<T> = types.Array<T>
+--!optimize 2
 
 --[[
 	Reduces the array using the given reducer and initial accumulator value, starting from the end of the array.
@@ -22,16 +19,16 @@ type Array<T> = types.Array<T>
 	end, {}) -- { 3, 2, 1 }
 	```
 ]]
-local function reduceRight<T, U>(
-    array: Array<T>,
+local function reduceRight<TValue, TOutput>(
+    array: { TValue },
     reducer: (
-        accumulator: U,
-        value: T,
+        accumulator: TOutput,
+        value: TValue,
         index: number,
-        array: Array<T>
-    ) -> U,
-    initReduction: U | nil
-): U
+        array: { TValue }
+    ) -> TOutput,
+    initReduction: TOutput | nil
+): TOutput
     local result = initReduction
     local start = #array
 

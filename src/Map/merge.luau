@@ -1,33 +1,32 @@
 --!strict
 --!native
+--!optimize 2
 
 local None = require(script.Parent.Parent.None)
 
 --[[
-    Merges the given dictionaries into a single dictionary.
+    Merges the given maps into a single map.
     If the value is `None`, it will be removed from the result.
-    The parameters may be any number of dictionaries or `nil`.
-    Non-dictonaries will be ignored.
+    The parameters may be any number of maps or `nil`.
+    Non-maps will be ignored.
 
     ```lua
-    local dictionary1 = { hello = "roblox", goodbye = "world" }
-    local dictionary2 = { goodbye = "goodbye" }
+    local map1 = { hello = "roblox", goodbye = "world" }
+    local map2 = { goodbye = "goodbye" }
 
-    local merged = merge(dictionary1, dictionary2) -- { hello = "roblox", goodbye = "goodbye" }
+    local merged = merge(map1, map2) -- { hello = "roblox", goodbye = "goodbye" }
     ```
 ]]
-local function merge(...: any)
-    local result = {}
+local function merge<TKey, TValue>(...: { [TKey]: TValue } | nil): { [TKey]: TValue }
+    local result: { [TKey]: TValue } = {}
 
-    for dictionaryIndex = 1, select("#", ...) do
-        local dictionary = select(dictionaryIndex, ...)
+    for index = 1, select("#", ...) do
+        local mapValue = select(index, ...)
 
-        if type(dictionary) ~= "table" then
-            continue
-        end
-
-        for key, value in pairs(dictionary) do
-            result[key] = if value == None then nil else value
+        if mapValue ~= nil then
+            for key, value in mapValue do
+                result[key] = if value == None then nil else value
+            end
         end
     end
 

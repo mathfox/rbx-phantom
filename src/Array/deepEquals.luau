@@ -1,15 +1,12 @@
 --!strict
 --!native
+--!optimize 2
 
-local deepCompareArray =
-    require(script.Parent.Parent.Shared.deepCompare).deepCompareArray
+local deepCompareArray = require(script.Parent.Parent.Shared.deepCompare).deepCompareArray
 local isArray = require(script.Parent.isArray)
-local types = require(script.Parent.types)
-
-type UnknownArray = types.UnknownArray
 
 --[[
-	Compares two arrays for equality using deep comparison.
+	Compares arrays for equality using deep comparison.
 
 	```lua
 	local array = { 1, 2, 3, { 4, 5 } }
@@ -34,7 +31,7 @@ local function deepEquals(...: unknown): boolean
             return false
         end
 
-        if not deepCompareArray(firstValue :: UnknownArray, value) then
+        if not deepCompareArray(firstValue :: { unknown }, value) then
             return false
         end
     end
