@@ -1,23 +1,24 @@
 --!strict
 --!native
+--!optimize 2
 
 local toSet = require(script.Parent.Parent.Array.toSet)
 
 --[[
-    Removes the given values from the given dictionary.
+    Removes the given values from the given map.
 
     ```lua
-    local dictionary = { hello = "world", cat = "meow", unicorn = "rainbow", goodbye = "world" }
+    local map = { hello = "world", cat = "meow", unicorn = "rainbow", goodbye = "world" }
 
-    local withoutWorld = RemoveValues(dictionary, "world") -- { cat = "meow", unicorn = "rainbow" }
-    local onlyWorld = RemoveValues(dictionary, "meow", "rainbow") -- { hello = "world", goodbye = "world" }
+    local withoutWorld = removeValues(map, "world") -- { cat = "meow", unicorn = "rainbow" }
+    local onlyWorld = removeValues(map, "meow", "rainbow") -- { hello = "world", goodbye = "world" }
     ```
 ]]
-local function removeValues<K, V>(dictionary: { [K]: V }, ...: V): { [K]: V }
+local function removeValues<TKey, TValue>(map: { [TKey]: TValue }, ...: TValue | nil): { [TKey]: TValue }
     local values = toSet({ ... })
     local result = {}
 
-    for key, value in pairs(dictionary) do
+    for key, value in map do
         if not values[value] then
             result[key] = value
         end

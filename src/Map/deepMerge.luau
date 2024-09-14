@@ -6,10 +6,10 @@ local None = require(script.Parent.Parent.None)
 local deepClone = require(script.Parent.Parent.Shared.deepClone)
 
 --[[
-	Merges the given dictionaries into a single dictionary. If the
+	Merges the given maps into a single map. If the
 	value is `None`, it will be removed from the result. This is
-	recursive. The parameters may be any number of dictionaries or
-	`nil`. Non-dictonaries will be ignored.
+	recursive. The parameters may be any number of maps or
+	`nil`. Non-maps will be ignored.
 
 	```lua
 	local map1 = { hello = "roblox", goodbye = { world = "goodbye" } }

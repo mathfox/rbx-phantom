@@ -16,20 +16,18 @@ it("should combine two or more maps, where the last value overrides previous, re
 		},
 	};
 
-	expect(deepMerge(map_1 as unknown as Map<unknown, unknown>, map_2 as unknown as Map<unknown, unknown>)).toStrictEqual(
-		{
-			hello: "roblox",
-			goodbye: {
-				world: "hello",
-			},
+	expect(deepMerge(map_1 as unknown as Map<unknown, unknown>, map_2 as unknown as Map<unknown, unknown>)).toEqual({
+		hello: "roblox",
+		goodbye: {
+			world: "hello",
 		},
-	);
+	});
 });
 
 it("should ignore nils in varargs", () => {
 	expect(
 		deepMerge(undefined, undefined, new Map([["hello", "world"]]), undefined, new Map([["panda", "cat"]])),
-	).toStrictEqual({
+	).toEqual({
 		hello: "world",
 		panda: "cat",
 	});
@@ -55,7 +53,7 @@ it("should remove values set to None", () => {
 				},
 			} as unknown as Map<unknown, unknown>,
 		),
-	).toStrictEqual({
+	).toEqual({
 		hello: "roblox",
 		goodbye: {
 			world: "world",

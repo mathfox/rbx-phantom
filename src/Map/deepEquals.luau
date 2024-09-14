@@ -13,8 +13,8 @@ local isMap = require(script.Parent.isMap)
     local other1 = { hello = "world", goodbye = { world = "hello" } }
     local other2 = { hello = "hello", world = "goodbye" }
 
-    local value = deepEquals(dictionary, other1) -- true
-    local value = deepEquals(dictionary, other1, other2) -- false
+    local value = deepEquals(map, other1) -- true
+    local value = deepEquals(map, other1, other2) -- false
     ```
 ]]
 local function deepEquals(...: unknown): boolean

@@ -15,17 +15,20 @@
 local function includes<TValue>(map: { [unknown]: TValue }, ...): boolean
     for index = 1, select("#", ...) do
         local value = select(index, ...)
-        local found = false
 
-        for _, v in map do
-            if value == v then
-                found = true
-                break
+        if value ~= nil then
+            local found = false
+
+            for _, v in map do
+                if value == v then
+                    found = true
+                    break
+                end
             end
-        end
 
-        if not found then
-            return false
+            if not found then
+                return false
+            end
         end
     end
 

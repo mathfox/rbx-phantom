@@ -1,6 +1,6 @@
-declare function some<K, V>(
-	map: ReadonlyMap<K, V>,
-	predicate: (value: V, key: K, map: ReadonlyMap<K, V>) => unknown,
+declare function some<TKey, TValue>(
+	map: ReadonlyMap<TKey, TValue>,
+	predicate: (value: TValue, key: TKey, mapRef: typeof map) => unknown,
 ): boolean;
 
 export = some;

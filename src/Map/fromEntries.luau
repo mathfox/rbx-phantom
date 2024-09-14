@@ -3,12 +3,12 @@
 --!optimize 2
 
 --[[
-    Creates a dictionary from the given key-value pairs.
+    Creates a map from the given key-value pairs.
 
     ```lua
     local entries = { { "hello", "roblox" }, { "goodbye", "world" } }
 
-    local dictionary = fromEntries(entries) -- { hello = "roblox", goodbye = "world" }
+    local map = fromEntries(entries) -- { hello = "roblox", goodbye = "world" }
     ```
 ]]
 local function fromEntries<TKey, TValue>(entries: { [number]: { [number]: TKey | TValue } }): { [TKey]: TValue }

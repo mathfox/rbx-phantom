@@ -1,31 +1,26 @@
 --!strict
 --!native
-
-local Util = require(script.Parent.Parent.Util)
+--!optimize 2
 
 --[[
-  Filters a dictionary using a predicate. Any items that do not pass the predicate will be removed from the dictionary.
+    Filters a map using a predicate. Any items that do not pass the predicate will be removed from the map.
 
-  ```lua
-  local dictionary = { hello = "world", goodbye = "goodbye" }
+    ```lua
+    local map = { hello = "world", goodbye = "goodbye" }
 
-  local result = Filter(dictionary, function(value, key)
-    return value == "world"
-  end) -- { hello = "world" }
-  ```
+    local result = filter(map, function(value, key)
+        return value == "world"
+    end) -- { hello = "world" }
+    ```
 ]]
-local function filter<K, V>(
-    dictionary: { [K]: V },
-    predicate: (
-        value: V,
-        key: K,
-        dictionary: { [K]: V }
-    ) -> any
-): { [K]: V }
+local function filter<TKey, TValue>(
+    map: { [TKey]: TValue },
+    predicate: (value: TValue, key: TKey, mapRef: { [TKey]: TValue }) -> any
+): { [TKey]: TValue }
     local result = {}
 
-    for key, value in pairs(dictionary) do
-        if predicate(value, key, dictionary) then
+    for key, value in map do
+        if predicate(value, key, map) then
             result[key] = value
         end
     end

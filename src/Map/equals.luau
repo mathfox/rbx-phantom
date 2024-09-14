@@ -24,8 +24,8 @@ local function equals(...: unknown): boolean
         return false
     end
 
-    for i = 2, select("#", ...) do
-        local value = select(i, ...)
+    for index = 2, select("#", ...) do
+        local value = select(index, ...)
 
         if not isMap(value) then
             return false

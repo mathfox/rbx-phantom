@@ -1,4 +1,6 @@
 --!strict
+--!native
+--!optimize 2
 
 export type Map<K, V> = { [K]: V }
 

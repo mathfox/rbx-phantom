@@ -1,27 +1,28 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
-    Checks whether or not the predicate returned true for any value in the dictionary.
+    Checks whether or not the predicate returned true for any value in the map.
 
     ```lua
-    local dictionary = { hello = "world", cat = "meow", unicorn = "rainbow" }
+    local map = { hello = "world", cat = "meow", unicorn = "rainbow" }
 
-    local hasMeow = Some(dictionary, function(value)
+    local hasMeow = some(map, function(value)
         return value == "meow"
     end) -- true
 
-    local hasDog = Some(dictionary, function(_, key)
+    local hasDog = some(map, function(_, key)
         return key == "dog"
     end) -- false
     ```
 ]]
-local function some<K, V>(
-    dictionary: { [K]: V },
-    predicate: (value: V, key: V, dictionary: { [K]: V }) -> any
+local function some<TKey, TValue>(
+    map: { [TKey]: TValue },
+    predicate: (value: TValue, key: TKey, mapRef: { [TKey]: TValue }) -> any
 ): boolean
-    for key, value in pairs(dictionary) do
-        if predicate(value, key, dictionary) then
+    for key, value in map do
+        if predicate(value, key, map) then
             return true
         end
     end

@@ -1,20 +1,24 @@
 --!strict
 --!native
+--!optimize 2
 
 --[[
-    Removes the given keys from the given dictionary.
+    Removes the given keys from the given map.
 
     ```lua
-    local dictionary = { hello = "world", cat = "meow", dog = "woof", unicorn = "rainbow" }
+    local map = { hello = "world", cat = "meow", dog = "woof", unicorn = "rainbow" }
 
-    local withoutCatDog = removeKeys(dictionary, "cat", "dog") -- { hello = "world", unicorn = "rainbow" }
+    local withoutCatDog = removeKeys(map, "cat", "dog") -- { hello = "world", unicorn = "rainbow" }
     ```
 ]]
-local function removeKeys<K, V>(dictionary: { [K]: V }, ...: K): { [K]: V }
-    local result = table.clone(dictionary)
+local function removeKeys<TKey, TValue>(map: { [TKey]: TValue }, ...: TKey | nil): { [TKey]: TValue }
+    local result = table.clone(map)
 
-    for _, key in { ... } do
-        result[key] = nil
+    for index = 1, select("#", ...) do
+        local key = select(index, ...)
+        if key ~= nil then
+            result[key] = nil
+        end
     end
 
     return result
