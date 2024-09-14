@@ -17,7 +17,7 @@ local function slice<TValue>(array: { TValue }, from: number?, to: number?): { T
     local length = #array
     local result = {}
 
-    for index = if from then if from < 0 then length + 1 + from else from + 1 else 1, if to then if to < 0 then length + 1 + to else to + 1 else length do
+    for index = if from then if from < 0 then length + from + 1 else from + 1 else 1, if to then if to < 0 then length + to else to else length do
         table.insert(result, array[index])
     end
 

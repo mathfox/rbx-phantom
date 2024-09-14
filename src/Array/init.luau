@@ -34,7 +34,6 @@ local exports = {
     removeValues = require(script.removeValues),
     reverse = require(script.reverse),
     shift = require(script.shift),
-    shuffle = require(script.shuffle),
     slice = require(script.slice),
     some = require(script.some),
     symmetricDifference = require(script.symmetricDifference),
