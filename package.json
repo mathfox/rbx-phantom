@@ -1,7 +1,7 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Data manipulation library for Roblox",
-	"version": "0.2.0",
+	"version": "0.3.0",
 	"scripts": {
 		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
@@ -15,6 +15,8 @@
 		"roblox",
 		"roblox-ts",
 		"table",
+		"string",
+		"number",
 		"object",
 		"array",
 		"dictionary",
@@ -46,7 +48,6 @@
 		"@rbxts/types": "^1.0.805",
 		"@rbxts/jest": "^0.1.0",
 		"@rbxts/jest-globals": "^0.1.0",
-		"roblox-ts": "^3.0.0-dev-d1d5486",
-		"typescript": "^5.7.0-dev.20240913"
+		"roblox-ts": "^3.0.0-dev-d1d5486"
 	}
 }
