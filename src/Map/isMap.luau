@@ -7,7 +7,8 @@ local function isMap(value: unknown): boolean
         return false
     end
 
-    return #value :: any == 0
+    --return #value :: any == 0
+    return true
 end
 
 return isMap
