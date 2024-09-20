@@ -23,3 +23,11 @@ it("should return false for array-like structures", () => {
 		),
 	).toBe(false);
 });
+
+it("should return true only for tables with `true` value", () => {
+	expect(
+		isSet({
+			value: false,
+		}),
+	).toBe(false);
+});

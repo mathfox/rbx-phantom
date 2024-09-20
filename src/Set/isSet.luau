@@ -13,7 +13,7 @@ local function isSet(input: unknown): boolean
     end
 
     for _, value in input :: any do
-        if type(value) ~= "boolean" then
+        if value ~= true then
             return false
         end
     end
