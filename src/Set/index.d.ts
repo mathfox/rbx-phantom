@@ -5,6 +5,7 @@ import filter from "./filter";
 import fromArray from "./fromArray";
 import has from "./has";
 import intersection from "./intersection";
+import isSet from "./isSet";
 import isSubset from "./isSubset";
 import isSuperset from "./isSuperset";
 import map from "./map";
@@ -23,6 +24,7 @@ declare namespace PhantomSet {
 		fromArray,
 		has,
 		intersection,
+		isSet,
 		isSubset,
 		isSuperset,
 		map,

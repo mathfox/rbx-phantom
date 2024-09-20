@@ -16,6 +16,7 @@ local exports = {
     fromArray = require(script.fromArray),
     has = require(script.has),
     intersection = require(script.intersection),
+    isSet = require(script.isSet),
     isSubset = require(script.isSubset),
     isSuperset = require(script.isSuperset),
     map = require(script.map),
