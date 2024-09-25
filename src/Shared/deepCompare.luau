@@ -3,16 +3,15 @@
 --!optimize 2
 
 local isArray = require(script.Parent.Parent.Array.isArray)
-local arrayTypes = require(script.Parent.Parent.Array.types)
-local types = require(script.Parent.types)
-
-type UnknownArray = arrayTypes.UnknownArray
-type UnknownTable = types.UnknownTable
 
 local deepCompare: (left: unknown, right: unknown) -> boolean
 
 -- Assumes that both values are checked with `isArray` function.
-local function deepCompareArray(left: UnknownArray, right: UnknownArray): boolean
+local function deepCompareArray(left: { unknown }, right: { unknown }): boolean
+    if left == right then
+        return true
+    end
+
     local leftLength = #left
 
     if #right ~= leftLength then
@@ -28,15 +27,73 @@ local function deepCompareArray(left: UnknownArray, right: UnknownArray): boolea
     return true
 end
 
-local function deepCompareTable(left: UnknownTable, right: UnknownTable): boolean
+--[[
+    Compares two tables.
+
+    The comparison rules are following:
+    Both tables should:
+    - have the same keys.
+    - have the same values.
+]]
+local function deepCompareTable(left: { [unknown]: unknown }, right: { [unknown]: unknown }): boolean
+    if left == right then
+        return true
+    end
+
+    local leftKeysToValues: { [unknown]: unknown } = {}
+
     for key, value in left do
-        if not deepCompare(value, right[key]) then
+        if type(key) == "table" then
+            leftKeysToValues[key] = value
+        elseif not deepCompare(value, right[key]) then
             return false
         end
     end
 
+    local rightKeysToValues: { [unknown]: unknown } = {}
+
     for key, value in right do
-        if not deepCompare(value, left[key]) then
+        if type(key) == "table" then
+            rightKeysToValues[key] = value
+        elseif not deepCompare(value, left[key]) then
+            return false
+        end
+    end
+
+    local clonedRightKeysToValues = table.clone(rightKeysToValues)
+
+    for leftKey, leftValue in leftKeysToValues do
+        local isMatchFound = false
+
+        for rightKey, rightValue in clonedRightKeysToValues do
+            if deepCompare(leftKey, rightKey) and deepCompare(leftValue, rightValue) then
+                clonedRightKeysToValues[rightKey] = nil
+
+                isMatchFound = true
+                break
+            end
+        end
+
+        if not isMatchFound then
+            return false
+        end
+    end
+
+    local clonedLeftKeysToValues = table.clone(leftKeysToValues)
+
+    for rightKey, rightValue in rightKeysToValues do
+        local isMatchFound = false
+
+        for leftKey, leftValue in clonedLeftKeysToValues do
+            if deepCompare(rightKey, leftKey) and deepCompare(rightValue, leftValue) then
+                clonedLeftKeysToValues[leftKey] = nil
+
+                isMatchFound = true
+                break
+            end
+        end
+
+        if not isMatchFound then
             return false
         end
     end
@@ -49,22 +106,26 @@ function deepCompare(left, right)
         return left == right
     end
 
-    local leftIsArray = isArray(left :: UnknownTable)
-    local rightIsArray = isArray(right :: UnknownTable)
+    if left == right then
+        return true
+    end
+
+    local leftIsArray = isArray(left)
+    local rightIsArray = isArray(right)
 
     if leftIsArray then
         if not rightIsArray then
             return false
         end
 
-        return deepCompareArray(left :: UnknownArray, right :: UnknownArray)
+        return deepCompareArray(left :: { unknown }, right :: { unknown })
     elseif rightIsArray then
         return false
     end
 
     -- Here we know that both "a" and "b" are not arrays, but some table shape.
 
-    return deepCompareTable(left :: UnknownTable, right :: UnknownTable)
+    return deepCompareTable(left :: { [unknown]: unknown }, right :: { [unknown]: unknown })
 end
 
 local exports = {

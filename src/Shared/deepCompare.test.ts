@@ -31,4 +31,60 @@ describe("deepCompare", () => {
 			),
 		).toBe(true);
 	});
+
+	it("should work for nested keys and values", () => {
+		expect(
+			deepCompare(
+				new Map([
+					[
+						new Map([
+							[0, "foo"],
+							[1, "bar"],
+						]),
+						new Map([[3, "baz"]]),
+					],
+				]),
+				new Map([
+					[
+						new Map([
+							[0, "foo"],
+							[1, "bar"],
+						]),
+						new Map([[3, "baz"]]),
+					],
+				]),
+			),
+		).toBe(true);
+
+		expect(
+			deepCompare(
+				new Map([
+					[
+						new Map([
+							[0, "foo"],
+							[1, "bar"],
+						]),
+						new Map([[4, "baz"]]),
+					],
+				]),
+				new Map([
+					[
+						new Map([
+							[0, "foo"],
+							[1, "bar"],
+						]),
+						new Map([[3, "baz"]]),
+					],
+				]),
+			),
+		).toBe(false);
+	});
+
+	it("should instantly return true for 'reference-equal' tables", () => {
+		const value = setmetatable({}, {
+			__iter: error,
+		} as LuaMetatable<object>);
+
+		expect(deepCompare(value, value)).toBe(true);
+	});
 });
