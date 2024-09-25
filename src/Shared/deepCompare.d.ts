@@ -1,3 +1,6 @@
+/**
+ * Compares the two values.
+ */
 export function deepCompare(left: unknown, right: unknown): boolean;
 
 export function deepCompareArray(left: ReadonlyArray<unknown>, right: ReadonlyArray<unknown>): boolean;
