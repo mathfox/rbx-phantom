@@ -26,6 +26,7 @@ local exports = {
     deepSafeFreeze = require(script.deepSafeFreeze),
     entries = require(script.entries),
     keys = require(script.keys),
+    merge = require(script.merge),
     safeFreeze = require(script.safeFreeze),
     size = require(script.size),
     values = require(script.values),
