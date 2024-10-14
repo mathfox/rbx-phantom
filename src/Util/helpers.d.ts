@@ -523,3 +523,10 @@ export type Decr = [
 	255,
 	256,
 ];
+
+/**
+ * Workaround for inability to use statically typed `length` field of array-like types.
+ */
+export type ArrayLength<TValue, TCurrentLength extends number = 0> = TValue extends [infer _, ...infer TRest]
+	? ArrayLength<TRest, Incr[TCurrentLength]>
+	: TCurrentLength;
