@@ -1,7 +1,7 @@
 {
 	"name": "@rbxts/phantom",
 	"description": "Data manipulation library for Roblox",
-	"version": "0.6.1",
+	"version": "0.6.2",
 	"scripts": {
 		"build:bench": "rojo sourcemap benchmarks.project.json --output sourcemap.json",
 		"serve:bench": "rojo serve benchmarks.project.json",
