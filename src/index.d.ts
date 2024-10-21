@@ -6,8 +6,8 @@ import PhantomObject from "./Object";
 import PhantomSet from "./Set";
 import PhantomShared from "./Shared";
 import PhantomString from "./String";
-import PhantomUtil from "./Util";
 import type * as Types from "./Types";
+import PhantomUtil from "./Util";
 
 declare namespace Phantom {
 	export {

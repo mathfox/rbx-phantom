@@ -1,9 +1,9 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/palindrome.d.ts
 
-import { IsEmptyString } from "./string";
-import { Stringify } from "./stringify";
 import { IsStringLiteral } from "./is-string-literal";
 import { Not } from "./not";
+import { IsEmptyString } from "./string";
+import { Stringify } from "./stringify";
 
 type _IsPalindrome<T extends string> = IsEmptyString<T> extends true
 	? true

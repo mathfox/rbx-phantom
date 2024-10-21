@@ -1,8 +1,8 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/ceil.d.ts
 
+import { GetFloatNumberParts } from "./get-float-number-parts";
 import { Increment } from "./increment";
 import { IsFloat, IsNegative, Negate } from "./number";
-import { GetFloatNumberParts } from "./get-float-number-parts";
 
 /**
  * Type version of `Math.ceil()`. Returns ceiled value of the passed number

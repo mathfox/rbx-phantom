@@ -1,10 +1,10 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/swap.d.ts
 
-import { IsEqual } from "./equal";
-import { ParseNumber } from "./number";
-import { IsBetween } from "./is-between";
 import { And } from "./and";
+import { IsEqual } from "./equal";
+import { IsBetween } from "./is-between";
 import { IsTuple } from "./is-tuple";
+import { ParseNumber } from "./number";
 
 /**
  * Swaps the position of two elements in a tuple.

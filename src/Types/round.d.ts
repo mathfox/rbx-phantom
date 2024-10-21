@@ -1,10 +1,10 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/round.d.ts
 
-import { GetFloatNumberParts } from "./get-float-number-parts";
-import { IsFloat } from "./number";
 import { FirstDigit } from "./first-digit";
+import { GetFloatNumberParts } from "./get-float-number-parts";
 import { IsGreaterThan } from "./greater-than";
 import { Increment } from "./increment";
+import { IsFloat } from "./number";
 
 /**
  * Type version of `Math.round()`. Returns the value of a number rounded to the nearest integer

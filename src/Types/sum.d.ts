@@ -1,15 +1,15 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/sum.d.ts
 
-import { _Increment } from "./increment";
-import { IsNegativeInteger, Abs, ParseNumber, Negate } from "./number";
-import { LastCharacter } from "./last-character";
-import { Stringify } from "./stringify";
-import { IsEmptyString } from "./string";
-import { Pop } from "./pop";
-import { IsTuple } from "./is-tuple";
-import { IsNever } from "./never";
-import { Sub } from "./sub";
 import { IsEmptyArray } from "./array";
+import { _Increment } from "./increment";
+import { IsTuple } from "./is-tuple";
+import { LastCharacter } from "./last-character";
+import { IsNever } from "./never";
+import { Abs, IsNegativeInteger, Negate, ParseNumber } from "./number";
+import { Pop } from "./pop";
+import { IsEmptyString } from "./string";
+import { Stringify } from "./stringify";
+import { Sub } from "./sub";
 
 type SumIncrementMap = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
 

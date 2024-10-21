@@ -1,16 +1,16 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/slice.d.ts
 
+import { And } from "./and";
+import { IsEmptyArray } from "./array";
 import { IsEqual } from "./equal";
-import { Abs, IfPositive, IsNegative, ParseNumber } from "./number";
 import { IfGreaterOrEqual, IsGreaterOrEqual } from "./greater-than";
-import { Sum } from "./sum";
+import { If } from "./if";
+import { IsArrayIndex } from "./is-array-index";
+import { IsLowerThan } from "./lower-than";
+import { Abs, IfPositive, IsNegative, ParseNumber } from "./number";
 import { Or } from "./or";
 import { Push } from "./push";
-import { IsEmptyArray } from "./array";
-import { And } from "./and";
-import { If } from "./if";
-import { IsLowerThan } from "./lower-than";
-import { IsArrayIndex } from "./is-array-index";
+import { Sum } from "./sum";
 
 type SliceRemovedItemValue = Record<"__type-samurai_internal__", symbol>;
 
