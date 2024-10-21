@@ -27,8 +27,8 @@ import slice from "./slice";
 import some from "./some";
 import symmetricDifference from "./symmetricDifference";
 import toSet from "./toSet";
-import type { AnyArray, InferArrayValue, UnknownArray } from "./types";
 import unshift from "./unshift";
+import type { AnyArray, InferArrayValue, UnknownArray } from "./types";
 
 declare namespace PhantomArray {
 	export type { InferArrayValue, UnknownArray, AnyArray };
