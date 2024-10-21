@@ -7,6 +7,7 @@ import PhantomSet from "./Set";
 import PhantomShared from "./Shared";
 import PhantomString from "./String";
 import PhantomUtil from "./Util";
+import type * as Types from "./Types";
 
 declare namespace Phantom {
 	export {
@@ -20,6 +21,8 @@ declare namespace Phantom {
 		PhantomString as String,
 		PhantomUtil as Util,
 	};
+
+	export type { Types };
 }
 
 export = Phantom;
