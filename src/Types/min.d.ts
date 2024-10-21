@@ -37,4 +37,6 @@ type _MinArr<
  * type Case2 = MinArr<[-1, 4, -10]>
  * ```
  */
-export type MinArr<T extends readonly number[]> = IsTuple<T> extends true ? _MinArr<T> : never;
+export type MinArr<T extends readonly [] | readonly [number, ...number[]]> = IsTuple<T> extends true
+	? _MinArr<T>
+	: never;

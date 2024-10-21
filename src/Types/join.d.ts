@@ -15,8 +15,14 @@ import { IsTuple } from "./is-tuple";
  * type Case3 = Join<["o"], "u">
  * ```
  */
-export type Join<T extends readonly (string | number)[], Glue extends string | number> = IsTuple<T> extends true
-	? T extends readonly [infer First extends string | number, ...infer Rest extends readonly (string | number)[]]
+export type Join<
+	T extends readonly [] | readonly [string | number, ...(string | number)[]],
+	Glue extends string | number,
+> = IsTuple<T> extends true
+	? T extends readonly [
+			infer First extends string | number,
+			...infer Rest extends readonly [] | readonly [string | number, ...(string | number)[]],
+		]
 		? IfEmptyArray<Rest, First, `${First}${Glue}${Join<Rest, Glue>}`>
 		: never
 	: never;

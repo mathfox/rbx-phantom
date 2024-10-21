@@ -17,7 +17,7 @@ import { IsTuple } from "./is-tuple";
  * ```
  */
 export type Swap<
-	T extends readonly unknown[],
+	T extends readonly [] | readonly [unknown, ...unknown[]] | readonly [...unknown[], unknown],
 	FromIndex extends number,
 	ToIndex extends number,
 > = IsTuple<T> extends true

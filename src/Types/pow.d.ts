@@ -8,7 +8,7 @@ type _Pow<
 	Num extends number,
 	Factor extends number,
 	CurrentProduct extends number = 1,
-	Iteration extends unknown[] = [],
+	Iteration extends [] | [unknown, ...unknown[]] = [],
 > = IsEqual<Iteration["length"], Factor> extends true
 	? CurrentProduct
 	: _Pow<Num, Factor, Mult<CurrentProduct, Num>, Push<Iteration, unknown>>;

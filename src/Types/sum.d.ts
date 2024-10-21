@@ -110,4 +110,6 @@ type _SumArr<T extends readonly number[], CurrentSum extends number = 0> = IsEmp
  * type Case2 = SumArr<[1, 2, 3, -4]>
  * ```
  */
-export type SumArr<T extends readonly number[]> = IsTuple<T> extends true ? _SumArr<T> : never;
+export type SumArr<T extends readonly [] | readonly [number, ...number[]]> = IsTuple<T> extends true
+	? _SumArr<T>
+	: never;

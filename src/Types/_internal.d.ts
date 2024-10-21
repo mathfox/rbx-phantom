@@ -26,8 +26,9 @@ export type ApplyDefaultOptions<
 			> extends true
 			? ApplyDefaultOptions<
 					NonNullable<BaseOptions[K]>,
-					Options[K],
-					DefaultOptions[K],
+					// roblox-ts diff, wrapping 2 types in NonNullable
+					NonNullable<Options[K]>,
+					NonNullable<DefaultOptions[K]>,
 					OverwriteRules[K & keyof OverwriteRules],
 					OverwriteDefault
 				> & {

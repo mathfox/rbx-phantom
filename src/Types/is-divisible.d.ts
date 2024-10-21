@@ -30,7 +30,9 @@ type DivisibleByThreeMap = {
 	9: true;
 };
 
-type _IsDivisibleByThree<T extends number> = DigitsTuple<T> extends infer Digits extends readonly number[]
+type _IsDivisibleByThree<T extends number> = DigitsTuple<T> extends infer Digits extends
+	| readonly []
+	| readonly [number, ...number[]]
 	? IsEqual<Digits["length"], 1> extends true
 		? Digits[0] extends keyof DivisibleByThreeMap
 			? true

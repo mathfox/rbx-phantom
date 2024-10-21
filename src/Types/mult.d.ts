@@ -65,7 +65,7 @@ type _Mult<
 	Num1 extends string,
 	Num2 extends string,
 	Result extends string = "",
-	Iteration extends unknown[] = [],
+	Iteration extends [] | [unknown, ...unknown[]] = [],
 > = IsEmptyString<Num2> extends true
 	? Result
 	: LastCharacter<Num2, { includeRest: true }> extends [

@@ -2,13 +2,14 @@
 
 import { ApplyDefaultOptions, OverWritable } from "./_internal";
 import { And } from "./and";
-import { ArrayElementType } from "./array-element-type";
+import { ArrayElementType } from "./array-element-types";
 import { IsEqual } from "./equal";
 import { Increment } from "./increment";
 import { IsArrayIndex } from "./is-array-index";
 import { IsTuple } from "./is-tuple";
 import { Join } from "./join";
 import { IsNever } from "./never";
+import type { PropertyKey } from "./property-key";
 import { ValueOf, ValueOfArray } from "./value-of";
 
 export type PathToFieldsOptions = OverWritable & {
@@ -24,7 +25,7 @@ export type PathToFieldsOptions = OverWritable & {
 
 export type DefaultPathToFieldsOptions = {
 	ignoredTypes: never;
-	stopTypes: string | number | boolean | symbol | Date | Function;
+	stopTypes: string | number | boolean | symbol | Callback;
 	format: "dot";
 	limit: 10;
 	ignoredKeys: never;
@@ -42,8 +43,9 @@ type OverwriteRules = {
 };
 
 type _PathToFieldsArray<
-	T extends readonly unknown[],
-	Options extends PathToFieldsOptions,
+	T extends readonly [] | readonly [unknown, ...unknown[]],
+	// roblox-ts diff, wrapping in Required
+	Options extends Required<PathToFieldsOptions>,
 	Iteration extends number = 0,
 > = And<IsTuple<T>, IsEqual<Options["arrayIndexing"]["exactIndexes"], true>> extends true
 	? ValueOfArray<{
@@ -58,7 +60,8 @@ type _PathToFieldsArray<
 
 type _PathToFields<
 	T,
-	Options extends PathToFieldsOptions,
+	// roblox-ts diff, Required wrapper
+	Options extends Required<PathToFieldsOptions>,
 	Iteration extends number = 0,
 > = T extends Options["ignoredTypes"]
 	? never
@@ -66,11 +69,11 @@ type _PathToFields<
 		? []
 		: IsEqual<Iteration, Options["limit"]> extends true
 			? never
-			: T extends readonly unknown[]
+			: T extends readonly [] | readonly [unknown, ...unknown[]]
 				? _PathToFieldsArray<T, Options, Iteration>
 				: ValueOf<{
 						[K in Exclude<keyof T, symbol | Options["ignoredKeys"]>]: NonNullable<T[K]> extends infer NonNullableFields
-							? NonNullableFields extends readonly unknown[]
+							? NonNullableFields extends readonly [] | readonly [unknown, ...unknown[]]
 								? [K, ..._PathToFieldsArray<NonNullableFields, Options, Iteration>]
 								: [K, ..._PathToFields<NonNullableFields, Options, Increment<Iteration>>]
 							: never;
@@ -98,10 +101,12 @@ export type PathToFields<T, Options extends PathToFieldsOptions & { overwriteDef
 				Options,
 				DefaultPathToFieldsOptions,
 				OverwriteRules,
-				PathToFieldsOptions["overwriteDefault"]
+				Required<PathToFieldsOptions>["overwriteDefault"]
 			>
-) extends infer MergedOptions extends PathToFieldsOptions
-	? _PathToFields<T, MergedOptions> extends infer Paths extends readonly (string | number)[]
+) extends infer MergedOptions extends Required<PathToFieldsOptions>
+	? _PathToFields<T, MergedOptions> extends infer Paths extends
+			| readonly []
+			| readonly [string | number, ...(string | number)[]]
 		? IsEqual<MergedOptions["format"], "dot"> extends true
 			? Paths extends Paths
 				? Join<Paths, ".">

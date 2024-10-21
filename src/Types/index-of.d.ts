@@ -39,13 +39,13 @@ type _IndexOfString<
  * ```
  */
 export type IndexOf<
-	T extends readonly unknown[] | string,
+	T extends readonly [] | readonly [unknown, ...unknown[]] | string,
 	Pivot extends T extends string ? string : unknown,
 > = T extends string
 	? IsStringLiteral<T> extends true
 		? _IndexOfString<T, Pivot>
 		: never
-	: T extends readonly unknown[]
+	: T extends readonly [] | readonly [unknown, ...unknown[]]
 		? IsTuple<T> extends true
 			? _IndexOfArray<T, Pivot>
 			: never

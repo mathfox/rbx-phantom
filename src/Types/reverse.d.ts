@@ -20,7 +20,7 @@ type _Reverse<T extends readonly unknown[], Result extends readonly unknown[] = 
  * type T1 = Reverse<readonly [1, 2, 3]>;
  * ```
  */
-export type Reverse<T extends readonly unknown[]> = IsTuple<T> extends true
+export type Reverse<T extends readonly [] | readonly [unknown, ...unknown[]]> = IsTuple<T> extends true
 	? _Reverse<T> extends infer R extends readonly unknown[]
 		? IsReadonlyArray<T> extends true
 			? Readonly<R>

@@ -31,7 +31,11 @@ type FilterRemoved<T extends readonly unknown[], Result extends unknown[] = []> 
  * type T1 = Slice<[1, 2, 3, 4], 1, 3>;
  * ```
  */
-type Slice<T extends readonly unknown[], Start extends number = 0, End extends number = T["length"]> = (
+type Slice<
+	T extends readonly [] | readonly [unknown, ...unknown[]],
+	Start extends number = 0,
+	End extends number = T["length"],
+> = (
 	IsEmptyArray<T> extends true
 		? "self"
 		: IsGreaterOrEqual<Start, T["length"]> extends true

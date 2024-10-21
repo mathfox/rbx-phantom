@@ -37,4 +37,6 @@ type _MaxArr<
  * type Case2 = MaxArr<[-1, 4, -10]>
  * ```
  */
-export type MaxArr<T extends readonly number[]> = IsTuple<T> extends true ? _MaxArr<T> : never;
+export type MaxArr<T extends readonly [] | readonly [number, ...number[]]> = IsTuple<T> extends true
+	? _MaxArr<T>
+	: never;

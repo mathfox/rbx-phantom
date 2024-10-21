@@ -7,15 +7,18 @@ import { Increment } from "./increment";
 import { IsLowerOrEqual, IsLowerThan } from "./lower-than";
 import { Swap } from "./swap";
 
-type _SortSingle<Result extends readonly number[], PivotIndex extends number, CurrentIndex extends number> = IsEqual<
-	PivotIndex,
-	CurrentIndex
-> extends true
+type _SortSingle<
+	Result extends readonly [] | readonly [number, ...number[]] | readonly [...number[], number],
+	PivotIndex extends number,
+	CurrentIndex extends number,
+> = IsEqual<PivotIndex, CurrentIndex> extends true
 	? Result
 	: Increment<CurrentIndex> extends infer NextCurrentIndex extends number
 		? _SortSingle<
 				IsGreaterThan<Result[CurrentIndex], Result[NextCurrentIndex]> extends true
-					? Swap<Result, CurrentIndex, NextCurrentIndex> extends infer NewResult extends readonly number[]
+					? Swap<Result, CurrentIndex, NextCurrentIndex> extends infer NewResult extends
+							| readonly []
+							| readonly [number, ...number[]]
 						? NewResult
 						: Result
 					: Result,
@@ -24,9 +27,12 @@ type _SortSingle<Result extends readonly number[], PivotIndex extends number, Cu
 			>
 		: never;
 
-type _Sort<T extends readonly number[], CurrentIndex extends number> = IsLowerOrEqual<CurrentIndex, 0> extends true
+type _Sort<T extends readonly [] | readonly [number, ...number[]], CurrentIndex extends number> = IsLowerOrEqual<
+	CurrentIndex,
+	0
+> extends true
 	? T
-	: _SortSingle<T, CurrentIndex, 0> extends infer NewT extends readonly number[]
+	: _SortSingle<T, CurrentIndex, 0> extends infer NewT extends readonly [] | readonly [number, ...number[]]
 		? _Sort<NewT, Decrement<CurrentIndex>>
 		: T;
 
@@ -41,6 +47,6 @@ type _Sort<T extends readonly number[], CurrentIndex extends number> = IsLowerOr
  * type T1 = Sort<[1, -1, 0]>;
  * ```
  */
-export type Sort<T extends readonly number[]> = IsLowerThan<T["length"], 2> extends true
+export type Sort<T extends readonly [] | readonly [number, ...number[]]> = IsLowerThan<T["length"], 2> extends true
 	? T
 	: _Sort<T, Decrement<T["length"]>>;

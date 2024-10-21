@@ -6,7 +6,7 @@ type _Repeat<
 	T extends string,
 	Count extends number,
 	Result extends string = "",
-	Iteration extends unknown[] = [],
+	Iteration extends [] | [unknown, ...unknown[]] = [],
 > = Iteration["length"] extends Count ? Result : _Repeat<T, Count, `${T}${Result}`, Push<Iteration, unknown>>;
 
 /**

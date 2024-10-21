@@ -5,7 +5,12 @@ import { Sum } from "./sum";
 
 type _StringLength<
 	S extends string,
-	Parts extends [string[], string[], string[], string[]] = [[], [], [], []],
+	Parts extends [
+		[] | [...string[], string],
+		[] | [...string[], string],
+		[] | [...string[], string],
+		[] | [...string[], string],
+	] = [[], [], [], []],
 > = S extends ""
 	? Sum<Sum<Parts[0]["length"], Parts[1]["length"]>, Sum<Parts[2]["length"], Parts[3]["length"]>>
 	: S extends `${infer C1 extends string}${infer Rest1 extends string}`

@@ -13,7 +13,8 @@ import { If } from "./if";
  * type Case2 = IsTuple<number[]>
  * ```
  */
-export type IsTuple<T extends readonly unknown[]> = NotExtends<number, T["length"]>;
+export type IsTuple<T extends readonly [] | readonly [unknown, ...unknown[]] | readonly [...unknown[], unknown]> =
+	NotExtends<number, T["length"]>;
 
 /**
  * Returns the second argument if the first array argument is fixed length tuple (defaults to `true`), otherwise returns the third argument (defaults to `false`)
@@ -25,4 +26,8 @@ export type IsTuple<T extends readonly unknown[]> = NotExtends<number, T["length
  * type Case2 = IsTuple<number[], 'valid', 'invalid'>
  * ```
  */
-export type IfTuple<T extends readonly unknown[], IfTrue = true, IfFalse = false> = If<IsTuple<T>, IfTrue, IfFalse>;
+export type IfTuple<T extends readonly [] | readonly [unknown, ...unknown[]], IfTrue = true, IfFalse = false> = If<
+	IsTuple<T>,
+	IfTrue,
+	IfFalse
+>;

@@ -1,5 +1,7 @@
 // source: https://github.com/KamilHs/type-samurai/blob/79490c1d7eb919761b6d70683f67f0588614841b/src/switch.d.ts
 
+import type { PropertyKey } from "./property-key";
+
 /**
  * Type version of switch statement.
  * @param Cases - An object containing cases with their corresponding values.
