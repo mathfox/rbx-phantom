@@ -1,18 +1,15 @@
 type PrimitiveType = CheckablePrimitives[keyof Omit<CheckablePrimitives, "userdata" | "function" | "table">];
 
 type FlattenMergeKey<TInput> = TInput extends [infer TFirst, ...infer TRest]
-	? TFirst extends ReadonlyMap<infer TKey, any>
-		? TKey | FlattenMergeKey<[...TRest]>
-		: TFirst extends ReadonlySet<infer TKey>
-			? TKey | FlattenMergeKey<[...TRest]>
-			: TFirst extends ReadonlyArray<any>
-				? number | FlattenMergeKey<[...TRest]>
-				: TFirst extends PrimitiveType
-					? never
-					: TFirst extends object
-						? { readonly [TKey in keyof TFirst]: TKey }[keyof TFirst] | FlattenMergeKey<[...TRest]>
-						: never
-	: never;
+	                         ? TFirst extends ReadonlyMap<infer TKey, unknown>   ? TKey   | FlattenMergeKey<[...TRest]>
+                             : TFirst extends ReadonlySet<infer TKey>            ? TKey   | FlattenMergeKey<[...TRest]>
+			                 : TFirst extends ReadonlyArray<unknown>             ? number | FlattenMergeKey<[...TRest]>
+				             : TFirst extends PrimitiveType                      ? never
+					         : TFirst extends object                             ? {
+                                                                                       readonly [TKey in keyof TFirst]: TKey
+                                                                                   }[keyof TFirst] | FlattenMergeKey<[...TRest]>
+						     : never
+	                         : never
 
 type FlattenMergeValue<TInput> = TInput extends [infer TFirst, ...infer TRest]
 	? TFirst extends ReadonlyMap<any, infer TValue>

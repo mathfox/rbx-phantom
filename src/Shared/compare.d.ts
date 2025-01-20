@@ -17,3 +17,4 @@ export function compareArray(left: ReadonlyArray<unknown>, right: ReadonlyArray<
  * Compares for shallow equality of the values in both tables.
  */
 export function compareTable(left: object, right: object): boolean;
+

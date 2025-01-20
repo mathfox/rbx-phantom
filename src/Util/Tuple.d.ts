@@ -11,8 +11,9 @@ import type { Incr } from "./helpers";
  * ```
  */
 export type Tuple<
-	Length extends number,
-	Type,
-	Acc extends Array<Type> = [],
-	CurrentLength extends number = 0,
-> = Length extends CurrentLength ? Acc : Tuple<Length, Type, [...Acc, Type], Incr[CurrentLength]>;
+	TLength extends number,
+	TType,
+	TAcc extends Array<TType> = [],
+	TCurrentLength extends number = 0,
+> = TLength extends TCurrentLength ? TAcc : Tuple<TLength, TType, [...TAcc, TType], Incr[TCurrentLength]>;
+

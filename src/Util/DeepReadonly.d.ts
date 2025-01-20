@@ -1,12 +1,8 @@
-export type DeepReadonly<TInput> = TInput extends ReadonlyArray<infer TValue>
-	? DeepReadonlyArray<TValue>
-	: TInput extends Callback
-		? TInput
-		: TInput extends ReadonlyMap<infer TKey, infer TValue>
-			? ReadonlyMap<TKey, DeepReadonly<TValue>>
-			: TInput extends object
-				? DeepReadonlyObject<TInput>
-				: TInput;
+export type DeepReadonly<TInput> = TInput extends ReadonlyArray<infer TValue>           ? DeepReadonlyArray<TValue>
+                                 : TInput extends Callback                              ? TInput
+                                 : TInput extends ReadonlyMap<infer TKey, infer TValue> ? ReadonlyMap<TKey, DeepReadonly<TValue>>
+			                     : TInput extends object                                ? DeepReadonlyObject<TInput>
+                                 : TInput
 
 //export interface DeepReadonlyArray<T> extends ReadonlyArray<DeepReadonly<T>> {}
 
