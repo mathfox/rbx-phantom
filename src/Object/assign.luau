@@ -2,7 +2,7 @@
 --!native
 --!optimize 2
 
-local function assign(target, ...)
+local function assign(target: { [unknown]: unknown }, ...): ()
     for index = 1, select("#", ...) do
         local source = select(index, ...)
 
